@@ -1,29 +1,69 @@
-import Vue from 'vue'
-import VueRouter from 'vue-router'
-import Home from '../views/Home.vue'
+import Vue from "vue";
+import VueRouter from "vue-router";
+import Login from "@/views/Login";
+import Register from "@/views/Register";
+import Home from "../views/Home.vue";
+import SearchResults from "@/views/SearchResults";
+import UserPublications from "@/views/UserPublications";
+import NewPublication from "@/views/NewPublication";
+import Profile from "@/views/Profile";
+import MyPublications from "@/views/MyPublications";
+import Admin from "@/views/Admin";
 
-Vue.use(VueRouter)
+Vue.use(VueRouter);
 
-  const routes = [
+const routes = [
   {
-    path: '/',
-    name: 'Home',
-    component: Home
+    path: "/",
+    name: "Home",
+    component: Home,
   },
   {
-    path: '/about',
-    name: 'About',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/About.vue')
-  }
-]
+    path: "/search",
+    name: "SearchResults",
+    component: SearchResults,
+  },
+  {
+    path: "/user-publications",
+    name: "UserPublications",
+    component: UserPublications,
+  },
+  {
+    path: "/login",
+    name: "Login",
+    component: Login,
+  },
+  {
+    path: "/register",
+    name: "Register",
+    component: Register,
+  },
+  {
+    path: "/new-publication",
+    name: "NewPublication",
+    component: NewPublication,
+  },
+  {
+    path: "/profile",
+    name: "Profile",
+    component: Profile,
+  },
+  {
+    path: "/my-publications",
+    name: "MyPublications",
+    component: MyPublications,
+  },
+  {
+    path: "/admin",
+    name: "Admin",
+    component: Admin,
+  },
+];
 
 const router = new VueRouter({
-  mode: 'history',
+  mode: "history",
   base: process.env.BASE_URL,
-  routes
-})
+  routes,
+});
 
-export default router
+export default router;
