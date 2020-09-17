@@ -2,9 +2,20 @@
     <q-layout view="lHh Lpr lFf">
         <q-header elevated>
             <q-toolbar>
-                <q-toolbar-title @click="$router.push('/')">Tareax</q-toolbar-title>
-                <q-btn class="on-right" color="primary" :to="'/login'" v-if="!user">iniciar sesión</q-btn>
-                <q-btn class="on-left" flat round dense to="/new-publication" v-if="user">
+                <q-toolbar-title @click="$router.push('/')"
+                    >Tareax</q-toolbar-title
+                >
+                <q-btn color="white" outline :to="'/login'" v-if="!user"
+                    >iniciar sesión</q-btn
+                >
+                <q-btn
+                    class="on-left"
+                    flat
+                    round
+                    dense
+                    to="/new-publication"
+                    v-if="user"
+                >
                     <i class="fas fa-newspaper"></i>
                 </q-btn>
                 <q-btn flat round dense v-if="user">
@@ -12,24 +23,33 @@
                     <q-menu>
                         <q-list style="width: 200px;">
                             <q-item clickable v-close-popup>
-                                <q-item-section @click="$router.push('/profile')">
+                                <q-item-section
+                                    @click="$router.push('/profile')"
+                                >
                                     <span>
-                                        <i class="fas fa-user on-left"></i>Perfil
+                                        <i class="fas fa-user on-left"></i
+                                        >Perfil
                                     </span>
                                 </q-item-section>
                             </q-item>
 
                             <q-item clickable v-close-popup>
-                                <q-item-section @click="$router.push('/my-publications')">
+                                <q-item-section
+                                    @click="$router.push('/my-publications')"
+                                >
                                     <span>
-                                        <i class="fas fa-list on-left"></i>Mis publicaciones
+                                        <i class="fas fa-list on-left"></i>Mis
+                                        publicaciones
                                     </span>
                                 </q-item-section>
                             </q-item>
                             <q-item clickable v-close-popup>
                                 <q-item-section @click="$router.push('/admin')">
                                     <span>
-                                        <i class="fas fa-user-shield on-left"></i>Admin
+                                        <i
+                                            class="fas fa-user-shield on-left"
+                                        ></i
+                                        >Admin
                                     </span>
                                 </q-item-section>
                             </q-item>
@@ -37,7 +57,10 @@
                             <q-item clickable v-close-popup>
                                 <q-item-section @click="logout()">
                                     <span>
-                                        <i class="fas fa-sign-out-alt on-left"></i>Cerrar sesion
+                                        <i
+                                            class="fas fa-sign-out-alt on-left"
+                                        ></i
+                                        >Cerrar sesion
                                     </span>
                                 </q-item-section>
                             </q-item>
@@ -91,5 +114,4 @@ export default {
 }
 </script>
 
-<style>
-</style>
+<style></style>
