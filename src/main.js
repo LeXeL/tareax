@@ -4,7 +4,16 @@ import router from "./router";
 import store from "./store";
 import "./quasar";
 
+import * as api from "@/api/api";
+import LoadingAlert from "@/components/general/LoadingAlert";
+import TareaxAlert from "@/components/general/Alert";
+import Confirm from "@/components/general/Confirm";
+
 import firebase from "firebase/app";
+
+Vue.component("tareax-alert", TareaxAlert);
+Vue.component("loading-alert", LoadingAlert);
+Vue.component("confirm-dialog", Confirm);
 
 Vue.config.productionTip = false;
 
