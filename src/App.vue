@@ -1,102 +1,63 @@
 <template>
   <q-layout view="lHh Lpr lFf">
-    <q-header elevated class="glossy">
+    <q-header elevated>
       <q-toolbar>
-        <q-btn
-          flat
-          dense
-          round
-          @click="leftDrawerOpen = !leftDrawerOpen"
-          aria-label="Menu"
-          icon="fas fa-bars"
-        />
+        <q-toolbar-title>Tareax</q-toolbar-title>
+        <q-btn class="on-left" flat round dense to="/new-publication">
+          <i class="fas fa-newspaper"></i>
+        </q-btn>
+        <q-btn flat round dense>
+          <i class="fas fa-user"></i>
+          <q-menu>
+            <q-list style="width: 200px;">
+              <q-item clickable v-close-popup>
+                <q-item-section @click="$router.push('/profile')">
+                  <span>
+                    <i class="fas fa-user on-left"></i>Perfil
+                  </span>
+                </q-item-section>
+              </q-item>
 
-        <q-toolbar-title>
-          Quasar App
-        </q-toolbar-title>
-
-        <div>Quasar v{{ $q.version }}</div>
+              <q-item clickable v-close-popup>
+                <q-item-section @click="$router.push('/my-publications')">
+                  <span>
+                    <i class="fas fa-list on-left"></i>Mis publicaciones
+                  </span>
+                </q-item-section>
+              </q-item>
+              <q-item clickable v-close-popup>
+                <q-item-section @click="$router.push('/admin')">
+                  <span>
+                    <i class="fas fa-user-shield on-left"></i>Admin
+                  </span>
+                </q-item-section>
+              </q-item>
+              <q-separator />
+              <q-item clickable v-close-popup>
+                <q-item-section>
+                  <span>
+                    <i class="fas fa-sign-out-alt on-left"></i>Cerrar sesion
+                  </span>
+                </q-item-section>
+              </q-item>
+            </q-list>
+          </q-menu>
+        </q-btn>
       </q-toolbar>
     </q-header>
 
-    <q-drawer
-      v-model="leftDrawerOpen"
-      show-if-above
-      bordered
-      content-class="bg-grey-2"
-    >
-      <q-list>
-        <q-item-label header>Essential Links</q-item-label>
-        <q-item clickable tag="a" target="_blank" href="https://quasar.dev">
-          <q-item-section avatar>
-            <q-icon name="fas fa-graduation-cap" />
-          </q-item-section>
-          <q-item-section>
-            <q-item-label>Docs</q-item-label>
-            <q-item-label caption>quasar.dev</q-item-label>
-          </q-item-section>
-        </q-item>
-        <q-item clickable tag="a" target="_blank" href="https://github.com/quasarframework/">
-          <q-item-section avatar>
-            <q-icon name="fas fa-code" />
-          </q-item-section>
-          <q-item-section>
-            <q-item-label>Github</q-item-label>
-            <q-item-label caption>github.com/quasarframework</q-item-label>
-          </q-item-section>
-        </q-item>
-        <q-item clickable tag="a" target="_blank" href="https://chat.quasar.dev">
-          <q-item-section avatar>
-            <q-icon name="fas fa-comments" />
-          </q-item-section>
-          <q-item-section>
-            <q-item-label>Discord Chat Channel</q-item-label>
-            <q-item-label caption>chat.quasar.dev</q-item-label>
-          </q-item-section>
-        </q-item>
-        <q-item clickable tag="a" target="_blank" href="https://forum.quasar.dev">
-          <q-item-section avatar>
-            <q-icon name="far fa-clipboard" />
-          </q-item-section>
-          <q-item-section>
-            <q-item-label>Forum</q-item-label>
-            <q-item-label caption>forum.quasar.dev</q-item-label>
-          </q-item-section>
-        </q-item>
-        <q-item clickable tag="a" target="_blank" href="https://twitter.com/quasarframework">
-          <q-item-section avatar>
-            <q-icon name="fab fa-twitter" />
-          </q-item-section>
-          <q-item-section>
-            <q-item-label>Twitter</q-item-label>
-            <q-item-label caption>@quasarframework</q-item-label>
-          </q-item-section>
-        </q-item>
-      </q-list>
-    </q-drawer>
-
     <q-page-container>
-      <HelloWorld />
+      <router-view />
     </q-page-container>
   </q-layout>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
-
 export default {
-  name: 'LayoutDefault',
-
-  components: {
-    HelloWorld
+  data() {
+    return {};
   },
-
-  data () {
-    return {
-      leftDrawerOpen: false
-    }
-  }
-}
+};
 </script>
 
 <style>
