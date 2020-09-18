@@ -84,7 +84,7 @@ export default {
     },
     mounted() {
         if (this.$store.getters.uid !== '' && this.$store.getters.user === '') {
-            api.getuserinformationbyid({uid: this.uid}).then(response => {
+            api.getUserInformationById({uid: this.uid}).then(response => {
                 this.$store.commit('SET_USER', response.data.data)
             })
         }
