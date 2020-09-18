@@ -27,7 +27,7 @@
                                     </span>
                                 </q-item-section>
                             </q-item>
-                            <q-item clickable v-close-popup>
+                            <q-item clickable v-close-popup v-if="role === 'admin'">
                                 <q-item-section @click="$router.push('/admin')">
                                     <span>
                                         <i class="fas fa-user-shield on-left"></i>Admin
@@ -66,6 +66,9 @@ export default {
         },
         uid() {
             return this.$store.getters.uid
+        },
+        role() {
+            return this.$store.getters.role
         },
     },
     methods: {
