@@ -4,16 +4,16 @@ import router from './router'
 import store from './store/store'
 import './quasar'
 
-import * as api from "@/api/api";
-import LoadingAlert from "@/components/general/LoadingAlert";
-import TareaxAlert from "@/components/general/Alert";
-import Confirm from "@/components/general/Confirm";
+import * as api from '@/api/api'
+import LoadingAlert from '@/components/general/LoadingAlert'
+import TareaxAlert from '@/components/general/Alert'
+import Confirm from '@/components/general/Confirm'
 
-import firebase from "firebase/app";
+import firebase from 'firebase/app'
 
-Vue.component("tareax-alert", TareaxAlert);
-Vue.component("loading-alert", LoadingAlert);
-Vue.component("confirm-dialog", Confirm);
+Vue.component('tareax-alert', TareaxAlert)
+Vue.component('loading-alert', LoadingAlert)
+Vue.component('confirm-dialog', Confirm)
 
 Vue.config.productionTip = false
 
@@ -34,7 +34,7 @@ firebase.auth().onAuthStateChanged(user => {
     // store.dispatch('fetchUser', user)
     if (user && store.getters.user === '') {
         store.dispatch('setCurrentUser', user)
-        api.getuserinformationbyid({uid: user.uid}).then(response => {
+        api.getUserInformationById({uid: user.uid}).then(response => {
             store.commit('SET_USER', response.data.data)
         })
     }

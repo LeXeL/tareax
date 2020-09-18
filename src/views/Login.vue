@@ -42,6 +42,16 @@
             <router-link to="/register">aqui</router-link>.
                     </div>-->
                 </q-card-section>
+                <q-card-section class="text-center q-pa-none">
+                    <p class="text-grey-6">
+                        Necesitas una cuenta?
+                        <router-link class="text-grey-9" to="register">Creala Aquí</router-link>
+                    </p>
+                    <p class="text-grey-6">
+                        Olvidaste tu contraseña?
+                        <router-link class="text-grey-9" to="forgotpassword">Solicitala Aquí</router-link>
+                    </p>
+                </q-card-section>
                 <q-card-section v-if="dismissCountDown > 0">
                     <q-banner inline-actions rounded class="bg-red text-white">
                         {{ errorMessage }}
@@ -51,12 +61,6 @@
                             </q-btn>
                         </template>
                     </q-banner>
-                </q-card-section>
-                <q-card-section class="text-center q-pa-none">
-                    <p class="text-grey-6">
-                        Necesitas una cuenta?
-                        <router-link class="text-grey-9" to="register">Creala Aquí</router-link>
-                    </p>
                 </q-card-section>
             </q-card>
         </div>

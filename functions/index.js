@@ -12,13 +12,7 @@ const cors = require('cors')({
     origin: true,
 })
 const users = require('./lib/users')
-// Create and Deploy Your First Cloud Functions
-// https://firebase.google.com/docs/functions/write-firebase-functions
 
-exports.helloWorld = functions.https.onRequest((request, response) => {
-    functions.logger.info('Hello logs!', {structuredData: true})
-    response.send('Hello from Firebase!')
-})
 exports.createUserOnDatabase = functions.https.onRequest(async (req, res) => {
     cors(req, res, async () => {
         try {
@@ -70,3 +64,26 @@ exports.getUserInformationById = functions.https.onRequest(async (req, res) => {
         }
     })
 })
+exports.UpdateUserInformationById = functions.https.onRequest(
+    async (req, res) => {
+        cors(req, res, async () => {
+            try {
+                console.log(req.body.uid, req.body.user)
+                let response = await users.updateUserInfo(
+                    req.body.uid,
+                    req.body.user
+                )
+                functions.logger.info('UpdateUserInformationById', {
+                    userUpdated: req.body.uid,
+                    userInfo: req.body.user,
+                })
+                res.status(200).send({data: response})
+            } catch (err) {
+                functions.logger.error('UpdateUserInformationById', {
+                    error: err,
+                })
+                res.status(400).send({err: err})
+            }
+        })
+    }
+)

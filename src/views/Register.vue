@@ -220,14 +220,14 @@ export default {
                             .then(() => {
                                 this.displayLoading = false
                                 this.confirmationDialog = true
-                                api.updateuserwithinfo({
+                                api.updateUserWithInfo({
                                     uid: user.user.uid,
                                     obj: this.form,
                                 })
                             })
                             .then(async () => {
                                 await api
-                                    .getuserinformationbyid({
+                                    .getUserInformationById({
                                         uid: user.user.uid,
                                     })
                                     .then(response => {
