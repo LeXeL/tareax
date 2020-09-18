@@ -1,5 +1,7 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
+import store from '@/store/store'
+
 import Login from '@/views/Login'
 import Register from '@/views/Register'
 import Home from '../views/Home.vue'
@@ -13,6 +15,17 @@ import ForgotPassword from '@/views/ForgotPassword'
 import Admin from '@/views/Admin'
 
 Vue.use(VueRouter)
+
+const ifAuthenticated = (to, from, next) => {
+    if (store.getters.isAuthenticated) {
+        next()
+    } else next('/login')
+}
+const ifAuthenticatedAndAdmin = (to, from, next) => {
+    if (store.getters.isAuthenticated && store.getters.role === 'admin') {
+        next()
+    } else next('/')
+}
 
 const routes = [
     {
@@ -44,21 +57,25 @@ const routes = [
         path: '/new-publication',
         name: 'NewPublication',
         component: NewPublication,
+        beforeEnter: ifAuthenticated,
     },
     {
         path: '/profile',
         name: 'Profile',
         component: Profile,
+        beforeEnter: ifAuthenticated,
     },
     {
         path: '/my-publications',
         name: 'MyPublications',
         component: MyPublications,
+        beforeEnter: ifAuthenticated,
     },
     {
         path: '/admin',
         name: 'Admin',
         component: Admin,
+        beforeEnter: ifAuthenticatedAndAdmin,
     },
     {
         path: '/resetpassword',
