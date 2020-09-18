@@ -90,7 +90,6 @@ export default {
                 .signInWithEmailAndPassword(this.email, this.password)
                 .then(async () => {
                     let user = await firebase.auth().currentUser
-                    console.log(user)
                     await this.$store.dispatch('setCurrentUser', user)
                     this.$router.push('/admin')
                 })

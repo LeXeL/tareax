@@ -1,42 +1,40 @@
 <template>
-
-  <q-page>
-    <loading-alert :display="displayLoading"></loading-alert>
-    <tareax-alert
-      :display="displayAlert"
-      :title="alertTitle"
-      :message="alertMessage"
-      :type="alertType"
-      @accept="displayAlert = false"
-    ></tareax-alert>
-    <TitleBanner :subtitle="'Registrate aqui'" />
-    <div class="row q-my-xl">
-      <div class="col desktop-only"></div>
-      <div class="col-lg-9">
-        <div class="row">
-          <div class="col-lg-8 q-px-md">
-            <q-card class="full-width">
-              <q-card-section>
-                <div class="text-h5 q-mb-md">Formulario de registro</div>
-                <q-input
-                  filled
-                  label="Nombre"
-                  class="q-mb-md"
-                  v-model="form.name"
-                  :rules="[
+    <q-page>
+        <loading-alert :display="displayLoading"></loading-alert>
+        <tareax-alert
+            :display="displayAlert"
+            :title="alertTitle"
+            :message="alertMessage"
+            :type="alertType"
+            @accept="displayAlert = false"
+        ></tareax-alert>
+        <TitleBanner :subtitle="'Registrate aqui'" />
+        <div class="row q-my-xl">
+            <div class="col desktop-only"></div>
+            <div class="col-lg-9">
+                <div class="row">
+                    <div class="col-lg-8 q-px-md">
+                        <q-card class="full-width">
+                            <q-card-section>
+                                <div class="text-h5 q-mb-md">Formulario de registro</div>
+                                <q-input
+                                    filled
+                                    label="Nombre"
+                                    class="q-mb-md"
+                                    v-model="form.name"
+                                    :rules="[
 
                                     val =>
                                         val.length > 0 ||
                                         'El campo es obligatorio',
                                 ]"
-
-                />
-                <q-input
-                  filled
-                  label="Apellido"
-                  class="q-mb-md"
-                  v-model="form.lastName"
-                  :rules="[
+                                />
+                                <q-input
+                                    filled
+                                    label="Apellido"
+                                    class="q-mb-md"
+                                    v-model="form.lastName"
+                                    :rules="[
 
                                 
 
@@ -44,14 +42,13 @@
                                         val.length > 0 ||
                                         'El campo es obligatorio',
                                 ]"
-
-                />
-                <q-input
-                  filled
-                  label="Correo electronico"
-                  class="q-mb-md"
-                  v-model="form.email"
-                  :rules="[
+                                />
+                                <q-input
+                                    filled
+                                    label="Correo electronico"
+                                    class="q-mb-md"
+                                    v-model="form.email"
+                                    :rules="[
 
                                     val =>
                                         val.length > 0 ||
@@ -60,14 +57,13 @@
                                         validEmail.test(val) ||
                                         'Formato de correo incorrecto',
                                 ]"
-
-                />
-                <q-input
-                  filled
-                  label="Telefono de contacto"
-                  class="q-mb-md"
-                  v-model="form.contactPhone"
-                  :rules="[
+                                />
+                                <q-input
+                                    filled
+                                    label="Telefono de contacto"
+                                    class="q-mb-md"
+                                    v-model="form.contactPhone"
+                                    :rules="[
 
                                 
 
@@ -75,15 +71,14 @@
                                         val.length > 0 ||
                                         'El campo es obligatorio',
                                 ]"
-
-                />
-                <q-input
-                  filled
-                  label="Contraseña"
-                  class="q-mb-md"
-                  type="password"
-                  v-model="form.password"
-                  :rules="[
+                                />
+                                <q-input
+                                    filled
+                                    label="Contraseña"
+                                    class="q-mb-md"
+                                    type="password"
+                                    v-model="form.password"
+                                    :rules="[
 
                              
 
@@ -94,15 +89,14 @@
                                             strongPass.test(val) ||
                                             'Debe tener 8 caracteres e incluir mayuscula, miniscula, numero, y caracter especial.',
                                     ]"
-
-                />
-                <q-input
-                  filled
-                  label="Repetir contraseña"
-                  class="q-mb-md"
-                  type="password"
-                  v-model="form.repassword"
-                  :rules="[
+                                />
+                                <q-input
+                                    filled
+                                    label="Repetir contraseña"
+                                    class="q-mb-md"
+                                    type="password"
+                                    v-model="form.repassword"
+                                    :rules="[
 
                                 
 
@@ -113,7 +107,6 @@
                                             val == form.password ||
                                             'Las contraseñas no coinciden',
                                     ]"
-
                                 />
                                 <q-checkbox v-model="terms">Acepto los terminos y condiciones.</q-checkbox>
                                 <a
