@@ -23,3 +23,13 @@ export const UpdateUserInformationById = data =>
     Request.post('/UpdateUserInformationById', data, {
         'Content-Type': 'application/json',
     })
+
+//CATEGORIES
+export const CreateCategoryInDatabase = data =>
+    Request.post('/CreateCategoryInDatabase', data, {
+        'Content-Type': 'application/json',
+    })
+export const DeleteCategoryInDatabase = data =>
+    Request.post('/DeleteCategoryInDatabase', data, {
+        'Content-Type': 'application/json',
+    })

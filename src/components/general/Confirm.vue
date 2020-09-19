@@ -1,6 +1,6 @@
 <template>
     <q-dialog v-model="confirm">
-        <q-card dark>
+        <q-card>
             <q-card-section>
                 <div class="text-h6 text-center">{{ title }}</div>
             </q-card-section>
@@ -35,7 +35,7 @@ export default {
         }
     },
     watch: {
-        display: function() {
+        display: function () {
             this.confirm = !this.confirm
         },
     },

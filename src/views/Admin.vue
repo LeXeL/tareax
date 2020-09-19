@@ -1,5 +1,20 @@
 <template>
     <q-page>
+        <loading-alert :display="displayLoading"></loading-alert>
+        <tareax-alert
+            :display="displayAlert"
+            :title="alertTitle"
+            :message="alertMessage"
+            :type="alertType"
+            @accept="displayAlert=false"
+        ></tareax-alert>
+        <confirm-dialog
+            :display="displayConfirm"
+            :title="alertTitle"
+            :message="alertMessage"
+            @accept="deleteCategory()"
+            @cancel="displayConfirm = false"
+        ></confirm-dialog>
         <TitleBanner :subtitle="'Administrador'" />
         <div class="row q-py-xl">
             <div class="col desktop-only"></div>
@@ -62,6 +77,7 @@
                                                 round
                                                 dense
                                                 icon="fas fa-times"
+                                                @click="askForDeleteCategory(props.row.id)"
                                             />
                                         </q-td>
                                     </q-tr>
@@ -212,7 +228,7 @@
 
                     <q-card-actions align="right" class="text-primary">
                         <q-btn flat label="Cancelar" v-close-popup />
-                        <q-btn flat label="Crear" v-close-popup />
+                        <q-btn flat label="Crear" v-close-popup @click="createCategory()" />
                     </q-card-actions>
                 </q-card>
             </q-dialog>
@@ -290,9 +306,21 @@
 <script>
 import TitleBanner from '@/components/TitleBanner'
 
+import firebase from 'firebase/app'
+import 'firebase/firestore'
+
+import * as api from '@/api/api'
+
 export default {
     data() {
         return {
+            displayLoading: false,
+            displayAlert: false,
+            displayConfirm: false,
+            workingDeletedId: '',
+            alertTitle: '',
+            alertMessage: '',
+            alertType: '',
             categoriesDialog: false,
             newCategory: '',
             subcategoriesDialog: false,
@@ -312,11 +340,7 @@ export default {
                     sortable: true,
                 },
             ],
-            categoriesData: [
-                {
-                    name: 'Category name',
-                },
-            ],
+            categoriesData: [],
             subcategoriesColumns: [
                 {
                     name: 'name',
@@ -392,6 +416,124 @@ export default {
                 },
             ],
         }
+    },
+    methods: {
+        clear() {
+            this.newCategory = ''
+            this.workingDeletedId = ''
+        },
+        askForDeleteCategory(id) {
+            this.displayConfirm = true
+            this.alertTitle = 'Esta seguro?'
+            this.alertMessage = 'Se va a proceder a eliminar esta categoria'
+            this.workingDeletedId = id
+        },
+        deleteCategory() {
+            this.displayLoading = true
+            api.DeleteCategoryInDatabase({
+                id: this.workingDeletedId,
+            })
+                .then(() => {
+                    this.clear()
+                    this.displayLoading = false
+                    this.alertTitle = 'Exito!'
+                    this.alertMessage = 'Se ha eliminado la categoria con exito'
+                    this.alertType = 'success'
+                    this.displayAlert = true
+                })
+                .catch(error => {
+                    this.clear()
+                    this.displayLoading = false
+                    this.alertTitle = 'Error'
+                    this.alertMessage = error
+                    this.alertType = 'error'
+                    this.displayAlert = true
+                })
+        },
+        createCategory() {
+            this.displayLoading = true
+            if (this.newCategory === '') {
+                this.displayLoading = false
+                this.alertTitle = 'Error'
+                this.alertMessage =
+                    'Por favor tienes que llenar el campo de nombre de categoria'
+                this.alertType = 'error'
+                this.displayAlert = true
+                return
+            }
+            api.CreateCategoryInDatabase({
+                category: {name: this.newCategory},
+            })
+                .then(() => {
+                    this.clear()
+                    this.displayLoading = false
+                    this.alertTitle = 'Exito!'
+                    this.alertMessage = 'Se ha creado la categoria con exito'
+                    this.alertType = 'success'
+                    this.displayAlert = true
+                })
+                .catch(error => {
+                    this.clear()
+                    this.displayLoading = false
+                    this.alertTitle = 'Error'
+                    this.alertMessage = error
+                    this.alertType = 'error'
+                    this.displayAlert = true
+                })
+        },
+        addToData(id, data, type) {
+            data.id = id
+            if (type === 'categories') this.categoriesData.push(data)
+            // this.data.push(data)
+        },
+        editData(id, data, type) {
+            data.id = id
+            if (type === 'categories') {
+                this.categoriesData.forEach((d, index) => {
+                    if (d.id === id) {
+                        this.categoriesData.splice(index, 1, data)
+                    }
+                })
+            }
+        },
+        removeData(id, type) {
+            if (type === 'categories') {
+                this.categoriesData.forEach((d, index) => {
+                    if (d.id === id) {
+                        this.categoriesData.splice(index, 1)
+                    }
+                })
+            }
+        },
+    },
+    mounted() {
+        let db = firebase.firestore()
+        db.collection('categories').onSnapshot(
+            snapshot => {
+                snapshot.docChanges().forEach(change => {
+                    if (change.type === 'added') {
+                        this.addToData(
+                            change.doc.id,
+                            change.doc.data(),
+                            'categories'
+                        )
+                    }
+                    if (change.type === 'modified') {
+                        this.editData(
+                            change.doc.id,
+                            change.doc.data(),
+                            'categories'
+                        )
+                    }
+                    if (change.type === 'removed') {
+                        this.removeData(change.doc.id, 'categories')
+                    }
+                })
+            },
+            error => {
+                console.log(error)
+            }
+        )
     },
     components: {
         TitleBanner,

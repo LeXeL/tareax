@@ -12,6 +12,7 @@ const cors = require('cors')({
     origin: true,
 })
 const users = require('./lib/users')
+const categories = require('./lib/categories')
 
 exports.createUserOnDatabase = functions.https.onRequest(async (req, res) => {
     cors(req, res, async () => {
@@ -68,7 +69,6 @@ exports.UpdateUserInformationById = functions.https.onRequest(
     async (req, res) => {
         cors(req, res, async () => {
             try {
-                console.log(req.body.uid, req.body.user)
                 let response = await users.updateUserInfo(
                     req.body.uid,
                     req.body.user
@@ -80,6 +80,44 @@ exports.UpdateUserInformationById = functions.https.onRequest(
                 res.status(200).send({data: response})
             } catch (err) {
                 functions.logger.error('UpdateUserInformationById', {
+                    error: err,
+                })
+                res.status(400).send({err: err})
+            }
+        })
+    }
+)
+
+//CATEGORIES
+exports.CreateCategoryInDatabase = functions.https.onRequest(
+    async (req, res) => {
+        cors(req, res, async () => {
+            try {
+                await categories.createCategoryInDatabase(req.body.category)
+                functions.logger.info('CreateCategoryInDatabase', {
+                    Category: req.body.category,
+                })
+                res.status(200).send({status: 'Created'})
+            } catch (err) {
+                functions.logger.error('CreateCategoryInDatabase', {
+                    error: err,
+                })
+                res.status(400).send({err: err})
+            }
+        })
+    }
+)
+exports.DeleteCategoryInDatabase = functions.https.onRequest(
+    async (req, res) => {
+        cors(req, res, async () => {
+            try {
+                await categories.deleteCategoryInDatabase(req.body.id)
+                functions.logger.info('DeleteCategoryInDatabase', {
+                    CategoryId: req.body.id,
+                })
+                res.status(200).send({status: 'Deleted'})
+            } catch (err) {
+                functions.logger.error('DeleteCategoryInDatabase', {
                     error: err,
                 })
                 res.status(400).send({err: err})
