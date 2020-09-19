@@ -12,7 +12,7 @@
             :display="displayConfirm"
             :title="alertTitle"
             :message="alertMessage"
-            @accept="deleteCategory()"
+            @accept="deleteItem()"
             @cancel="displayConfirm = false"
         ></confirm-dialog>
         <TitleBanner :subtitle="'Administrador'" />
@@ -112,11 +112,11 @@
 
                                 <template v-slot:body="props">
                                     <q-tr :props="props">
+                                        <q-td key="name" :props="props">{{ props.row.name }}</q-td>
                                         <q-td
-                                            v-for="col in props.cols"
-                                            :key="col.name"
+                                            key="category"
                                             :props="props"
-                                        >{{ col.value }}</q-td>
+                                        >{{returnCategoryName(props.row.category) }}</q-td>
                                         <q-td auto-width>
                                             <q-btn
                                                 size="sm"
@@ -124,6 +124,7 @@
                                                 round
                                                 dense
                                                 icon="fas fa-times"
+                                                @click="askForDeleteSubCategory(props.row.id)"
                                             />
                                         </q-td>
                                     </q-tr>
@@ -227,7 +228,7 @@
                     </q-card-section>
 
                     <q-card-actions align="right" class="text-primary">
-                        <q-btn flat label="Cancelar" v-close-popup />
+                        <q-btn flat label="Cancelar" @click="clear()" v-close-popup />
                         <q-btn flat label="Crear" v-close-popup @click="createCategory()" />
                     </q-card-actions>
                 </q-card>
@@ -257,8 +258,8 @@
                     </q-card-section>
 
                     <q-card-actions align="right" class="text-primary">
-                        <q-btn flat label="Cancelar" v-close-popup />
-                        <q-btn flat label="Crear" v-close-popup />
+                        <q-btn flat label="Cancelar" @click="clear()" v-close-popup />
+                        <q-btn flat label="Crear" @click="createSubCategory()" v-close-popup />
                     </q-card-actions>
                 </q-card>
             </q-dialog>
@@ -317,6 +318,7 @@ export default {
             displayLoading: false,
             displayAlert: false,
             displayConfirm: false,
+            deleteType: '',
             workingDeletedId: '',
             alertTitle: '',
             alertMessage: '',
@@ -327,7 +329,7 @@ export default {
             newSubcategory: '',
             servicesDialog: false,
             newService: '',
-            options: ['Google', 'Facebook', 'Twitter', 'Apple', 'Oracle'],
+            options: [],
             selectedCategory: null,
             selectedSubcategory: null,
             tab: 'categories',
@@ -357,12 +359,7 @@ export default {
                     sortable: true,
                 },
             ],
-            subcategoriesData: [
-                {
-                    name: 'Subcategory name',
-                    category: 'Category name',
-                },
-            ],
+            subcategoriesData: [],
             servicesColumns: [
                 {
                     name: 'name',
@@ -421,14 +418,80 @@ export default {
         clear() {
             this.newCategory = ''
             this.workingDeletedId = ''
+            this.deleteType = ''
+            this.newSubcategory = ''
+            this.selectedCategory = null
+        },
+        returnCategoryName(id) {
+            let value = this.categoriesData.filter(category => {
+                if (category.id === id) return category
+            })
+            if (value.length > 0) return value[0].name
+            return 'NaN'
         },
         askForDeleteCategory(id) {
             this.displayConfirm = true
             this.alertTitle = 'Esta seguro?'
             this.alertMessage = 'Se va a proceder a eliminar esta categoria'
             this.workingDeletedId = id
+            this.deleteType = 'category'
         },
-        deleteCategory() {
+        askForDeleteSubCategory(id) {
+            this.displayConfirm = true
+            this.alertTitle = 'Esta seguro?'
+            this.alertMessage = 'Se va a proceder a eliminar esta sub categoria'
+            this.workingDeletedId = id
+            this.deleteType = 'subcategory'
+        },
+        deleteItem() {
+            this.displayConfirm = false
+            this.displayLoading = true
+            if (this.deleteType === 'category') {
+                api.DeleteCategoryInDatabase({
+                    id: this.workingDeletedId,
+                })
+                    .then(() => {
+                        this.clear()
+                        this.displayLoading = false
+                        this.alertTitle = 'Exito!'
+                        this.alertMessage =
+                            'Se ha eliminado la categoria con exito'
+                        this.alertType = 'success'
+                        this.displayAlert = true
+                    })
+                    .catch(error => {
+                        this.clear()
+                        this.displayLoading = false
+                        this.alertTitle = 'Error'
+                        this.alertMessage = error
+                        this.alertType = 'error'
+                        this.displayAlert = true
+                    })
+            }
+            if (this.deleteType === 'subcategory') {
+                api.DeleteSubCategoryInDatabase({
+                    id: this.workingDeletedId,
+                })
+                    .then(() => {
+                        this.clear()
+                        this.displayLoading = false
+                        this.alertTitle = 'Exito!'
+                        this.alertMessage =
+                            'Se ha eliminado la categoria con exito'
+                        this.alertType = 'success'
+                        this.displayAlert = true
+                    })
+                    .catch(error => {
+                        this.clear()
+                        this.displayLoading = false
+                        this.alertTitle = 'Error'
+                        this.alertMessage = error
+                        this.alertType = 'error'
+                        this.displayAlert = true
+                    })
+            }
+        },
+        deleteSubCategory() {
             this.displayLoading = true
             api.DeleteCategoryInDatabase({
                 id: this.workingDeletedId,
@@ -481,10 +544,59 @@ export default {
                     this.displayAlert = true
                 })
         },
+        createSubCategory() {
+            this.displayLoading = true
+            if (this.newSubcategory === '') {
+                this.displayLoading = false
+                this.alertTitle = 'Error'
+                this.alertMessage =
+                    'Por favor tienes que llenar el campo de nombre de la sub categoria'
+                this.alertType = 'error'
+                this.displayAlert = true
+                return
+            }
+            if (this.selectedCategory === null) {
+                this.displayLoading = false
+                this.alertTitle = 'Error'
+                this.alertMessage = 'Por favor tienes que escojer una categoria'
+                this.alertType = 'error'
+                this.displayAlert = true
+                return
+            }
+            let selectedCategoryId
+            this.categoriesData.filter(category => {
+                if (category.name === this.selectedCategory) {
+                    selectedCategoryId = category.id
+                }
+            })
+
+            api.CreateSubCategoryInDatabase({
+                subcategory: {
+                    name: this.newSubcategory,
+                    category: selectedCategoryId,
+                },
+            })
+                .then(() => {
+                    this.clear()
+                    this.displayLoading = false
+                    this.alertTitle = 'Exito!'
+                    this.alertMessage = 'Se ha creado la categoria con exito'
+                    this.alertType = 'success'
+                    this.displayAlert = true
+                })
+                .catch(error => {
+                    this.clear()
+                    this.displayLoading = false
+                    this.alertTitle = 'Error'
+                    this.alertMessage = error
+                    this.alertType = 'error'
+                    this.displayAlert = true
+                })
+        },
         addToData(id, data, type) {
             data.id = id
             if (type === 'categories') this.categoriesData.push(data)
-            // this.data.push(data)
+            if (type === 'subcategories') this.subcategoriesData.push(data)
         },
         editData(id, data, type) {
             data.id = id
@@ -495,12 +607,26 @@ export default {
                     }
                 })
             }
+            if (type === 'subcategories') {
+                this.subcategoriesData.forEach((d, index) => {
+                    if (d.id === id) {
+                        this.subcategoriesData.splice(index, 1, data)
+                    }
+                })
+            }
         },
         removeData(id, type) {
             if (type === 'categories') {
                 this.categoriesData.forEach((d, index) => {
                     if (d.id === id) {
                         this.categoriesData.splice(index, 1)
+                    }
+                })
+            }
+            if (type === 'subcategories') {
+                this.subcategoriesData.forEach((d, index) => {
+                    if (d.id === id) {
+                        this.subcategoriesData.splice(index, 1)
                     }
                 })
             }
@@ -534,6 +660,39 @@ export default {
                 console.log(error)
             }
         )
+        db.collection('subcategories').onSnapshot(
+            snapshot => {
+                snapshot.docChanges().forEach(change => {
+                    if (change.type === 'added') {
+                        this.addToData(
+                            change.doc.id,
+                            change.doc.data(),
+                            'subcategories'
+                        )
+                    }
+                    if (change.type === 'modified') {
+                        this.editData(
+                            change.doc.id,
+                            change.doc.data(),
+                            'subcategories'
+                        )
+                    }
+                    if (change.type === 'removed') {
+                        this.removeData(change.doc.id, 'subcategories')
+                    }
+                })
+            },
+            error => {
+                console.log(error)
+            }
+        )
+    },
+    watch: {
+        categoriesData(newValue, oldValue) {
+            this.options = newValue.map(category => {
+                return category.name
+            })
+        },
     },
     components: {
         TitleBanner,

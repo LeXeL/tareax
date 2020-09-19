@@ -13,6 +13,7 @@ const cors = require('cors')({
 })
 const users = require('./lib/users')
 const categories = require('./lib/categories')
+const subcategories = require('./lib/subcategories')
 
 exports.createUserOnDatabase = functions.https.onRequest(async (req, res) => {
     cors(req, res, async () => {
@@ -118,6 +119,45 @@ exports.DeleteCategoryInDatabase = functions.https.onRequest(
                 res.status(200).send({status: 'Deleted'})
             } catch (err) {
                 functions.logger.error('DeleteCategoryInDatabase', {
+                    error: err,
+                })
+                res.status(400).send({err: err})
+            }
+        })
+    }
+)
+//SUBCATEGORIES
+exports.CreateSubCategoryInDatabase = functions.https.onRequest(
+    async (req, res) => {
+        cors(req, res, async () => {
+            try {
+                await subcategories.createSubCategoryInDatabase(
+                    req.body.subcategory
+                )
+                functions.logger.info('CreateSubCategoryInDatabase', {
+                    SubCategory: req.body.subcategory,
+                })
+                res.status(200).send({status: 'Created'})
+            } catch (err) {
+                functions.logger.error('CreateSubCategoryInDatabase', {
+                    error: err,
+                })
+                res.status(400).send({err: err})
+            }
+        })
+    }
+)
+exports.DeleteSubCategoryInDatabase = functions.https.onRequest(
+    async (req, res) => {
+        cors(req, res, async () => {
+            try {
+                await subcategories.deleteSubCategoryInDatabase(req.body.id)
+                functions.logger.info('DeleteSubCategoryInDatabase', {
+                    CategoryId: req.body.id,
+                })
+                res.status(200).send({status: 'Deleted'})
+            } catch (err) {
+                functions.logger.error('DeleteSubCategoryInDatabase', {
                     error: err,
                 })
                 res.status(400).send({err: err})
