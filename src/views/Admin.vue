@@ -8,6 +8,13 @@
             :type="alertType"
             @accept="displayAlert=false"
         ></tareax-alert>
+        <confirm-dialog
+            :display="displayConfirm"
+            :title="alertTitle"
+            :message="alertMessage"
+            @accept="deleteCategory()"
+            @cancel="displayConfirm = false"
+        ></confirm-dialog>
         <TitleBanner :subtitle="'Administrador'" />
         <div class="row q-py-xl">
             <div class="col desktop-only"></div>
@@ -70,7 +77,7 @@
                                                 round
                                                 dense
                                                 icon="fas fa-times"
-                                                @click="deleteCategory(props.row.id)"
+                                                @click="askForDeleteCategory(props.row.id)"
                                             />
                                         </q-td>
                                     </q-tr>
@@ -309,6 +316,8 @@ export default {
         return {
             displayLoading: false,
             displayAlert: false,
+            displayConfirm: false,
+            workingDeletedId: '',
             alertTitle: '',
             alertMessage: '',
             alertType: '',
@@ -411,11 +420,18 @@ export default {
     methods: {
         clear() {
             this.newCategory = ''
+            this.workingDeletedId = ''
         },
-        deleteCategory(id) {
+        askForDeleteCategory(id) {
+            this.displayConfirm = true
+            this.alertTitle = 'Esta seguro?'
+            this.alertMessage = 'Se va a proceder a eliminar esta categoria'
+            this.workingDeletedId = id
+        },
+        deleteCategory() {
             this.displayLoading = true
             api.DeleteCategoryInDatabase({
-                id: id,
+                id: this.workingDeletedId,
             })
                 .then(() => {
                     this.clear()
