@@ -33,3 +33,12 @@ export const DeleteCategoryInDatabase = data =>
     Request.post('/DeleteCategoryInDatabase', data, {
         'Content-Type': 'application/json',
     })
+//SUBCATEGORIES
+export const CreateSubCategoryInDatabase = data =>
+    Request.post('/CreateSubCategoryInDatabase', data, {
+        'Content-Type': 'application/json',
+    })
+export const DeleteSubCategoryInDatabase = data =>
+    Request.post('/DeleteSubCategoryInDatabase', data, {
+        'Content-Type': 'application/json',
+    })
