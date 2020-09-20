@@ -37,6 +37,11 @@ export const DeleteCategoryInDatabase = data =>
     Request.post('/DeleteCategoryInDatabase', data, {
         'Content-Type': 'application/json',
     })
+export const ReturnAllCategories = data =>
+    Request.post('/ReturnAllCategories', data, {
+        'Content-Type': 'application/json',
+    })
+
 //SUBCATEGORIES
 export const CreateSubCategoryInDatabase = data =>
     Request.post('/CreateSubCategoryInDatabase', data, {
@@ -46,6 +51,11 @@ export const DeleteSubCategoryInDatabase = data =>
     Request.post('/DeleteSubCategoryInDatabase', data, {
         'Content-Type': 'application/json',
     })
+export const ReturnAllSubCategories = data =>
+    Request.post('/ReturnAllSubCategories', data, {
+        'Content-Type': 'application/json',
+    })
+
 //SERVICES
 export const CreateServiceInDatabase = data =>
     Request.post('/CreateServiceInDatabase', data, {
@@ -53,5 +63,19 @@ export const CreateServiceInDatabase = data =>
     })
 export const DeleteServiceInDatabase = data =>
     Request.post('/DeleteServiceInDatabase', data, {
+        'Content-Type': 'application/json',
+    })
+export const ReturnAllServices = data =>
+    Request.post('/ReturnAllServices', data, {
+        'Content-Type': 'application/json',
+    })
+
+//PUBLICATIONS
+export const CreatePublicationInDatabase = data =>
+    Request.post('/CreatePublicationInDatabase', data, {
+        'Content-Type': 'application/json',
+    })
+export const DeletePublicationInDatabase = data =>
+    Request.post('/DeletePublicationInDatabase', data, {
         'Content-Type': 'application/json',
     })

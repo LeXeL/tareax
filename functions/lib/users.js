@@ -9,7 +9,6 @@ async function createDatabaseWithUserInfo(user) {
             email: user.email,
             creationTime: Date.now(),
             role: 'user',
-            status: 'pending', //pending, approved, rejected
             isVerified: false,
         })
         .then(() => {

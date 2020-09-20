@@ -29,7 +29,27 @@ async function deleteSubCategoryInDatabase(id) {
             return error
         })
 }
+async function returnAllSubCategories() {
+    let subcategories = []
+    await db
+        .collection('subcategories')
+        .get()
+        .then(snapshot => {
+            if (snapshot.empty) {
+                console.log('No matching documents.')
+                return
+            }
+            snapshot.forEach(doc => {
+                subcategories.push({...doc.data(), id: doc.id})
+            })
+        })
+        .catch(function(error) {
+            console.log('Error getting documents: ', error)
+        })
+    return subcategories
+}
 module.exports = {
     createSubCategoryInDatabase,
     deleteSubCategoryInDatabase,
+    returnAllSubCategories,
 }

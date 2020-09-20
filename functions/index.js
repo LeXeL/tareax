@@ -15,6 +15,7 @@ const users = require('./lib/users')
 const categories = require('./lib/categories')
 const subcategories = require('./lib/subcategories')
 const services = require('./lib/services')
+const publications = require('./lib/publications')
 
 exports.createUserOnDatabase = functions.https.onRequest(async (req, res) => {
     cors(req, res, async () => {
@@ -147,6 +148,20 @@ exports.DeleteCategoryInDatabase = functions.https.onRequest(
         })
     }
 )
+exports.ReturnAllCategories = functions.https.onRequest(async (req, res) => {
+    cors(req, res, async () => {
+        try {
+            let response = await categories.returnAllCategories()
+            functions.logger.info('ReturnAllCategories')
+            res.status(200).send({data: response})
+        } catch (err) {
+            functions.logger.error('ReturnAllCategories', {
+                error: err,
+            })
+            res.status(400).send({err: err})
+        }
+    })
+})
 //SUBCATEGORIES
 exports.CreateSubCategoryInDatabase = functions.https.onRequest(
     async (req, res) => {
@@ -186,6 +201,20 @@ exports.DeleteSubCategoryInDatabase = functions.https.onRequest(
         })
     }
 )
+exports.ReturnAllSubCategories = functions.https.onRequest(async (req, res) => {
+    cors(req, res, async () => {
+        try {
+            let response = await subcategories.returnAllSubCategories()
+            functions.logger.info('ReturnAllSubCategories')
+            res.status(200).send({data: response})
+        } catch (err) {
+            functions.logger.error('ReturnAllSubCategories', {
+                error: err,
+            })
+            res.status(400).send({err: err})
+        }
+    })
+})
 //SERVICES
 exports.CreateServiceInDatabase = functions.https.onRequest(
     async (req, res) => {
@@ -216,6 +245,60 @@ exports.DeleteServiceInDatabase = functions.https.onRequest(
                 res.status(200).send({status: 'Deleted'})
             } catch (err) {
                 functions.logger.error('DeleteServiceInDatabase', {
+                    error: err,
+                })
+                res.status(400).send({err: err})
+            }
+        })
+    }
+)
+exports.ReturnAllServices = functions.https.onRequest(async (req, res) => {
+    cors(req, res, async () => {
+        try {
+            let response = await services.returnAllServices()
+            functions.logger.info('ReturnAllServices')
+            res.status(200).send({data: response})
+        } catch (err) {
+            functions.logger.error('ReturnAllServices', {
+                error: err,
+            })
+            res.status(400).send({err: err})
+        }
+    })
+})
+
+//PUBLICATIONS
+exports.CreatePublicationInDatabase = functions.https.onRequest(
+    async (req, res) => {
+        cors(req, res, async () => {
+            try {
+                await publications.createPublicationInDatabase(
+                    req.body.publication
+                )
+                functions.logger.info('CreatePublicationInDatabase', {
+                    Publication: req.body.publication,
+                })
+                res.status(200).send({status: 'Created'})
+            } catch (err) {
+                functions.logger.error('CreatePublicationInDatabase', {
+                    error: err,
+                })
+                res.status(400).send({err: err})
+            }
+        })
+    }
+)
+exports.DeletePublicationInDatabase = functions.https.onRequest(
+    async (req, res) => {
+        cors(req, res, async () => {
+            try {
+                await publications.deletePublicationInDatabase(req.body.id)
+                functions.logger.info('DeletePublicationInDatabase', {
+                    PublicationId: req.body.id,
+                })
+                res.status(200).send({status: 'Deleted'})
+            } catch (err) {
+                functions.logger.error('DeletePublicationInDatabase', {
                     error: err,
                 })
                 res.status(400).send({err: err})
