@@ -14,6 +14,7 @@ const cors = require('cors')({
 const users = require('./lib/users')
 const categories = require('./lib/categories')
 const subcategories = require('./lib/subcategories')
+const services = require('./lib/services')
 
 exports.createUserOnDatabase = functions.https.onRequest(async (req, res) => {
     cors(req, res, async () => {
@@ -153,11 +154,48 @@ exports.DeleteSubCategoryInDatabase = functions.https.onRequest(
             try {
                 await subcategories.deleteSubCategoryInDatabase(req.body.id)
                 functions.logger.info('DeleteSubCategoryInDatabase', {
-                    CategoryId: req.body.id,
+                    SubCategoryId: req.body.id,
                 })
                 res.status(200).send({status: 'Deleted'})
             } catch (err) {
                 functions.logger.error('DeleteSubCategoryInDatabase', {
+                    error: err,
+                })
+                res.status(400).send({err: err})
+            }
+        })
+    }
+)
+//SERVICES
+exports.CreateServiceInDatabase = functions.https.onRequest(
+    async (req, res) => {
+        cors(req, res, async () => {
+            try {
+                await services.createServiceInDatabase(req.body.service)
+                functions.logger.info('CreateServiceInDatabase', {
+                    Service: req.body.service,
+                })
+                res.status(200).send({status: 'Created'})
+            } catch (err) {
+                functions.logger.error('CreateServiceInDatabase', {
+                    error: err,
+                })
+                res.status(400).send({err: err})
+            }
+        })
+    }
+)
+exports.DeleteServiceInDatabase = functions.https.onRequest(
+    async (req, res) => {
+        cors(req, res, async () => {
+            try {
+                await services.deleteServiceInDatabase(req.body.id)
+                functions.logger.info('DeleteServiceInDatabase', {
+                    ServiceId: req.body.id,
+                })
+                res.status(200).send({status: 'Deleted'})
+            } catch (err) {
+                functions.logger.error('DeleteServiceInDatabase', {
                     error: err,
                 })
                 res.status(400).send({err: err})

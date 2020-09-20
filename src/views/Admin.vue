@@ -155,11 +155,15 @@
 
                                 <template v-slot:body="props">
                                     <q-tr :props="props">
+                                        <q-td key="name" :props="props">{{ props.row.name }}</q-td>
                                         <q-td
-                                            v-for="col in props.cols"
-                                            :key="col.name"
+                                            key="category"
                                             :props="props"
-                                        >{{ col.value }}</q-td>
+                                        >{{ returnCategoryName(props.row.category) }}</q-td>
+                                        <q-td
+                                            key="subcategory"
+                                            :props="props"
+                                        >{{ returnSubCategoryName(props.row.subcategory) }}</q-td>
                                         <q-td auto-width>
                                             <q-btn
                                                 size="sm"
@@ -167,6 +171,7 @@
                                                 round
                                                 dense
                                                 icon="fas fa-times"
+                                                @click="askForDeleteService(props.row.id)"
                                             />
                                         </q-td>
                                     </q-tr>
@@ -252,7 +257,7 @@
                         <q-select
                             filled
                             v-model="selectedCategory"
-                            :options="options"
+                            :options="categoriesOptions"
                             label="Categoria"
                         />
                     </q-card-section>
@@ -282,21 +287,21 @@
                         <q-select
                             filled
                             v-model="selectedCategory"
-                            :options="options"
+                            :options="categoriesOptions"
                             label="Categoria"
                             class="q-mb-md"
                         />
                         <q-select
                             filled
                             v-model="selectedSubcategory"
-                            :options="options"
+                            :options="subCategoriesOptions"
                             label="Subcategoria"
                         />
                     </q-card-section>
 
                     <q-card-actions align="right" class="text-primary">
-                        <q-btn flat label="Cancelar" v-close-popup />
-                        <q-btn flat label="Crear" v-close-popup />
+                        <q-btn flat label="Cancelar" @click="clear()" v-close-popup />
+                        <q-btn flat label="Crear" @click="createService()" v-close-popup />
                     </q-card-actions>
                 </q-card>
             </q-dialog>
@@ -329,10 +334,14 @@ export default {
             newSubcategory: '',
             servicesDialog: false,
             newService: '',
-            options: [],
+            categoriesOptions: [],
+            subCategoriesOptions: [],
             selectedCategory: null,
             selectedSubcategory: null,
             tab: 'categories',
+            subcategoriesData: [],
+            servicesData: [],
+            categoriesData: [],
             categoriesColumns: [
                 {
                     name: 'name',
@@ -342,7 +351,6 @@ export default {
                     sortable: true,
                 },
             ],
-            categoriesData: [],
             subcategoriesColumns: [
                 {
                     name: 'name',
@@ -359,7 +367,6 @@ export default {
                     sortable: true,
                 },
             ],
-            subcategoriesData: [],
             servicesColumns: [
                 {
                     name: 'name',
@@ -381,13 +388,6 @@ export default {
                     label: 'Sub categoria',
                     field: 'subcategory',
                     sortable: true,
-                },
-            ],
-            servicesData: [
-                {
-                    name: 'Subcategory name',
-                    category: 'Category name',
-                    subcategory: 'Sub category name',
                 },
             ],
             usersColumns: [
@@ -420,11 +420,20 @@ export default {
             this.workingDeletedId = ''
             this.deleteType = ''
             this.newSubcategory = ''
+            this.newService = ''
             this.selectedCategory = null
+            this.selectedSubcategory = null
         },
         returnCategoryName(id) {
             let value = this.categoriesData.filter(category => {
                 if (category.id === id) return category
+            })
+            if (value.length > 0) return value[0].name
+            return 'NaN'
+        },
+        returnSubCategoryName(id) {
+            let value = this.subcategoriesData.filter(subcategory => {
+                if (subcategory.id === id) return subcategory
             })
             if (value.length > 0) return value[0].name
             return 'NaN'
@@ -442,6 +451,13 @@ export default {
             this.alertMessage = 'Se va a proceder a eliminar esta sub categoria'
             this.workingDeletedId = id
             this.deleteType = 'subcategory'
+        },
+        askForDeleteService(id) {
+            this.displayConfirm = true
+            this.alertTitle = 'Esta seguro?'
+            this.alertMessage = 'Se va a proceder a eliminar este servicio'
+            this.workingDeletedId = id
+            this.deleteType = 'service'
         },
         deleteItem() {
             this.displayConfirm = false
@@ -477,7 +493,29 @@ export default {
                         this.displayLoading = false
                         this.alertTitle = 'Exito!'
                         this.alertMessage =
-                            'Se ha eliminado la categoria con exito'
+                            'Se ha eliminado la sub categoria con exito'
+                        this.alertType = 'success'
+                        this.displayAlert = true
+                    })
+                    .catch(error => {
+                        this.clear()
+                        this.displayLoading = false
+                        this.alertTitle = 'Error'
+                        this.alertMessage = error
+                        this.alertType = 'error'
+                        this.displayAlert = true
+                    })
+            }
+            if (this.deleteType === 'service') {
+                api.DeleteServiceInDatabase({
+                    id: this.workingDeletedId,
+                })
+                    .then(() => {
+                        this.clear()
+                        this.displayLoading = false
+                        this.alertTitle = 'Exito!'
+                        this.alertMessage =
+                            'Se ha eliminado el servicio con exito'
                         this.alertType = 'success'
                         this.displayAlert = true
                     })
@@ -593,10 +631,76 @@ export default {
                     this.displayAlert = true
                 })
         },
+        createService() {
+            this.displayLoading = true
+            if (this.newService === '') {
+                this.displayLoading = false
+                this.alertTitle = 'Error'
+                this.alertMessage =
+                    'Por favor tienes que llenar el campo de nombre del servicio'
+                this.alertType = 'error'
+                this.displayAlert = true
+                return
+            }
+            if (this.selectedCategory === null) {
+                this.displayLoading = false
+                this.alertTitle = 'Error'
+                this.alertMessage = 'Por favor tienes que escojer una categoria'
+                this.alertType = 'error'
+                this.displayAlert = true
+                return
+            }
+            if (this.selectedSubcategory === null) {
+                this.displayLoading = false
+                this.alertTitle = 'Error'
+                this.alertMessage =
+                    'Por favor tienes que escojer una sub categoria'
+                this.alertType = 'error'
+                this.displayAlert = true
+                return
+            }
+            let selectedCategoryId
+            let selectedSubCategoryId
+            this.categoriesData.filter(category => {
+                if (category.name === this.selectedCategory) {
+                    selectedCategoryId = category.id
+                }
+            })
+            this.subcategoriesData.filter(subcategory => {
+                if (subcategory.name === this.selectedSubcategory) {
+                    selectedSubCategoryId = subcategory.id
+                }
+            })
+
+            api.CreateServiceInDatabase({
+                service: {
+                    name: this.newService,
+                    category: selectedCategoryId,
+                    subcategory: selectedSubCategoryId,
+                },
+            })
+                .then(() => {
+                    this.clear()
+                    this.displayLoading = false
+                    this.alertTitle = 'Exito!'
+                    this.alertMessage = 'Se ha creado la categoria con exito'
+                    this.alertType = 'success'
+                    this.displayAlert = true
+                })
+                .catch(error => {
+                    this.clear()
+                    this.displayLoading = false
+                    this.alertTitle = 'Error'
+                    this.alertMessage = error
+                    this.alertType = 'error'
+                    this.displayAlert = true
+                })
+        },
         addToData(id, data, type) {
             data.id = id
             if (type === 'categories') this.categoriesData.push(data)
             if (type === 'subcategories') this.subcategoriesData.push(data)
+            if (type === 'services') this.servicesData.push(data)
         },
         editData(id, data, type) {
             data.id = id
@@ -614,6 +718,13 @@ export default {
                     }
                 })
             }
+            if (type === 'services') {
+                this.servicesData.forEach((d, index) => {
+                    if (d.id === id) {
+                        this.servicesData.splice(index, 1, data)
+                    }
+                })
+            }
         },
         removeData(id, type) {
             if (type === 'categories') {
@@ -627,6 +738,13 @@ export default {
                 this.subcategoriesData.forEach((d, index) => {
                     if (d.id === id) {
                         this.subcategoriesData.splice(index, 1)
+                    }
+                })
+            }
+            if (type === 'services') {
+                this.servicesData.forEach((d, index) => {
+                    if (d.id === id) {
+                        this.servicesData.splice(index, 1)
                     }
                 })
             }
@@ -686,11 +804,42 @@ export default {
                 console.log(error)
             }
         )
+        db.collection('services').onSnapshot(
+            snapshot => {
+                snapshot.docChanges().forEach(change => {
+                    if (change.type === 'added') {
+                        this.addToData(
+                            change.doc.id,
+                            change.doc.data(),
+                            'services'
+                        )
+                    }
+                    if (change.type === 'modified') {
+                        this.editData(
+                            change.doc.id,
+                            change.doc.data(),
+                            'services'
+                        )
+                    }
+                    if (change.type === 'removed') {
+                        this.removeData(change.doc.id, 'services')
+                    }
+                })
+            },
+            error => {
+                console.log(error)
+            }
+        )
     },
     watch: {
         categoriesData(newValue, oldValue) {
-            this.options = newValue.map(category => {
+            this.categoriesOptions = newValue.map(category => {
                 return category.name
+            })
+        },
+        subcategoriesData(newValue, oldValue) {
+            this.subCategoriesOptions = newValue.map(subcategory => {
+                return subcategory.name
             })
         },
     },

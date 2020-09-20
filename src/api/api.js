@@ -42,3 +42,12 @@ export const DeleteSubCategoryInDatabase = data =>
     Request.post('/DeleteSubCategoryInDatabase', data, {
         'Content-Type': 'application/json',
     })
+//SERVICES
+export const CreateServiceInDatabase = data =>
+    Request.post('/CreateServiceInDatabase', data, {
+        'Content-Type': 'application/json',
+    })
+export const DeleteServiceInDatabase = data =>
+    Request.post('/DeleteServiceInDatabase', data, {
+        'Content-Type': 'application/json',
+    })
