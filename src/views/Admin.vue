@@ -671,7 +671,6 @@ export default {
                     selectedSubCategoryId = subcategory.id
                 }
             })
-
             api.CreateServiceInDatabase({
                 service: {
                     name: this.newService,
@@ -837,10 +836,22 @@ export default {
                 return category.name
             })
         },
-        subcategoriesData(newValue, oldValue) {
-            this.subCategoriesOptions = newValue.map(subcategory => {
-                return subcategory.name
+        selectedCategory(newValue, oldValue) {
+            this.subCategoriesOptions = []
+            this.selectedSubcategory = ''
+            let selectedCategory
+            this.categoriesData.filter(category => {
+                if (category.name === newValue) selectedCategory = category
             })
+            this.subCategoriesOptions = this.subcategoriesData
+                .filter(subcategory => {
+                    if (subcategory.category === selectedCategory.id) {
+                        return subcategory
+                    }
+                })
+                .map(subcategory => {
+                    return subcategory.name
+                })
         },
     },
     components: {
