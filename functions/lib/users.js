@@ -68,9 +68,25 @@ async function updateUserInfo(uid, userObj) {
             return error
         })
 }
+async function changeVerified(uid, user) {
+    return db
+        .collection('users')
+        .doc(uid)
+        .update({isVerified: !user.isVerified})
+        .then(() => {
+            console.log('Document successfully written!')
+            return 'Succesfull'
+        })
+        .catch(error => {
+            console.error('Error writing document: ', error)
+            return error
+        })
+}
+
 module.exports = {
     createDatabaseWithUserInfo,
     updateDatabaseWithUserInfo,
     returnUserById,
     updateUserInfo,
+    changeVerified,
 }

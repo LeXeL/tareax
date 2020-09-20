@@ -89,6 +89,26 @@ exports.UpdateUserInformationById = functions.https.onRequest(
         })
     }
 )
+exports.ChangeUserVerified = functions.https.onRequest(async (req, res) => {
+    cors(req, res, async () => {
+        try {
+            let response = await users.changeVerified(
+                req.body.uid,
+                req.body.user
+            )
+            functions.logger.info('ChangeUserVerified', {
+                userUid: req.body.uid,
+                userInfo: req.body.user,
+            })
+            res.status(200).send({data: response})
+        } catch (err) {
+            functions.logger.error('ChangeUserVerified', {
+                error: err,
+            })
+            res.status(400).send({err: err})
+        }
+    })
+})
 
 //CATEGORIES
 exports.CreateCategoryInDatabase = functions.https.onRequest(
