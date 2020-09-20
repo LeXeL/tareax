@@ -23,6 +23,10 @@ export const UpdateUserInformationById = data =>
     Request.post('/UpdateUserInformationById', data, {
         'Content-Type': 'application/json',
     })
+export const ChangeUserVerified = data =>
+    Request.post('/ChangeUserVerified', data, {
+        'Content-Type': 'application/json',
+    })
 
 //CATEGORIES
 export const CreateCategoryInDatabase = data =>

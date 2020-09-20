@@ -193,18 +193,18 @@
 
                                 <template v-slot:body="props">
                                     <q-tr :props="props">
-                                        <q-td
-                                            v-for="col in props.cols"
-                                            :key="col.name"
-                                            :props="props"
-                                        >{{ col.value }}</q-td>
+                                        <q-td key="name" :props="props">{{ props.row.name }}</q-td>
+                                        <q-td key="email" :props="props">{{ props.row.email }}</q-td>
+                                        <q-td key="type" :props="props">{{ props.row.role }}</q-td>
                                         <q-td auto-width>
                                             <q-btn
                                                 size="sm"
-                                                color="secondary"
+                                                :color="!props.row.isVerified ? 'secondary' : 'red-7'"
                                                 round
                                                 dense
-                                                icon="fas fa-check"
+                                                :icon="!props.row.isVerified ? 'fas fa-check' : 'fas fa-times'"
+                                                :disable="props.row.role=== 'admin'? true : false"
+                                                @click="checkVerified(props.row.id)"
                                             />
                                         </q-td>
                                     </q-tr>
@@ -342,6 +342,7 @@ export default {
             subcategoriesData: [],
             servicesData: [],
             categoriesData: [],
+            usersData: [],
             categoriesColumns: [
                 {
                     name: 'name',
@@ -405,11 +406,12 @@ export default {
                     field: 'email',
                     sortable: true,
                 },
-            ],
-            usersData: [
                 {
-                    name: 'User Name',
-                    email: 'test@test.com',
+                    name: 'type',
+                    align: 'left',
+                    label: 'Tipo',
+                    field: 'type',
+                    sortable: true,
                 },
             ],
         }
@@ -437,6 +439,35 @@ export default {
             })
             if (value.length > 0) return value[0].name
             return 'NaN'
+        },
+        checkVerified(id) {
+            let user = this.usersData.filter(user => {
+                if (user.id === id) {
+                    return user
+                }
+            })
+            user = user[0]
+
+            api.ChangeUserVerified({
+                uid: user.id,
+                user: user,
+            })
+                .then(() => {
+                    this.clear()
+                    this.displayLoading = false
+                    this.alertTitle = 'Exito!'
+                    this.alertMessage = 'Se ha Actualizado con exito al usuario'
+                    this.alertType = 'success'
+                    this.displayAlert = true
+                })
+                .catch(error => {
+                    this.clear()
+                    this.displayLoading = false
+                    this.alertTitle = 'Error'
+                    this.alertMessage = error
+                    this.alertType = 'error'
+                    this.displayAlert = true
+                })
         },
         askForDeleteCategory(id) {
             this.displayConfirm = true
@@ -700,6 +731,7 @@ export default {
             if (type === 'categories') this.categoriesData.push(data)
             if (type === 'subcategories') this.subcategoriesData.push(data)
             if (type === 'services') this.servicesData.push(data)
+            if (type === 'users') this.usersData.push(data)
         },
         editData(id, data, type) {
             data.id = id
@@ -724,6 +756,13 @@ export default {
                     }
                 })
             }
+            if (type === 'users') {
+                this.usersData.forEach((d, index) => {
+                    if (d.id === id) {
+                        this.usersData.splice(index, 1, data)
+                    }
+                })
+            }
         },
         removeData(id, type) {
             if (type === 'categories') {
@@ -744,6 +783,13 @@ export default {
                 this.servicesData.forEach((d, index) => {
                     if (d.id === id) {
                         this.servicesData.splice(index, 1)
+                    }
+                })
+            }
+            if (type === 'users') {
+                this.usersData.forEach((d, index) => {
+                    if (d.id === id) {
+                        this.usersData.splice(index, 1)
                     }
                 })
             }
@@ -822,6 +868,28 @@ export default {
                     }
                     if (change.type === 'removed') {
                         this.removeData(change.doc.id, 'services')
+                    }
+                })
+            },
+            error => {
+                console.log(error)
+            }
+        )
+        db.collection('users').onSnapshot(
+            snapshot => {
+                snapshot.docChanges().forEach(change => {
+                    if (change.type === 'added') {
+                        this.addToData(
+                            change.doc.id,
+                            change.doc.data(),
+                            'users'
+                        )
+                    }
+                    if (change.type === 'modified') {
+                        this.editData(change.doc.id, change.doc.data(), 'users')
+                    }
+                    if (change.type === 'removed') {
+                        this.removeData(change.doc.id, 'users')
                     }
                 })
             },
