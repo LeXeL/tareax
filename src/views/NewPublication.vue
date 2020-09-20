@@ -6,6 +6,7 @@
             :title="alertTitle"
             :message="alertMessage"
             :type="alertType"
+            :redirect="redirect"
             @accept="displayAlert=false"
         ></tareax-alert>
         <TitleBanner :subtitle="'Crear publicacion'" />
@@ -88,6 +89,7 @@ export default {
             selectedSubcategory: '',
             selectedService: '',
             price: '',
+            redirect: '',
         }
     },
     computed: {
@@ -174,9 +176,10 @@ export default {
                     this.clear()
                     this.displayLoading = false
                     this.alertTitle = 'Exito!'
-                    this.alertMessage = 'Se ha creado la categoria con exito'
+                    this.alertMessage = 'Se ha creado la Publicacion con exito'
                     this.alertType = 'success'
                     this.displayAlert = true
+                    this.redirect = '/my-publications'
                 })
                 .catch(error => {
                     this.clear()
