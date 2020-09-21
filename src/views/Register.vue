@@ -16,9 +16,13 @@
                     <div class="col-lg-8 q-px-md">
                         <q-card class="full-width">
                             <q-card-section>
-                                <div class="text-h5 q-mb-md">
+
+                                <div class="text-h5">
                                     Formulario de registro
                                 </div>
+                            </q-card-section>
+                            <q-separator />
+                            <q-card-section>
                                 <q-input
                                     filled
                                     label="Nombre"
@@ -107,11 +111,15 @@
                                     >Leer aqui.</a
                                 >
                             </q-card-section>
-                            <q-btn
-                                color="primary"
-                                label="Registrar"
-                                @click="createuser"
-                            />
+                            <q-separator />
+                            <q-card-actions>
+                                <q-space />
+                                <q-btn
+                                    color="primary"
+                                    label="Registrar"
+                                    @click="createuser"
+                                />
+                            </q-card-actions>
                         </q-card>
                     </div>
                     <div class="col-lg-4 q-px-md">
@@ -134,6 +142,7 @@
                     </div>
                 </div>
             </div>
+            <div class="col desktop-only"></div>
             <q-dialog v-model="confirmationDialog">
                 <q-card
                     dark
