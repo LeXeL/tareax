@@ -174,6 +174,7 @@ export default {
                         lastName: this.user.lastName,
                         email: this.user.email,
                         contactPhone: this.user.contactPhone,
+                        isVerified: this.user.isVerified,
                     },
                 },
             })

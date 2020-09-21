@@ -326,3 +326,23 @@ exports.ReturnAllPublicationsByUserId = functions.https.onRequest(
         })
     }
 )
+exports.ReturnAllPublicationsByService = functions.https.onRequest(
+    async (req, res) => {
+        cors(req, res, async () => {
+            try {
+                let response = await publications.returnAllPublicationsByService(
+                    req.body.id
+                )
+                functions.logger.info('ReturnAllPublicationsByService', {
+                    UserId: req.body.id,
+                })
+                res.status(200).send({data: response})
+            } catch (err) {
+                functions.logger.error('ReturnAllPublicationsByService', {
+                    error: err,
+                })
+                res.status(400).send({err: err})
+            }
+        })
+    }
+)

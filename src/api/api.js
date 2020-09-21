@@ -83,3 +83,7 @@ export const ReturnAllPublicationsByUserId = data =>
     Request.post('/ReturnAllPublicationsByUserId', data, {
         'Content-Type': 'application/json',
     })
+export const ReturnAllPublicationsByService = data =>
+    Request.post('/ReturnAllPublicationsByService', data, {
+        'Content-Type': 'application/json',
+    })
