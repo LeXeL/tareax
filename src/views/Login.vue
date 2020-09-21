@@ -1,9 +1,15 @@
 <template>
     <q-page>
         <div class="absolute-center">
-            <q-card style="width: 100%; width: 400px;" class="rounded-borders">
+            <q-card
+                style="width: 100%; width: 400px;"
+                class="rounded-borders bg-primary text-white"
+            >
                 <q-card-section>
-                    <q-img :src="require('@/assets/TareaxFin2.png')" class="q-mb-md" />
+                    <q-img
+                        :src="require('@/assets/TareaxFin2.png')"
+                        class="q-mb-md"
+                    />
                     <!-- <q-input filled label="Correo electronico" class="full-width q-mb-md" type="text" />
                     <q-input filled label="Contraseña" class="full-width q-mb-md" type="password" />-->
                     <q-card-section>
@@ -15,6 +21,8 @@
                                 v-model="email"
                                 type="email"
                                 label="Correo electrónico"
+                                class="bg-white rounded-borders"
+                                color="orange-10"
                             />
                             <q-input
                                 square
@@ -24,15 +32,17 @@
                                 type="password"
                                 label="Contraseña"
                                 @keyup.enter="login"
+                                class="bg-white rounded-borders"
+                                color="orange-10"
                             />
                         </q-form>
                     </q-card-section>
                     <!-- <q-btn color="primary" label="Iniciar sesion" class="q-mb-md full-width" /> -->
                     <q-card-actions class="q-px-md">
                         <q-btn
-                            color="primary"
+                            color="orange-10"
                             size="lg"
-                            class="q-mb-md full-width"
+                            class="full-width"
                             label="Iniciar sesión"
                             @click="login"
                         />
@@ -43,16 +53,23 @@
                     </div>-->
                 </q-card-section>
                 <q-card-section class="text-center q-pa-none">
-                    <p class="text-grey-6">
+                    <p class="text-white">
                         Necesitas una cuenta?
-                        <router-link class="text-grey-9" to="register">Creala Aquí</router-link>
+                        <router-link class="text-white" to="register"
+                            >Creala Aquí</router-link
+                        >
                     </p>
-                    <p class="text-grey-6">
+                    <p class="text-white q-pb-md">
                         Olvidaste tu contraseña?
-                        <router-link class="text-grey-9" to="forgotpassword">Solicitala Aquí</router-link>
+                        <router-link class="text-white" to="forgotpassword"
+                            >Solicitala Aquí</router-link
+                        >
                     </p>
                 </q-card-section>
-                <q-card-section v-if="dismissCountDown > 0">
+                <q-card-section
+                    v-if="dismissCountDown > 0"
+                    class="q-py-none q-pb-md"
+                >
                     <q-banner inline-actions rounded class="bg-red text-white">
                         {{ errorMessage }}
                         <template v-slot:action>
