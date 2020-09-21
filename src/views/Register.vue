@@ -16,6 +16,7 @@
                     <div class="col-lg-8 q-px-md">
                         <q-card class="full-width">
                             <q-card-section>
+
                                 <div class="text-h5">
                                     Formulario de registro
                                 </div>
@@ -105,7 +106,7 @@
                                 >
                                 <a
                                     class="on-right"
-                                    href="/terminos-y-condiciones"
+                                    href="/terms-and-conditions"
                                     target="_blank"
                                     >Leer aqui.</a
                                 >

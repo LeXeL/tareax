@@ -13,6 +13,7 @@ import MyPublications from '@/views/MyPublications'
 import ResetPassword from '@/views/ResetPassword'
 import ForgotPassword from '@/views/ForgotPassword'
 import Admin from '@/views/Admin'
+import TermsAndConditions from '@/views/TermsAndConditions'
 
 Vue.use(VueRouter)
 
@@ -79,13 +80,18 @@ const routes = [
     },
     {
         path: '/resetpassword',
-        name: 'reset password',
+        name: 'resetPassword',
         component: ResetPassword,
     },
     {
         path: '/forgotpassword',
-        name: 'forgot password',
+        name: 'forgotPassword',
         component: ForgotPassword,
+    },
+    {
+        path: '/terms-and-conditions',
+        name: 'termsAndConditions',
+        component: TermsAndConditions,
     },
 ]
 
