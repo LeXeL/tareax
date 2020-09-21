@@ -12,10 +12,12 @@
                     </div>
                 </q-item-label>
                 <q-item-label caption>
-                    <i class="fas fa-briefcase"></i> Servicio
+                    <i class="fas fa-briefcase"></i>
+                    {{returnServiceName(pub.service)}}
                 </q-item-label>
                 <q-item-label caption>
-                    <i class="fas fa-map-pin"></i> Ubicacion
+                    <i class="fas fa-map-pin"></i>
+                    Ubicacion
                 </q-item-label>
             </q-item-section>
             <q-item-section side center>
@@ -35,6 +37,19 @@ export default {
         data: {
             type: Array,
             default: () => [],
+        },
+        servicesData: {
+            type: Array,
+            default: () => [],
+        },
+    },
+    methods: {
+        returnServiceName(id) {
+            let value = this.servicesData.filter(service => {
+                if (service.id === id) return service
+            })
+            if (value.length > 0) return value[0].name
+            return 'NaN'
         },
     },
 }

@@ -15,7 +15,10 @@
                     <div class="row">
                         <div class="col-lg-8 q-px-md">
                             <div class="text-h6 q-mb-sm">Resultados</div>
-                            <PublicationsList :data="filteredPublicacionData" />
+                            <PublicationsList
+                                :data="filteredPublicacionData"
+                                :servicesData="servicesData"
+                            />
                         </div>
                         <div class="col-lg-4 q-px-md">
                             <div class="text-h6 q-mb-sm">Filtrar por provincia</div>
@@ -108,7 +111,6 @@ export default {
     },
     watch: {
         rangeSnap(newValue, oldValue) {
-            console.log(newValue)
             if (newValue === '') {
                 this.filteredPublicacionData = this.publicationData
             } else {
