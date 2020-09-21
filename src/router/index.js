@@ -34,7 +34,7 @@ const routes = [
         component: Home,
     },
     {
-        path: '/search',
+        path: '/search/:id',
         name: 'SearchResults',
         component: SearchResults,
     },

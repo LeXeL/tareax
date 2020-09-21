@@ -53,8 +53,29 @@ async function returnAllPublicationsByUserId(id) {
         })
     return publications
 }
+async function returnAllPublicationsByService(id) {
+    let publications = []
+    await db
+        .collection('publications')
+        .where('service', '==', id)
+        .get()
+        .then(snapshot => {
+            if (snapshot.empty) {
+                console.log('No matching documents.')
+                return
+            }
+            snapshot.forEach(doc => {
+                publications.push({...doc.data(), id: doc.id})
+            })
+        })
+        .catch(function(error) {
+            console.log('Error getting documents: ', error)
+        })
+    return publications
+}
 module.exports = {
     createPublicationInDatabase,
     deletePublicationInDatabase,
     returnAllPublicationsByUserId,
+    returnAllPublicationsByService,
 }
