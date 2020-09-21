@@ -79,3 +79,7 @@ export const DeletePublicationInDatabase = data =>
     Request.post('/DeletePublicationInDatabase', data, {
         'Content-Type': 'application/json',
     })
+export const ReturnAllPublicationsByUserId = data =>
+    Request.post('/ReturnAllPublicationsByUserId', data, {
+        'Content-Type': 'application/json',
+    })

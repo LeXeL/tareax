@@ -9,6 +9,7 @@
             :redirect="redirect"
             @accept="displayAlert=false"
         ></tareax-alert>
+
         <TitleBanner :subtitle="'Crear publicacion'" />
         <div class="row q-my-xl">
             <div class="col desktop-only"></div>
@@ -96,6 +97,9 @@ export default {
         user() {
             return this.$store.getters.user
         },
+        uid() {
+            return this.$store.getters.uid
+        },
     },
     methods: {
         clear() {
@@ -164,6 +168,7 @@ export default {
                     subcategory: selectedSubCategoryId,
                     service: selectedServiceId,
                     price: parseInt(this.price),
+                    userId: this.uid,
                     by: {
                         name: this.user.name,
                         lastName: this.user.lastName,
