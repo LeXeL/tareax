@@ -16,18 +16,19 @@
                     <div class="col-lg-8 q-px-md">
                         <q-card class="full-width">
                             <q-card-section>
-                                <div class="text-h5 q-mb-md">Formulario de registro</div>
+                                <div class="text-h5 q-mb-md">
+                                    Formulario de registro
+                                </div>
                                 <q-input
                                     filled
                                     label="Nombre"
                                     class="q-mb-md"
                                     v-model="form.name"
                                     :rules="[
-
-                                    val =>
-                                        val.length > 0 ||
-                                        'El campo es obligatorio',
-                                ]"
+                                        val =>
+                                            val.length > 0 ||
+                                            'El campo es obligatorio',
+                                    ]"
                                 />
                                 <q-input
                                     filled
@@ -35,13 +36,10 @@
                                     class="q-mb-md"
                                     v-model="form.lastName"
                                     :rules="[
-
-                                
-
-                                    val =>
-                                        val.length > 0 ||
-                                        'El campo es obligatorio',
-                                ]"
+                                        val =>
+                                            val.length > 0 ||
+                                            'El campo es obligatorio',
+                                    ]"
                                 />
                                 <q-input
                                     filled
@@ -49,14 +47,13 @@
                                     class="q-mb-md"
                                     v-model="form.email"
                                     :rules="[
-
-                                    val =>
-                                        val.length > 0 ||
-                                        'El campo es obligatorio',
-                                    val =>
-                                        validEmail.test(val) ||
-                                        'Formato de correo incorrecto',
-                                ]"
+                                        val =>
+                                            val.length > 0 ||
+                                            'El campo es obligatorio',
+                                        val =>
+                                            validEmail.test(val) ||
+                                            'Formato de correo incorrecto',
+                                    ]"
                                 />
                                 <q-input
                                     filled
@@ -64,13 +61,10 @@
                                     class="q-mb-md"
                                     v-model="form.contactPhone"
                                     :rules="[
-
-                                
-
-                                    val =>
-                                        val.length > 0 ||
-                                        'El campo es obligatorio',
-                                ]"
+                                        val =>
+                                            val.length > 0 ||
+                                            'El campo es obligatorio',
+                                    ]"
                                 />
                                 <q-input
                                     filled
@@ -79,9 +73,6 @@
                                     type="password"
                                     v-model="form.password"
                                     :rules="[
-
-                             
-
                                         val =>
                                             val.length > 0 ||
                                             'El campo es obligatorio',
@@ -97,9 +88,6 @@
                                     type="password"
                                     v-model="form.repassword"
                                     :rules="[
-
-                                
-
                                         val =>
                                             val.length > 0 ||
                                             'El campo es obligatorio',
@@ -108,31 +96,54 @@
                                             'Las contraseñas no coinciden',
                                     ]"
                                 />
-                                <q-checkbox v-model="terms">Acepto los terminos y condiciones.</q-checkbox>
+                                <q-checkbox v-model="terms"
+                                    >Acepto los terminos y
+                                    condiciones.</q-checkbox
+                                >
                                 <a
                                     class="on-right"
-                                    href="/terminos-y-condiciones"
+                                    href="/terms-and-conditions"
                                     target="_blank"
-                                >Leer aqui.</a>
+                                    >Leer aqui.</a
+                                >
                             </q-card-section>
-                            <q-btn color="primary" label="Registrar" @click="createuser" />
+                            <q-btn
+                                color="primary"
+                                label="Registrar"
+                                @click="createuser"
+                            />
                         </q-card>
                     </div>
                     <div class="col-lg-4 q-px-md">
                         <q-card class="full-width">
                             <q-card-section>
-                                <div
-                                    class="text-body2"
-                                >Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam hendrerit interdum lectus, sodales congue sem vestibulum lacinia. Proin feugiat tortor ac lorem condimentum, in gravida eros euismod. Nunc non magna quis augue aliquam vulputate. Vivamus molestie, nisi vitae lacinia scelerisque, leo mi auctor nisl, ac condimentum arcu nisl at nulla. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</div>
+                                <div class="text-body2">
+                                    Lorem ipsum dolor sit amet, consectetur
+                                    adipiscing elit. Nam hendrerit interdum
+                                    lectus, sodales congue sem vestibulum
+                                    lacinia. Proin feugiat tortor ac lorem
+                                    condimentum, in gravida eros euismod. Nunc
+                                    non magna quis augue aliquam vulputate.
+                                    Vivamus molestie, nisi vitae lacinia
+                                    scelerisque, leo mi auctor nisl, ac
+                                    condimentum arcu nisl at nulla. Lorem ipsum
+                                    dolor sit amet, consectetur adipiscing elit.
+                                </div>
                             </q-card-section>
                         </q-card>
                     </div>
                 </div>
             </div>
             <q-dialog v-model="confirmationDialog">
-                <q-card dark class="text-white" style="width: 700px; max-width: 80vw;">
+                <q-card
+                    dark
+                    class="text-white"
+                    style="width: 700px; max-width: 80vw;"
+                >
                     <q-card-section>
-                        <div class="text-h6">¡Hemos recibido tu información!</div>
+                        <div class="text-h6">
+                            ¡Hemos recibido tu información!
+                        </div>
                     </q-card-section>
 
                     <q-card-section class="q-pt-none">
@@ -145,7 +156,12 @@
 
                     <q-card-actions align="right">
                         <router-link to="/">
-                            <q-btn flat label="Aceptar" color="primary" v-close-popup />
+                            <q-btn
+                                flat
+                                label="Aceptar"
+                                color="primary"
+                                v-close-popup
+                            />
                         </router-link>
                     </q-card-actions>
                 </q-card>
