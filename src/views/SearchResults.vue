@@ -15,7 +15,7 @@
                     <div class="row">
                         <div class="col-lg-8 q-px-md">
                             <div class="text-h6 q-mb-sm">Resultados</div>
-                            <PublicationsList :data="publicationData" />
+                            <PublicationsList :data="filteredPublicacionData" />
                         </div>
                         <div class="col-lg-4 q-px-md">
                             <div class="text-h6 q-mb-sm">Filtrar por provincia</div>
@@ -35,11 +35,17 @@
                                 label="Seleccione"
                             />
                             <div class="text-h6 q-mb-sm">Precio por hora</div>
-                            <q-option-group
-                                :options="priceOptions"
-                                label="Notifications"
-                                type="checkbox"
-                                v-model="priceFilter"
+
+                            <q-range
+                                v-model="rangeSnap"
+                                :min="0"
+                                :max="100"
+                                :step="5"
+                                drag-range
+                                label
+                                markers
+                                snap
+                                color="primary"
                             />
                         </div>
                     </div>
@@ -76,15 +82,14 @@ export default {
                 'Oracle',
             ],
             publicationData: [],
+            filteredPublicacionData: [],
             servicesData: [],
             priceFilter: [],
-            priceOptions: [
-                {label: '$0 - $25', value: '$0 - $25'},
-                {label: '$25 - $50', value: '$25 - $50'},
-                {label: '$50 - $100', value: '$50 - $100'},
-                {label: '$100 - $200', value: '$100 - $200'},
-                {label: '$200 +', value: '$200 +'},
-            ],
+
+            rangeSnap: {
+                min: 1,
+                max: 60,
+            },
         }
     },
     async mounted() {
@@ -92,6 +97,7 @@ export default {
         api.ReturnAllPublicationsByService({id: this.$route.params.id})
             .then(response => {
                 this.publicationData = response.data.data
+                this.filteredPublicacionData = this.publicationData
                 api.ReturnAllServices().then(response => {
                     this.servicesData = response.data.data
                 })
@@ -99,6 +105,25 @@ export default {
             .then(() => {
                 this.displayLoading = false
             })
+    },
+    watch: {
+        rangeSnap(newValue, oldValue) {
+            console.log(newValue)
+            if (newValue === '') {
+                this.filteredPublicacionData = this.publicationData
+            } else {
+                this.filteredPublicacionData = this.publicationData.filter(
+                    publication => {
+                        if (
+                            publication.price >= newValue.min &&
+                            publication.price < newValue.max
+                        ) {
+                            return publication
+                        }
+                    }
+                )
+            }
+        },
     },
     components: {
         TitleBanner,
