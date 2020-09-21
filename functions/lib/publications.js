@@ -12,6 +12,7 @@ async function createPublicationInDatabase(publication) {
             creationTime: Date.now(),
             price: publication.price,
             by: publication.by,
+            userId: publication.userId,
         })
         .then(() => {
             return 'Succesfull'
@@ -32,7 +33,28 @@ async function deletePublicationInDatabase(id) {
             return error
         })
 }
+async function returnAllPublicationsByUserId(id) {
+    let publications = []
+    await db
+        .collection('publications')
+        .where('userId', '==', id)
+        .get()
+        .then(snapshot => {
+            if (snapshot.empty) {
+                console.log('No matching documents.')
+                return
+            }
+            snapshot.forEach(doc => {
+                publications.push({...doc.data(), id: doc.id})
+            })
+        })
+        .catch(function(error) {
+            console.log('Error getting documents: ', error)
+        })
+    return publications
+}
 module.exports = {
     createPublicationInDatabase,
     deletePublicationInDatabase,
+    returnAllPublicationsByUserId,
 }
