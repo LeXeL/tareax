@@ -1,6 +1,12 @@
 <template>
     <q-list bordered separator>
-        <q-item clickable v-ripple v-for="(pub, i) of data" :key="i" to="/user-publications">
+        <q-item
+            clickable
+            v-ripple
+            v-for="(pub, i) of data"
+            :key="i"
+            :to="`/user-publications/${uid}`"
+        >
             <q-item-section>
                 <q-item-label>
                     <div class="text-subtitle2 text-black">
@@ -41,6 +47,11 @@ export default {
         servicesData: {
             type: Array,
             default: () => [],
+        },
+    },
+    computed: {
+        uid() {
+            return this.$store.getters.uid
         },
     },
     methods: {
