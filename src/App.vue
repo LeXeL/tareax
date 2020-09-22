@@ -8,6 +8,7 @@
                         src="@/assets/TareaxFin2.png"
                         width="8%"
                         style="padding-top: 5px; cursor: pointer;"
+                        @click="$router.push('/')"
                     />
                 </q-toolbar-title>
                 <q-btn color="white" outline :to="'/login'" v-if="!user"
