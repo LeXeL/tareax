@@ -19,16 +19,9 @@
             />
             <div class="row q-py-xl">
                 <div class="col desktop-only"></div>
-                <div class="col-lg-9">
+                <div class="col-lg-9 col-md-12 col-sm-12 col-xs-12">
                     <div class="row">
-                        <div class="col-lg-8 q-px-md">
-                            <div class="text-h6 q-mb-sm">Resultados</div>
-                            <PublicationsList
-                                :data="filteredPublicacionData"
-                                :servicesData="servicesData"
-                            />
-                        </div>
-                        <div class="col-lg-4 q-px-md">
+                        <div class="col-lg-4 col-md-4 col-sm-5 col-xs-12 q-px-md q-mb-md">
                             <div class="text-h6 q-mb-sm">Filtrar por provincia</div>
                             <q-select
                                 class="q-mb-md"
@@ -46,7 +39,6 @@
                                 label="Seleccione"
                             />
                             <div class="text-h6 q-mb-sm">Precio por hora</div>
-
                             <q-range
                                 v-model="rangeSnap"
                                 :min="0"
@@ -57,6 +49,13 @@
                                 markers
                                 snap
                                 color="primary"
+                            />
+                        </div>
+                        <div class="col-lg-8 col-md-8 col-sm-7 col-xs-12 q-px-md">
+                            <div class="text-h6 q-mb-sm">Resultados</div>
+                            <PublicationsList
+                                :data="filteredPublicacionData"
+                                :servicesData="servicesData"
                             />
                         </div>
                     </div>
