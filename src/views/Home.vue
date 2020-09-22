@@ -99,10 +99,14 @@
                     <div class="text-h5">Servicios populares</div>
                 </div>
                 <div class="row text-center q-mb-md">
-                    <div class="col-lg-3 q-px-md q-mb-md" v-for="(cat, i) in 8" :key="i">
+                    <div
+                        class="col-lg-3 q-px-md q-mb-md"
+                        v-for="(cat, i) in returnPopularServices()"
+                        :key="i"
+                    >
                         <div class="q-py-lg bg-grey-2 rounded-borders">
-                            <div class="text-subtitle2">Category name</div>
-                            <div class="text-h6 text-primary">{{ i + 1 }}</div>
+                            <div class="text-subtitle2">{{cat.name}}</div>
+                            <div class="text-h6 text-primary">{{ cat.count }}</div>
                         </div>
                     </div>
                 </div>
@@ -236,8 +240,27 @@ export default {
     },
     methods: {
         returnPopularServices() {
-            let s = {}
-            this.servicesData.forEach(element => {})
+            let services = {}
+            let FinalArray = []
+            this.publication.forEach(service => {
+                if (Object.keys(services).includes(service.name)) {
+                    services[`${service.name}`] += 1
+                } else {
+                    services[`${service.name}`] = 1
+                }
+            })
+            console.log(services)
+            for (const key in services) {
+                FinalArray.push({name: key, count: services[key]})
+            }
+
+            return FinalArray.sort((a, b) => {
+                return b - a
+            }).filter((a, i) => {
+                if (i < 8) {
+                    return a
+                }
+            })
         },
         search() {
             if (this.selectedCategory === '') {
