@@ -252,7 +252,27 @@ export default {
                     }
                 })
         },
-
+        returnCategoryName(id) {
+            let value = this.categoriesData.filter(category => {
+                if (category.id === id) return category
+            })
+            if (value.length > 0) return value[0].name
+            return 'NaN'
+        },
+        returnSubCategoryName(id) {
+            let value = this.subcategoriesData.filter(subcategory => {
+                if (subcategory.id === id) return subcategory
+            })
+            if (value.length > 0) return value[0].name
+            return 'NaN'
+        },
+        returnServiceName(id) {
+            let value = this.servicesData.filter(service => {
+                if (service.id === id) return service
+            })
+            if (value.length > 0) return value[0].name
+            return 'NaN'
+        },
         returnServiceName(id) {
             let value = this.servicesData.filter(service => {
                 if (service.id === id) return service

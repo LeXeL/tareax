@@ -5,7 +5,8 @@
             v-ripple
             v-for="(pub, i) of data"
             :key="i"
-            :to="`/user-publications/${uid}`"
+            :to="`/user-publications/${uid}/${pub.id}`"
+            @click="handleClickEvent(pub)"
         >
             <q-item-section>
                 <q-item-label>
@@ -59,6 +60,11 @@ export default {
         },
     },
     methods: {
+        handleClickEvent(event) {
+            if (this.$route.fullPath.includes('/user-publications'))
+                this.$emit('clickFromUserPublication', event)
+        },
+
         returnServiceName(id) {
             let value = this.servicesData.filter(service => {
                 if (service.id === id) return service
