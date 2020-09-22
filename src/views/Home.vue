@@ -235,6 +235,10 @@ export default {
         },
     },
     methods: {
+        returnPopularServices() {
+            let s = {}
+            this.servicesData.forEach(element => {})
+        },
         search() {
             if (this.selectedCategory === '') {
                 this.displayLoading = false
