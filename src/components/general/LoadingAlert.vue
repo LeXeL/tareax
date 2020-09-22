@@ -1,10 +1,10 @@
 <template>
     <q-dialog v-model="display" persistent>
-        <q-card style="width: auto; ">
+        <q-card style="width: auto; background-color: #e6e6e6">
             <q-card-section class="q-pb-none">
-                <div
-                    class="text-h6 text-center"
-                >{{ loading[Math.floor(Math.random() * loading.length)] }}...</div>
+                <div class="text-h6 text-center">
+                    {{ loading[Math.floor(Math.random() * loading.length)] }}...
+                </div>
             </q-card-section>
             <div class="row justify-center">
                 <q-card-section class="q-pt-none">
@@ -24,13 +24,7 @@ export default {
     props: ['display'],
     data() {
         return {
-            loading: [
-                'Malteando granos de cereal',
-                'Macerando la malta',
-                'Fermentando la cerveza',
-                'Envasando la pinta',
-                'Cargando nueva ronda',
-            ],
+            loading: ['Cargando'],
         }
     },
 }
