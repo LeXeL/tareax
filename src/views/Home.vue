@@ -105,8 +105,7 @@
                         :key="i"
                     >
                         <div
-                            class="q-py-lg bg-grey-2 rounded-borders"
-                            style="cursor:pointer;"
+                            class="q-py-lg rounded-borders popular-services"
                             @click="$router.push(`/search/${cat.name}`)"
                         >
                             <div class="text-subtitle2">{{returnServiceName(cat.name)}}</div>
@@ -421,5 +420,20 @@ export default {
     padding: 12px;
     color: white;
     background-color: rgba(0, 0, 0, 0.3);
+}
+.popular-services {
+    background-color: rgb(245, 245, 245);
+    cursor: pointer;
+    transition: background-color 0.5s;
+}
+
+.popular-services:hover {
+    background-color: #28acb8;
+    color: white !important;
+    transition: background-color 0.5s;
+}
+
+.popular-services:hover .text-h6 {
+    color: white !important;
 }
 </style>
