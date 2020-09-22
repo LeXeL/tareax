@@ -13,7 +13,7 @@
                         {{`${pub.by.name} ${pub.by.lastName}`}}
                         <i
                             class="fas fa-star text-primary"
-                            v-if="pub.by.isVerified"
+                            v-if="usersData.filter(user=>{if(user.name === pub.by.name)return pub})[0].isVerified"
                         ></i>
                     </div>
                 </q-item-label>
@@ -45,6 +45,10 @@ export default {
             default: () => [],
         },
         servicesData: {
+            type: Array,
+            default: () => [],
+        },
+        usersData: {
             type: Array,
             default: () => [],
         },

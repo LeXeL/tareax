@@ -110,6 +110,20 @@ exports.ChangeUserVerified = functions.https.onRequest(async (req, res) => {
         }
     })
 })
+exports.ReturnAllUsers = functions.https.onRequest(async (req, res) => {
+    cors(req, res, async () => {
+        try {
+            let response = await users.returnAllUsers()
+            functions.logger.info('ReturnAllUsers')
+            res.status(200).send({data: response})
+        } catch (err) {
+            functions.logger.error('ReturnAllUsers', {
+                error: err,
+            })
+            res.status(400).send({err: err})
+        }
+    })
+})
 
 //CATEGORIES
 exports.CreateCategoryInDatabase = functions.https.onRequest(

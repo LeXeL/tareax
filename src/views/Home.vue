@@ -128,6 +128,7 @@
                         <PublicationsList
                             :data="recentPublicationsData"
                             :servicesData="servicesData"
+                            :usersData="usersData"
                         />
                     </div>
                     <div class="col-lg-4 q-px-md">
@@ -214,6 +215,7 @@ export default {
             categoriesData: [],
             subcategoriesData: [],
             servicesData: [],
+            usersData: [],
             recentPublicationsData: [],
             categoriesOptions: [],
             subCategoriesOptions: [],
@@ -281,6 +283,9 @@ export default {
                 })
                 api.ReturnAllRecentPublications().then(response => {
                     this.recentPublicationsData = response.data.data
+                })
+                api.ReturnAllUsers().then(response => {
+                    this.usersData = response.data.data
                 })
             })
             .then(() => {
