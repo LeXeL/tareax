@@ -40,7 +40,7 @@ const routes = [
         component: SearchResults,
     },
     {
-        path: '/user-publications',
+        path: '/user-publications/:id/:pub',
         name: 'UserPublications',
         component: UserPublications,
     },

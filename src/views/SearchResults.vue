@@ -1,5 +1,13 @@
 <template>
     <q-page>
+        <loading-alert :display="displayLoading"></loading-alert>
+        <tareax-alert
+            :display="displayAlert"
+            :title="alertTitle"
+            :message="alertMessage"
+            :type="alertType"
+            @accept="displayAlert=false"
+        ></tareax-alert>
         <div
             v-if="Object.keys(servicesData).length !== 0 && Object.keys(publicationData).length !== 0"
         >
@@ -68,6 +76,11 @@ import * as api from '@/api/api'
 export default {
     data() {
         return {
+            displayLoading: false,
+            displayAlert: false,
+            alertTitle: '',
+            alertMessage: '',
+            alertType: '',
             provinceSelect: null,
             provinceOptions: [
                 'Google',
