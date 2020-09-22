@@ -20,28 +20,19 @@
             @mouseenter="autoplay = false"
             @mouseleave="autoplay = true"
         >
-            <q-carousel-slide
-                name="first"
-                :img-src="require('@/assets/hero-bg-1.jpg')"
-            >
+            <q-carousel-slide name="first" :img-src="require('@/assets/hero-bg-1.jpg')">
                 <div class="absolute-bottom custom-caption">
                     <div class="text-h2">First stop</div>
                     <div class="text-subtitle1">Mountains</div>
                 </div>
             </q-carousel-slide>
-            <q-carousel-slide
-                name="second"
-                :img-src="require('@/assets/hero-bg-2.jpg')"
-            >
+            <q-carousel-slide name="second" :img-src="require('@/assets/hero-bg-2.jpg')">
                 <div class="absolute-bottom custom-caption">
                     <div class="text-h2">Second stop</div>
                     <div class="text-subtitle1">Famous City</div>
                 </div>
             </q-carousel-slide>
-            <q-carousel-slide
-                name="third"
-                :img-src="require('@/assets/hero-bg-3.jpg')"
-            >
+            <q-carousel-slide name="third" :img-src="require('@/assets/hero-bg-3.jpg')">
                 <div class="absolute-bottom custom-caption">
                     <div class="text-h2">Third stop</div>
                     <div class="text-subtitle1">Famous Bridge</div>
@@ -108,11 +99,7 @@
                     <div class="text-h5">Servicios populares</div>
                 </div>
                 <div class="row text-center q-mb-md">
-                    <div
-                        class="col-lg-3 q-px-md q-mb-md"
-                        v-for="(cat, i) in 8"
-                        :key="i"
-                    >
+                    <div class="col-lg-3 q-px-md q-mb-md" v-for="(cat, i) in 8" :key="i">
                         <div class="q-py-lg bg-grey-2 rounded-borders">
                             <div class="text-subtitle2">Category name</div>
                             <div class="text-h6 text-primary">{{ i + 1 }}</div>
@@ -138,7 +125,10 @@
                         <div class="row q-mb-md">
                             <div class="text-h5">Publicaciones recientes</div>
                         </div>
-                        <PublicationsList />
+                        <PublicationsList
+                            :data="recentPublicationsData"
+                            :servicesData="servicesData"
+                        />
                     </div>
                     <div class="col-lg-4 q-px-md">
                         <div class="row q-mb-md">
@@ -179,9 +169,7 @@
                             </q-carousel-slide>
                             <q-carousel-slide name="second">
                                 <div class="text-h5">
-                                    <strong
-                                        >Revision de ortografia y estilo</strong
-                                    >
+                                    <strong>Revision de ortografia y estilo</strong>
                                 </div>
                                 <div class="text-h6">Tesis</div>
                                 <div class="text-h6 q-mb-md">Academicos</div>
@@ -226,6 +214,7 @@ export default {
             categoriesData: [],
             subcategoriesData: [],
             servicesData: [],
+            recentPublicationsData: [],
             categoriesOptions: [],
             subCategoriesOptions: [],
             serviceOptions: [],
@@ -289,6 +278,9 @@ export default {
                 })
                 api.ReturnAllServices().then(response => {
                     this.servicesData = response.data.data
+                })
+                api.ReturnAllRecentPublications().then(response => {
+                    this.recentPublicationsData = response.data.data
                 })
             })
             .then(() => {
