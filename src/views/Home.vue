@@ -43,18 +43,18 @@
 
         <!-- START SEARCH -->
         <div class="bg-grey-2 q-py-xl">
-            <div class="row">
+            <div class="row q-mb-md">
                 <div class="col desktop-only"></div>
                 <div class="col-lg-9 col-xs-12">
                     <div class="text-h5 q-px-md">Busque un servicio:</div>
                 </div>
                 <div class="col desktop-only"></div>
             </div>
-            <div class="row q-py-md">
+            <div class="row">
                 <div class="col desktop-only"></div>
                 <div class="col-lg-3 col-xs-12">
                     <q-select
-                        class="q-px-md"
+                        class="q-px-md q-mb-md"
                         filled
                         v-model="selectedCategory"
                         :options="categoriesOptions"
@@ -63,7 +63,7 @@
                 </div>
                 <div class="col-lg-3 col-xs-12">
                     <q-select
-                        class="q-px-md"
+                        class="q-px-md q-mb-md"
                         filled
                         v-model="selectedSubcategory"
                         :options="subCategoriesOptions"
@@ -72,7 +72,7 @@
                 </div>
                 <div class="col-lg-3 col-xs-12">
                     <q-select
-                        class="q-px-md"
+                        class="q-px-md q-mb-md"
                         filled
                         v-model="selectedService"
                         :options="serviceOptions"
@@ -94,13 +94,13 @@
         <!-- START POPULAR SERVICES -->
         <div class="row q-py-xl">
             <div class="col desktop-only"></div>
-            <div class="col-lg-9">
+            <div class="col-lg-9 col-xs-12">
                 <div class="row q-px-md q-mb-md">
                     <div class="text-h5">Servicios populares</div>
                 </div>
                 <div class="row text-center q-mb-md">
                     <div
-                        class="col-lg-3 q-px-md q-mb-md"
+                        class="col-lg-3 col-xs-6 q-px-md q-mb-md"
                         v-for="(cat, i) in returnPopularServices()"
                         :key="i"
                     >
@@ -127,9 +127,9 @@
         <!-- RECENT PUBLICATIONS -->
         <div class="row q-py-xl">
             <div class="col desktop-only"></div>
-            <div class="col-lg-9">
+            <div class="col-lg-9 col-xs-12">
                 <div class="row q-mb-md">
-                    <div class="col-lg-8 q-px-md">
+                    <div class="col-lg-8 col-xs-12 q-px-md q-mb-md">
                         <div class="row q-mb-md">
                             <div class="text-h5">Publicaciones recientes</div>
                         </div>
@@ -139,7 +139,7 @@
                             :usersData="usersData"
                         />
                     </div>
-                    <div class="col-lg-4 q-px-md">
+                    <div class="col-lg-4 col-xs-12 q-px-md">
                         <div class="row q-mb-md">
                             <div class="text-h5">Destacados</div>
                         </div>
