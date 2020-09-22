@@ -1,5 +1,6 @@
 const admin = require('firebase-admin')
 const db = admin.firestore()
+const moment = require('moment')
 
 async function createPublicationInDatabase(publication) {
     return db
@@ -53,6 +54,7 @@ async function returnAllPublicationsByUserId(id) {
         })
     return publications
 }
+
 async function returnAllPublicationsByService(id) {
     let publications = []
     await db
@@ -73,9 +75,39 @@ async function returnAllPublicationsByService(id) {
         })
     return publications
 }
+async function returnAllRecentPublications() {
+    console.log('entra aqui')
+    let publications = []
+    await db
+        .collection('publications')
+        .get()
+        .then(snapshot => {
+            if (snapshot.empty) {
+                console.log('No matching documents.')
+                return
+            }
+            snapshot.forEach(doc => {
+                publications.push({...doc.data(), id: doc.id})
+            })
+        })
+        .catch(function(error) {
+            console.log('Error getting documents: ', error)
+        })
+    console.log(publications)
+    publications.sort((a, b) => {
+        return moment(b.creationTime).diff(a.creationTime)
+    })
+    publications = publications.filter((pub, i) => {
+        if (i < 10) {
+            return pub
+        }
+    })
+    return publications
+}
 module.exports = {
     createPublicationInDatabase,
     deletePublicationInDatabase,
     returnAllPublicationsByUserId,
     returnAllPublicationsByService,
+    returnAllRecentPublications,
 }

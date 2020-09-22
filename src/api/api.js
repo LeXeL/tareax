@@ -27,6 +27,10 @@ export const ChangeUserVerified = data =>
     Request.post('/ChangeUserVerified', data, {
         'Content-Type': 'application/json',
     })
+export const ReturnAllUsers = data =>
+    Request.post('/ReturnAllUsers', data, {
+        'Content-Type': 'application/json',
+    })
 
 //CATEGORIES
 export const CreateCategoryInDatabase = data =>
@@ -85,5 +89,9 @@ export const ReturnAllPublicationsByUserId = data =>
     })
 export const ReturnAllPublicationsByService = data =>
     Request.post('/ReturnAllPublicationsByService', data, {
+        'Content-Type': 'application/json',
+    })
+export const ReturnAllRecentPublications = data =>
+    Request.post('/ReturnAllRecentPublications', data, {
         'Content-Type': 'application/json',
     })

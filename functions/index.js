@@ -110,6 +110,20 @@ exports.ChangeUserVerified = functions.https.onRequest(async (req, res) => {
         }
     })
 })
+exports.ReturnAllUsers = functions.https.onRequest(async (req, res) => {
+    cors(req, res, async () => {
+        try {
+            let response = await users.returnAllUsers()
+            functions.logger.info('ReturnAllUsers')
+            res.status(200).send({data: response})
+        } catch (err) {
+            functions.logger.error('ReturnAllUsers', {
+                error: err,
+            })
+            res.status(400).send({err: err})
+        }
+    })
+})
 
 //CATEGORIES
 exports.CreateCategoryInDatabase = functions.https.onRequest(
@@ -339,6 +353,22 @@ exports.ReturnAllPublicationsByService = functions.https.onRequest(
                 res.status(200).send({data: response})
             } catch (err) {
                 functions.logger.error('ReturnAllPublicationsByService', {
+                    error: err,
+                })
+                res.status(400).send({err: err})
+            }
+        })
+    }
+)
+exports.ReturnAllRecentPublications = functions.https.onRequest(
+    async (req, res) => {
+        cors(req, res, async () => {
+            try {
+                let response = await publications.returnAllRecentPublications()
+                functions.logger.info('ReturnAllRecentPublications')
+                res.status(200).send({data: response})
+            } catch (err) {
+                functions.logger.error('ReturnAllRecentPublications', {
                     error: err,
                 })
                 res.status(400).send({err: err})

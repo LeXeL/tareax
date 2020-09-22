@@ -1,13 +1,19 @@
 <template>
     <q-list bordered separator>
-        <q-item clickable v-ripple v-for="(pub, i) of data" :key="i" to="/user-publications">
+        <q-item
+            clickable
+            v-ripple
+            v-for="(pub, i) of data"
+            :key="i"
+            :to="`/user-publications/${uid}`"
+        >
             <q-item-section>
                 <q-item-label>
                     <div class="text-subtitle2 text-black">
                         {{`${pub.by.name} ${pub.by.lastName}`}}
                         <i
                             class="fas fa-star text-primary"
-                            v-if="pub.by.isVerified"
+                            v-if="usersData.filter(user=>{if(user.name === pub.by.name)return pub})[0].isVerified"
                         ></i>
                     </div>
                 </q-item-label>
@@ -41,6 +47,15 @@ export default {
         servicesData: {
             type: Array,
             default: () => [],
+        },
+        usersData: {
+            type: Array,
+            default: () => [],
+        },
+    },
+    computed: {
+        uid() {
+            return this.$store.getters.uid
         },
     },
     methods: {

@@ -81,6 +81,25 @@ async function changeVerified(uid, user) {
             return error
         })
 }
+async function returnAllUsers() {
+    let users = []
+    await db
+        .collection('users')
+        .get()
+        .then(snapshot => {
+            if (snapshot.empty) {
+                console.log('No matching documents.')
+                return
+            }
+            snapshot.forEach(doc => {
+                users.push({...doc.data(), id: doc.id})
+            })
+        })
+        .catch(function(error) {
+            console.log('Error getting documents: ', error)
+        })
+    return users
+}
 
 module.exports = {
     createDatabaseWithUserInfo,
@@ -88,4 +107,5 @@ module.exports = {
     returnUserById,
     updateUserInfo,
     changeVerified,
+    returnAllUsers,
 }
