@@ -99,10 +99,14 @@
                     <div class="text-h5">Servicios populares</div>
                 </div>
                 <div class="row text-center q-mb-md">
-                    <div class="col-lg-3 q-px-md q-mb-md" v-for="(cat, i) in 8" :key="i">
+                    <div
+                        class="col-lg-3 q-px-md q-mb-md"
+                        v-for="(cat, i) in returnPopularServices()"
+                        :key="i"
+                    >
                         <div class="q-py-lg bg-grey-2 rounded-borders">
-                            <div class="text-subtitle2">Category name</div>
-                            <div class="text-h6 text-primary">{{ i + 1 }}</div>
+                            <div class="text-subtitle2">{{returnServiceName(cat.name)}}</div>
+                            <div class="text-h6 text-primary">{{ cat.count }}</div>
                         </div>
                     </div>
                 </div>
@@ -126,7 +130,7 @@
                             <div class="text-h5">Publicaciones recientes</div>
                         </div>
                         <PublicationsList
-                            :data="recentPublicationsData"
+                            :data="filteredPublicationData"
                             :servicesData="servicesData"
                             :usersData="usersData"
                         />
@@ -201,6 +205,7 @@
 import PublicationsList from '@/components/PublicationsList'
 
 import * as api from '@/api/api'
+import moment from 'moment'
 
 export default {
     data() {
@@ -216,7 +221,8 @@ export default {
             subcategoriesData: [],
             servicesData: [],
             usersData: [],
-            recentPublicationsData: [],
+            publicationsData: [],
+            filteredPublicationData: [],
             categoriesOptions: [],
             subCategoriesOptions: [],
             serviceOptions: [],
@@ -235,6 +241,46 @@ export default {
         },
     },
     methods: {
+        createFilteredPublications() {
+            this.filteredPublicationData = this.publicationsData
+                .sort((a, b) => {
+                    return moment(b.creationTime).diff(a.creationTime)
+                })
+                .filter((pub, i) => {
+                    if (i < 10) {
+                        return pub
+                    }
+                })
+        },
+
+        returnServiceName(id) {
+            let value = this.servicesData.filter(service => {
+                if (service.id === id) return service
+            })
+            if (value.length > 0) return value[0].name
+            return 'NaN'
+        },
+        returnPopularServices() {
+            let services = {}
+            let FinalArray = []
+            this.publicationsData.forEach(publication => {
+                if (Object.keys(services).includes(publication.service)) {
+                    services[`${publication.service}`] += 1
+                } else {
+                    services[`${publication.service}`] = 1
+                }
+            })
+            for (const key in services) {
+                FinalArray.push({name: key, count: services[key]})
+            }
+            return FinalArray.sort((a, b) => {
+                return b.count - a.count
+            }).filter((a, i) => {
+                if (i < 8) {
+                    return a
+                }
+            })
+        },
         search() {
             if (this.selectedCategory === '') {
                 this.displayLoading = false
@@ -281,8 +327,9 @@ export default {
                 api.ReturnAllServices().then(response => {
                     this.servicesData = response.data.data
                 })
-                api.ReturnAllRecentPublications().then(response => {
-                    this.recentPublicationsData = response.data.data
+                api.ReturnAllPublications().then(response => {
+                    this.publicationsData = response.data.data
+                    this.createFilteredPublications()
                 })
                 api.ReturnAllUsers().then(response => {
                     this.usersData = response.data.data

@@ -95,3 +95,7 @@ export const ReturnAllRecentPublications = data =>
     Request.post('/ReturnAllRecentPublications', data, {
         'Content-Type': 'application/json',
     })
+export const ReturnAllPublications = data =>
+    Request.post('/ReturnAllPublications', data, {
+        'Content-Type': 'application/json',
+    })
