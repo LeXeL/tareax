@@ -11,51 +11,51 @@
         <TitleBanner :subtitle="'Mi perfil'" />
         <div class="row q-my-xl" v-if="user">
             <div class="col desktop-only"></div>
-            <div class="col-lg-9">
+            <div class="col-lg-9 col-md-12 col-sm-12 col-xs-12">
                 <div class="row">
-                    <div class="col-lg-7 q-px-md">
+                    <div class="col-lg-7 col-md-8 col-sm-7 col-xs-12 q-px-md">
                         <q-card class="full-width q-mb-lg">
                             <q-card-section>
                                 <div class="text-h5 q-mb-md">Mis datos</div>
                                 <div class="row">
-                                    <div class="col-lg-6">
+                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                         <q-input
                                             filled
                                             label="Nombre"
                                             v-model="user.name"
-                                            class="q-mb-md q-pr-md"
+                                            class="q-mb-md q-px-md"
                                             type="text"
                                             :disable="!editGeneralInfo"
                                         />
                                     </div>
-                                    <div class="col-lg-6">
+                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                         <q-input
                                             filled
                                             label="Apellido"
                                             v-model="user.lastName"
-                                            class="q-mb-md q-pl-md"
+                                            class="q-mb-md q-px-md"
                                             type="text"
                                             :disable="!editGeneralInfo"
                                         />
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <div class="col-lg-6">
+                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                         <q-input
                                             filled
                                             label="Correo"
                                             v-model="user.email"
-                                            class="q-mb-md q-pr-md"
+                                            class="q-mb-md q-px-md"
                                             type="text"
                                             :disable="true"
                                         />
                                     </div>
-                                    <div class="col-lg-6">
+                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                         <q-input
                                             filled
                                             label="Telefono"
                                             v-model="user.contactPhone"
-                                            class="q-mb-md q-pl-md"
+                                            class="q-mb-md q-px-md"
                                             type="text"
                                             :disable="!editGeneralInfo"
                                         />
@@ -68,7 +68,7 @@
                             </q-card-section>
                         </q-card>
                     </div>
-                    <div class="col-lg-5 q-px-md">
+                    <div class="col-lg-5 col-md-4 col-sm-5 col-xs-12 q-px-md">
                         <q-card class="full-width">
                             <q-card-section>
                                 <div class="text-h5 q-mb-md">Seguridad</div>
