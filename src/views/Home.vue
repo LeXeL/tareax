@@ -104,17 +104,21 @@
                         v-for="(cat, i) in returnPopularServices()"
                         :key="i"
                     >
-                        <div class="q-py-lg bg-grey-2 rounded-borders">
+                        <div
+                            class="q-py-lg bg-grey-2 rounded-borders"
+                            style="cursor:pointer;"
+                            @click="$router.push(`/search/${cat.name}`)"
+                        >
                             <div class="text-subtitle2">{{returnServiceName(cat.name)}}</div>
                             <div class="text-h6 text-primary">{{ cat.count }}</div>
                         </div>
                     </div>
                 </div>
-                <div class="row text-center">
+                <!-- <div class="row text-center">
                     <div class="col q-px-md">
                         <q-btn color="primary" label="Ver todas" />
                     </div>
-                </div>
+                </div>-->
             </div>
             <div class="col desktop-only"></div>
         </div>
