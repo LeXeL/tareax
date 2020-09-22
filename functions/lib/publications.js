@@ -54,7 +54,6 @@ async function returnAllPublicationsByUserId(id) {
         })
     return publications
 }
-
 async function returnAllPublicationsByService(id) {
     let publications = []
     await db
@@ -76,7 +75,6 @@ async function returnAllPublicationsByService(id) {
     return publications
 }
 async function returnAllRecentPublications() {
-    console.log('entra aqui')
     let publications = []
     await db
         .collection('publications')
@@ -93,7 +91,6 @@ async function returnAllRecentPublications() {
         .catch(function(error) {
             console.log('Error getting documents: ', error)
         })
-    console.log(publications)
     publications.sort((a, b) => {
         return moment(b.creationTime).diff(a.creationTime)
     })
@@ -104,10 +101,31 @@ async function returnAllRecentPublications() {
     })
     return publications
 }
+async function returnAllPublications() {
+    let publications = []
+    await db
+        .collection('publications')
+        .get()
+        .then(snapshot => {
+            if (snapshot.empty) {
+                console.log('No matching documents.')
+                return
+            }
+            snapshot.forEach(doc => {
+                publications.push({...doc.data(), id: doc.id})
+            })
+        })
+        .catch(function(error) {
+            console.log('Error getting documents: ', error)
+        })
+
+    return publications
+}
 module.exports = {
     createPublicationInDatabase,
     deletePublicationInDatabase,
     returnAllPublicationsByUserId,
     returnAllPublicationsByService,
     returnAllRecentPublications,
+    returnAllPublications,
 }

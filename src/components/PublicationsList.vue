@@ -13,7 +13,7 @@
                         {{`${pub.by.name} ${pub.by.lastName}`}}
                         <i
                             class="fas fa-star text-primary"
-                            v-if="usersData.filter(user=>{if(user.name === pub.by.name)return pub})[0].isVerified"
+                            v-if="usersData.length > 0 && usersData.filter(user=>{if(user.name === pub.by.name)return pub})[0].isVerified"
                         ></i>
                     </div>
                 </q-item-label>

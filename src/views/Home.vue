@@ -105,7 +105,7 @@
                         :key="i"
                     >
                         <div class="q-py-lg bg-grey-2 rounded-borders">
-                            <div class="text-subtitle2">{{cat.name}}</div>
+                            <div class="text-subtitle2">{{returnServiceName(cat.name)}}</div>
                             <div class="text-h6 text-primary">{{ cat.count }}</div>
                         </div>
                     </div>
@@ -130,7 +130,7 @@
                             <div class="text-h5">Publicaciones recientes</div>
                         </div>
                         <PublicationsList
-                            :data="recentPublicationsData"
+                            :data="filteredPublicationData"
                             :servicesData="servicesData"
                             :usersData="usersData"
                         />
@@ -205,6 +205,7 @@
 import PublicationsList from '@/components/PublicationsList'
 
 import * as api from '@/api/api'
+import moment from 'moment'
 
 export default {
     data() {
@@ -220,7 +221,8 @@ export default {
             subcategoriesData: [],
             servicesData: [],
             usersData: [],
-            recentPublicationsData: [],
+            publicationsData: [],
+            filteredPublicationData: [],
             categoriesOptions: [],
             subCategoriesOptions: [],
             serviceOptions: [],
@@ -239,23 +241,40 @@ export default {
         },
     },
     methods: {
+        createFilteredPublications() {
+            this.filteredPublicationData = this.publicationsData
+                .sort((a, b) => {
+                    return moment(b.creationTime).diff(a.creationTime)
+                })
+                .filter((pub, i) => {
+                    if (i < 10) {
+                        return pub
+                    }
+                })
+        },
+
+        returnServiceName(id) {
+            let value = this.servicesData.filter(service => {
+                if (service.id === id) return service
+            })
+            if (value.length > 0) return value[0].name
+            return 'NaN'
+        },
         returnPopularServices() {
             let services = {}
             let FinalArray = []
-            this.publication.forEach(service => {
-                if (Object.keys(services).includes(service.name)) {
-                    services[`${service.name}`] += 1
+            this.publicationsData.forEach(publication => {
+                if (Object.keys(services).includes(publication.service)) {
+                    services[`${publication.service}`] += 1
                 } else {
-                    services[`${service.name}`] = 1
+                    services[`${publication.service}`] = 1
                 }
             })
-            console.log(services)
             for (const key in services) {
                 FinalArray.push({name: key, count: services[key]})
             }
-
             return FinalArray.sort((a, b) => {
-                return b - a
+                return b.count - a.count
             }).filter((a, i) => {
                 if (i < 8) {
                     return a
@@ -308,8 +327,9 @@ export default {
                 api.ReturnAllServices().then(response => {
                     this.servicesData = response.data.data
                 })
-                api.ReturnAllRecentPublications().then(response => {
-                    this.recentPublicationsData = response.data.data
+                api.ReturnAllPublications().then(response => {
+                    this.publicationsData = response.data.data
+                    this.createFilteredPublications()
                 })
                 api.ReturnAllUsers().then(response => {
                     this.usersData = response.data.data

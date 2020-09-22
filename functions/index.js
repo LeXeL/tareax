@@ -376,3 +376,17 @@ exports.ReturnAllRecentPublications = functions.https.onRequest(
         })
     }
 )
+exports.ReturnAllPublications = functions.https.onRequest(async (req, res) => {
+    cors(req, res, async () => {
+        try {
+            let response = await publications.returnAllPublications()
+            functions.logger.info('ReturnAllPublications')
+            res.status(200).send({data: response})
+        } catch (err) {
+            functions.logger.error('ReturnAllPublications', {
+                error: err,
+            })
+            res.status(400).send({err: err})
+        }
+    })
+})
