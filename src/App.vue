@@ -6,16 +6,8 @@
                 <q-toolbar-title>
                     <img
                         src="@/assets/TareaxFin2.png"
-                        width="8%"
                         style="padding-top: 5px; cursor: pointer;"
-                        class="desktop-only"
-                        @click="$router.push('/')"
-                    />
-                    <img
-                        src="@/assets/TareaxFin2.png"
-                        width="40%"
-                        style="padding-top: 5px; cursor: pointer;"
-                        class="mobile-only"
+                        class="tareax-logo"
                         @click="$router.push('/')"
                     />
                 </q-toolbar-title>
@@ -111,4 +103,20 @@ export default {
 }
 </script>
 
-<style></style>
+<style>
+@media only screen and (max-width: 480px) {
+    .tareax-logo {
+        width: 40%;
+    }
+}
+@media only screen and (max-width: 1024px) {
+    .tareax-logo {
+        width: 30%;
+    }
+}
+@media only screen and (min-width: 1024px) {
+    .tareax-logo {
+        width: 9%;
+    }
+}
+</style>
