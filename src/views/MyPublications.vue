@@ -18,7 +18,7 @@
         <TitleBanner :subtitle="'Mis publicaciones'" />
         <div class="row q-my-xl">
             <div class="col desktop-only"></div>
-            <div class="col-lg-9 q-px-md">
+            <div class="col-lg-9 col-md-12 col-sm-12 col-xs-12 q-px-md">
                 <q-table :data="data" :columns="columns" row-key="name">
                     <template v-slot:header="props">
                         <q-tr :props="props">

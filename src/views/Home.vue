@@ -129,17 +129,7 @@
             <div class="col desktop-only"></div>
             <div class="col-lg-9 col-xs-12">
                 <div class="row q-mb-md">
-                    <div class="col-lg-8 col-md-7 col-sm-6 col-xs-12 q-px-md q-mb-md">
-                        <div class="row q-mb-md">
-                            <div class="text-h5">Publicaciones recientes</div>
-                        </div>
-                        <PublicationsList
-                            :data="filteredPublicationData"
-                            :servicesData="servicesData"
-                            :usersData="usersData"
-                        />
-                    </div>
-                    <div class="col-lg-4 col-md-5 col-sm-6 col-xs-12 q-px-md">
+                    <div class="col-lg-4 col-md-5 col-sm-6 col-xs-12 q-px-md q-mb-lg">
                         <div class="row q-mb-md">
                             <div class="text-h5">Destacados</div>
                         </div>
@@ -196,6 +186,16 @@
                                 </q-btn>
                             </q-carousel-slide>
                         </q-carousel>
+                    </div>
+                    <div class="col-lg-8 col-md-7 col-sm-6 col-xs-12 q-px-md q-mb-md">
+                        <div class="row q-mb-md">
+                            <div class="text-h5">Publicaciones recientes</div>
+                        </div>
+                        <PublicationsList
+                            :data="filteredPublicationData"
+                            :servicesData="servicesData"
+                            :usersData="usersData"
+                        />
                     </div>
                 </div>
             </div>
