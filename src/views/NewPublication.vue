@@ -56,6 +56,13 @@
                             </q-card-section>
                             <q-separator />
                             <q-card-section>
+                                <q-checkbox
+                                    v-model="allCountry"
+                                    color="primary"
+                                    class="q-mb-md"
+                                    :val="true"
+                                    label="Todo Panama"
+                                />
                                 <q-list bordered class="rounded-borders">
                                     <div v-for="(area, i) in areas" :key="i">
                                         <q-expansion-item
@@ -70,10 +77,8 @@
                                                         v-for="district in area.districts"
                                                         :val="district"
                                                         :key="district"
-                                                        >{{
-                                                            district
-                                                        }}</q-checkbox
-                                                    >
+                                                        :label="district"
+                                                    />
                                                 </q-card-section>
                                             </q-card>
                                         </q-expansion-item>
@@ -253,6 +258,7 @@ export default {
                 },
             ],
             selectedAreas: [],
+            allCountry: false,
         }
     },
     computed: {
