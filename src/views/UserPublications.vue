@@ -11,23 +11,15 @@
         <div
             v-if="Object.keys(servicesData).length !== 0 && Object.keys(publicationsData).length !== 0 && Object.keys(userData).length !== 0"
         >
-            <TitleBanner :subtitle="returnServiceName(workingPublication.service)" />
+            <TitleBanner
+                :title="returnServiceName(workingPublication.service)"
+                :subtitle="`${userData.name} ${userData.lastName}`"
+            />
             <div class="row q-py-xl">
                 <div class="col desktop-only"></div>
-                <div class="col-lg-9">
+                <div class="col-lg-9 col-md-12 col-sm-12 col-xs-12">
                     <div class="row">
-                        <div class="col-lg-8 q-px-md">
-                            <div class="text-h4 q-mb-sm">{{`${userData.name} ${userData.lastName}`}}</div>
-                            <q-separator class="q-my-xs" />
-                            <div class="text-h6 q-mb-lg">Otros servicios</div>
-                            <PublicationsList
-                                :data="publicationsData"
-                                :servicesData="servicesData"
-                                :usersData="[userData]"
-                                @clickFromUserPublication="changeWorkingPublication"
-                            />
-                        </div>
-                        <div class="col-lg-4 q-px-md">
+                        <div class="col-lg-4 col-md-4 col-sm-5 col-xs-12 q-px-md q-mb-lg">
                             <div class="bg-primary text-white q-pa-lg rounded-borders">
                                 <div class="text-h5">
                                     <strong>{{returnServiceName(workingPublication.service)}}</strong>
@@ -57,6 +49,17 @@
                                     <span class="text-primary">Contactar</span>
                                 </q-btn>
                             </div>
+                        </div>
+                        <div class="col-lg-8 col-md-8 col-sm-7 col-xs-12 q-px-md q-mb-md">
+                            <div class="text-h4 q-mb-sm">{{`${userData.name} ${userData.lastName}`}}</div>
+                            <q-separator class="q-my-xs" />
+                            <div class="text-h6 q-mb-lg">Otros servicios</div>
+                            <PublicationsList
+                                :data="publicationsData"
+                                :servicesData="servicesData"
+                                :usersData="[userData]"
+                                @clickFromUserPublication="changeWorkingPublication"
+                            />
                         </div>
                     </div>
                 </div>

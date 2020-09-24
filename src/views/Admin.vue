@@ -18,7 +18,7 @@
         <TitleBanner :subtitle="'Administrador'" />
         <div class="row q-py-xl">
             <div class="col desktop-only"></div>
-            <div class="col-lg-9 q-px-md">
+            <div class="col-lg-9 col-md-12 col-sm-12 col-xs-12 q-px-md">
                 <q-card>
                     <q-tabs
                         v-model="tab"

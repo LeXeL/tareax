@@ -11,15 +11,12 @@
         <TitleBanner :subtitle="'Registrate aqui'" />
         <div class="row q-my-xl">
             <div class="col desktop-only"></div>
-            <div class="col-lg-9">
+            <div class="col-lg-9 col-md-12 col-sm-12 col-xs-12">
                 <div class="row">
-                    <div class="col-lg-8 q-px-md">
+                    <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12 q-px-md">
                         <q-card class="full-width">
                             <q-card-section>
-
-                                <div class="text-h5">
-                                    Formulario de registro
-                                </div>
+                                <div class="text-h5">Formulario de registro</div>
                             </q-card-section>
                             <q-separator />
                             <q-card-section>
@@ -100,29 +97,24 @@
                                             'Las contraseñas no coinciden',
                                     ]"
                                 />
-                                <q-checkbox v-model="terms"
-                                    >Acepto los terminos y
-                                    condiciones.</q-checkbox
-                                >
+                                <q-checkbox v-model="terms">
+                                    Acepto los terminos y
+                                    condiciones.
+                                </q-checkbox>
                                 <a
                                     class="on-right"
                                     href="/terms-and-conditions"
                                     target="_blank"
-                                    >Leer aqui.</a
-                                >
+                                >Leer aqui.</a>
                             </q-card-section>
                             <q-separator />
                             <q-card-actions>
                                 <q-space />
-                                <q-btn
-                                    color="primary"
-                                    label="Registrar"
-                                    @click="createuser"
-                                />
+                                <q-btn color="primary" label="Registrar" @click="createuser" />
                             </q-card-actions>
                         </q-card>
                     </div>
-                    <div class="col-lg-4 q-px-md">
+                    <!-- <div class="col-lg-4 q-px-md">
                         <q-card class="full-width">
                             <q-card-section>
                                 <div class="text-body2">
@@ -139,20 +131,14 @@
                                 </div>
                             </q-card-section>
                         </q-card>
-                    </div>
+                    </div>-->
                 </div>
             </div>
             <div class="col desktop-only"></div>
             <q-dialog v-model="confirmationDialog">
-                <q-card
-                    dark
-                    class="text-white"
-                    style="width: 700px; max-width: 80vw;"
-                >
+                <q-card dark class="text-white" style="width: 700px; max-width: 80vw;">
                     <q-card-section>
-                        <div class="text-h6">
-                            ¡Hemos recibido tu información!
-                        </div>
+                        <div class="text-h6">¡Hemos recibido tu información!</div>
                     </q-card-section>
 
                     <q-card-section class="q-pt-none">
@@ -165,12 +151,7 @@
 
                     <q-card-actions align="right">
                         <router-link to="/">
-                            <q-btn
-                                flat
-                                label="Aceptar"
-                                color="primary"
-                                v-close-popup
-                            />
+                            <q-btn flat label="Aceptar" color="primary" v-close-popup />
                         </router-link>
                     </q-card-actions>
                 </q-card>

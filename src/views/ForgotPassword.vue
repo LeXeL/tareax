@@ -9,37 +9,35 @@
             :redirect="redirect"
             @accept="displayAlert=false"
         ></tareax-alert>
-        <div class="absolute-bottom"></div>
         <div class="absolute-center">
-            <div class="row">
-                <!-- <q-img :src="require('@/assets/logo-horizontal.png')" class="q-mb-lg" /> -->
-                <q-card square class="q-pa-lg shadow-1">
-                    <q-form @submit="resetPassword">
-                        <q-card-section>
-                            <q-input
-                                square
-                                filled
-                                v-model="email"
-                                type="email"
-                                label="Correo Electronico"
-                                :rules="[
+            <!-- <q-img :src="require('@/assets/logo-horizontal.png')" class="q-mb-lg" /> -->
+            <q-card class="rounded-borders bg-primary" style="width: 100%; width: 400px;">
+                <q-form @submit="resetPassword">
+                    <q-card-section>
+                        <q-input
+                            filled
+                            v-model="email"
+                            type="email"
+                            label="Correo Electronico"
+                            class="bg-white rounded-borders"
+                            color="orange-10"
+                            :rules="[
                                         val => val.length > 0 || 'El campo es obligatorio',
                                     ]"
-                            ></q-input>
-                        </q-card-section>
-                        <q-card-actions class="q-px-md">
-                            <q-btn
-                                unelevated
-                                color="primary"
-                                size="lg"
-                                class="full-width"
-                                label="Enviar Correo"
-                                type="submit"
-                            />
-                        </q-card-actions>
-                    </q-form>
-                </q-card>
-            </div>
+                        ></q-input>
+                    </q-card-section>
+                    <q-card-actions class="q-px-md">
+                        <q-btn
+                            unelevated
+                            color="orange-10"
+                            size="lg"
+                            class="full-width"
+                            label="Enviar Correo"
+                            type="submit"
+                        />
+                    </q-card-actions>
+                </q-form>
+            </q-card>
         </div>
     </q-page>
 </template>

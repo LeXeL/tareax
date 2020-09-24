@@ -43,36 +43,36 @@
 
         <!-- START SEARCH -->
         <div class="bg-grey-2 q-py-xl">
-            <div class="row">
+            <div class="row q-mb-md">
                 <div class="col desktop-only"></div>
                 <div class="col-lg-9 col-xs-12">
                     <div class="text-h5 q-px-md">Busque un servicio:</div>
                 </div>
                 <div class="col desktop-only"></div>
             </div>
-            <div class="row q-py-md">
+            <div class="row">
                 <div class="col desktop-only"></div>
-                <div class="col-lg-3 col-xs-12">
+                <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
                     <q-select
-                        class="q-px-md"
+                        class="q-px-md q-mb-md"
                         filled
                         v-model="selectedCategory"
                         :options="categoriesOptions"
                         label="Categoria"
                     />
                 </div>
-                <div class="col-lg-3 col-xs-12">
+                <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
                     <q-select
-                        class="q-px-md"
+                        class="q-px-md q-mb-md"
                         filled
                         v-model="selectedSubcategory"
                         :options="subCategoriesOptions"
                         label="Sub-Categoria"
                     />
                 </div>
-                <div class="col-lg-3 col-xs-12">
+                <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
                     <q-select
-                        class="q-px-md"
+                        class="q-px-md q-mb-md"
                         filled
                         v-model="selectedService"
                         :options="serviceOptions"
@@ -94,19 +94,18 @@
         <!-- START POPULAR SERVICES -->
         <div class="row q-py-xl">
             <div class="col desktop-only"></div>
-            <div class="col-lg-9">
+            <div class="col-lg-9 col-xs-12">
                 <div class="row q-px-md q-mb-md">
                     <div class="text-h5">Servicios populares</div>
                 </div>
                 <div class="row text-center q-mb-md">
                     <div
-                        class="col-lg-3 q-px-md q-mb-md"
+                        class="col-lg-3 col-md-3 col-sm-3 col-xs-6 q-px-md q-mb-md"
                         v-for="(cat, i) in returnPopularServices()"
                         :key="i"
                     >
                         <div
-                            class="q-py-lg bg-grey-2 rounded-borders"
-                            style="cursor:pointer;"
+                            class="q-py-lg rounded-borders popular-services"
                             @click="$router.push(`/search/${cat.name}`)"
                         >
                             <div class="text-subtitle2">{{returnServiceName(cat.name)}}</div>
@@ -127,19 +126,9 @@
         <!-- RECENT PUBLICATIONS -->
         <div class="row q-py-xl">
             <div class="col desktop-only"></div>
-            <div class="col-lg-9">
+            <div class="col-lg-9 col-xs-12">
                 <div class="row q-mb-md">
-                    <div class="col-lg-8 q-px-md">
-                        <div class="row q-mb-md">
-                            <div class="text-h5">Publicaciones recientes</div>
-                        </div>
-                        <PublicationsList
-                            :data="filteredPublicationData"
-                            :servicesData="servicesData"
-                            :usersData="usersData"
-                        />
-                    </div>
-                    <div class="col-lg-4 q-px-md">
+                    <div class="col-lg-4 col-md-5 col-sm-6 col-xs-12 q-px-md q-mb-lg">
                         <div class="row q-mb-md">
                             <div class="text-h5">Destacados</div>
                         </div>
@@ -196,6 +185,16 @@
                                 </q-btn>
                             </q-carousel-slide>
                         </q-carousel>
+                    </div>
+                    <div class="col-lg-8 col-md-7 col-sm-6 col-xs-12 q-px-md q-mb-md">
+                        <div class="row q-mb-md">
+                            <div class="text-h5">Publicaciones recientes</div>
+                        </div>
+                        <PublicationsList
+                            :data="filteredPublicationData"
+                            :servicesData="servicesData"
+                            :usersData="usersData"
+                        />
                     </div>
                 </div>
             </div>
@@ -421,5 +420,20 @@ export default {
     padding: 12px;
     color: white;
     background-color: rgba(0, 0, 0, 0.3);
+}
+.popular-services {
+    background-color: rgb(245, 245, 245);
+    cursor: pointer;
+    transition: background-color 0.5s;
+}
+
+.popular-services:hover {
+    background-color: #28acb8;
+    color: white !important;
+    transition: background-color 0.5s;
+}
+
+.popular-services:hover .text-h6 {
+    color: white !important;
 }
 </style>
