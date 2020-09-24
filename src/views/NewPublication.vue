@@ -7,7 +7,7 @@
             :message="alertMessage"
             :type="alertType"
             :redirect="redirect"
-            @accept="displayAlert=false"
+            @accept="displayAlert = false"
         ></tareax-alert>
 
         <TitleBanner :subtitle="'Crear publicacion'" />
@@ -18,7 +18,10 @@
                     <div class="col-lg-8 q-px-md">
                         <q-card class="full-width">
                             <q-card-section>
-                                <div class="text-h5 q-mb-md">Llene el formulario</div>
+                                <div class="text-h6">Detalles de servicio</div>
+                            </q-card-section>
+                            <q-separator />
+                            <q-card-section>
                                 <q-select
                                     filled
                                     :options="categoriesOptions"
@@ -47,8 +50,53 @@
                                     v-model="price"
                                     type="number"
                                 />
-                                <q-btn color="primary" @click="createPublication()" label="Enviar" />
                             </q-card-section>
+                            <q-card-section>
+                                <div class="text-h6">Areas de servicio</div>
+                            </q-card-section>
+                            <q-separator />
+                            <q-card-section>
+                                <q-checkbox
+                                    v-model="allCountry"
+                                    color="primary"
+                                    class="q-mb-md"
+                                    :val="true"
+                                    label="Todo Panama"
+                                />
+                                <q-list bordered class="rounded-borders">
+                                    <div v-for="(area, i) in areas" :key="i">
+                                        <q-expansion-item
+                                            expand-separator
+                                            :label="area.provinceName"
+                                        >
+                                            <q-card>
+                                                <q-card-section>
+                                                    <q-checkbox
+                                                        v-model="selectedAreas"
+                                                        color="primary"
+                                                        v-for="district in area.districts"
+                                                        :val="district"
+                                                        :key="district"
+                                                        :label="district"
+                                                    />
+                                                </q-card-section>
+                                            </q-card>
+                                        </q-expansion-item>
+                                        <q-separator
+                                            v-if="i + 1 < areas.length"
+                                        />
+                                    </div>
+                                </q-list>
+                            </q-card-section>
+                            <q-separator />
+                            <q-card-actions>
+                                <q-space />
+                                <q-btn
+                                    color="primary"
+                                    @click="createPublication()"
+                                    label="Enviar"
+                                    flat
+                            /></q-card-actions>
                         </q-card>
                     </div>
                     <div class="col-lg-4 q-px-md">
@@ -91,6 +139,126 @@ export default {
             selectedService: '',
             price: '',
             redirect: '',
+            areas: [
+                {
+                    provinceName: 'Cocle',
+                    districts: [
+                        'Aduadulce',
+                        'Anton',
+                        'La Pintada',
+                        'Nata',
+                        'Ola',
+                        'Penonome',
+                    ],
+                },
+                {
+                    provinceName: 'Darien',
+                    districts: ['Chepigana', 'Pinogana', 'Sana Fe'],
+                },
+                {
+                    provinceName: 'Herrera',
+                    districts: [
+                        'Chitre',
+                        'Las Minas',
+                        'Los Pozos',
+                        'Ocu',
+                        'Parita',
+                        'Pese',
+                        'Santa Maria',
+                    ],
+                },
+                {
+                    provinceName: 'Panama',
+                    districts: [
+                        'Balboa',
+                        'Chepo',
+                        'Chiman',
+                        'Panama',
+                        'San Miguelito',
+                        'Taboga',
+                    ],
+                },
+                {
+                    provinceName: 'Panama Oeste',
+                    districts: [
+                        'Arraijan',
+                        'Capira',
+                        'Chame',
+                        'La Chorrera',
+                        'San Carlos',
+                    ],
+                },
+                {
+                    provinceName: 'Bocas del Toro',
+                    districts: [
+                        'Almirante',
+                        'Bocas del Toro',
+                        'Changuinola',
+                        'Chiriqui Grande',
+                    ],
+                },
+                {
+                    provinceName: 'Chiriqui',
+                    districts: [
+                        'Alanje',
+                        'Baru',
+                        'Boqueron',
+                        'Boquete',
+                        'Bugaba',
+                        'David',
+                        'Dolega',
+                        'Gualaca',
+                        'Remedios',
+                        'Renacimiento',
+                        'San Felix',
+                        'San Lorenzo',
+                        'Tierras Altas',
+                        'Tole',
+                    ],
+                },
+                {
+                    provinceName: 'Colon',
+                    districts: [
+                        'Colon',
+                        'Chagres',
+                        'Donoso',
+                        'Portobelo',
+                        'Santa Isabel',
+                        'Omar Torrijos Herrera',
+                    ],
+                },
+                {
+                    provinceName: 'Los Santos',
+                    districts: [
+                        'Guarare',
+                        'Las Tablas',
+                        'Los Santos',
+                        'Macaracas',
+                        'Pedasi',
+                        'Pocri',
+                        'Tonosi',
+                    ],
+                },
+                {
+                    provinceName: 'Veraguas',
+                    districts: [
+                        'Atalaya',
+                        'Calobre',
+                        'Cañazas',
+                        'La Mesa',
+                        'Las Palmas',
+                        'Mariato',
+                        'Montijo',
+                        'Rio de Jesus',
+                        'San Francisco',
+                        'Santa Fe',
+                        'Santiago',
+                        'Sona',
+                    ],
+                },
+            ],
+            selectedAreas: [],
+            allCountry: false,
         }
     },
     computed: {
