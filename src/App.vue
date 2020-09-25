@@ -12,7 +12,7 @@
                     />
                 </q-toolbar-title>
                 <q-btn color="white" outline :to="'/login'" v-if="!user"
-                    >iniciar sesión</q-btn
+                    >Ofrece tus servicios</q-btn
                 >
                 <q-btn
                     class="on-left"
