@@ -41,8 +41,18 @@
                                     v-model="selectedService"
                                     :options="serviceOptions"
                                     label="Servicio"
-                                    class="q-mb-md"
+                                    class="q-mb-sm"
                                 />
+                                <div class="text-body q-mb-md">
+                                    ¿No encuentras el servicio que deseas
+                                    prestar? Haz click
+                                    <span
+                                        style="cursor: pointer"
+                                        class="text-primary"
+                                        @click="suggestionDialog = true"
+                                        ><u>aqui</u></span
+                                    >.
+                                </div>
                                 <q-input
                                     filled
                                     label="Precio por hora"
@@ -111,6 +121,34 @@
                 </div>
             </div>
             <div class="col desktop-only"></div>
+            <q-dialog v-model="suggestionDialog" persistent>
+                <q-card style="width: 700px; max-width: 80vw">
+                    <q-card-section>
+                        <div class="text-h6">Envianos tu sugerencia</div>
+                    </q-card-section>
+
+                    <q-card-section class="q-pt-none">
+                        <q-input
+                            filled
+                            dense
+                            autofocus
+                            type="textarea"
+                            placeholder="Cuentanos que servicios o categorias deberiamos agregar para que puedas publicar."
+                            rows="4"
+                        />
+                    </q-card-section>
+
+                    <q-card-actions align="right" class="text-primary">
+                        <q-btn
+                            flat
+                            label="Cancelar"
+                            v-close-popup
+                            color="red-7"
+                        />
+                        <q-btn flat label="Enviar" v-close-popup />
+                    </q-card-actions>
+                </q-card>
+            </q-dialog>
         </div>
     </q-page>
 </template>
@@ -139,6 +177,8 @@ export default {
             selectedService: '',
             price: '',
             redirect: '',
+            suggestionDialog: false,
+            suggestionText: '',
             areas: [
                 {
                     provinceName: 'Cocle',
