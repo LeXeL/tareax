@@ -75,6 +75,7 @@
                             <PublicationsList
                                 :data="filteredPublicacionData"
                                 :servicesData="servicesData"
+                                :usersData="usersData"
                             />
                         </div>
                     </div>
@@ -223,6 +224,7 @@ export default {
             districtSelect: null,
             districtOptions: [],
             publicationData: [],
+            usersData: [],
             filteredPublicacionData: [],
             servicesData: [],
             priceFilter: [],
@@ -241,6 +243,9 @@ export default {
                 this.filteredPublicacionData = this.publicationData
                 api.ReturnAllServices().then(response => {
                     this.servicesData = response.data.data
+                })
+                api.ReturnAllUsers().then(response => {
+                    this.usersData = response.data.data
                 })
             })
             .then(() => {
