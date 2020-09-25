@@ -6,14 +6,20 @@
             :title="alertTitle"
             :message="alertMessage"
             :type="alertType"
-            @accept="displayAlert=false"
+            @accept="displayAlert = false"
         ></tareax-alert>
-        <div
-            v-if="Object.keys(servicesData).length !== 0 && Object.keys(publicationData).length !== 0"
-        >
+        <div>
             <TitleBanner
-                :title="`Hemos encontrado ${servicesData.filter(service=>{if(service.id === $route.params.id)return service}).length} resultado`"
-                :subtitle="servicesData.filter(service=>{if(service.id === $route.params.id)return service})[0].name"
+                :title="`Hemos encontrado ${
+                    publicationData.filter(service => {
+                        if (service.id === $route.params.id) return service
+                    }).length
+                } resultado`"
+                :subtitle="
+                    servicesData.filter(service => {
+                        if (service.id === $route.params.id) return service
+                    })[0].name
+                "
                 :ctaText="'¡Publica, es Gratis!'"
                 :path="'/'"
             />
@@ -21,8 +27,12 @@
                 <div class="col desktop-only"></div>
                 <div class="col-lg-9 col-md-12 col-sm-12 col-xs-12">
                     <div class="row">
-                        <div class="col-lg-4 col-md-4 col-sm-5 col-xs-12 q-px-md q-mb-md">
-                            <div class="text-h6 q-mb-sm">Filtrar por provincia</div>
+                        <div
+                            class="col-lg-4 col-md-4 col-sm-5 col-xs-12 q-px-md q-mb-md"
+                        >
+                            <div class="text-h6 q-mb-sm">
+                                Filtrar por provincia
+                            </div>
                             <q-select
                                 class="q-mb-md"
                                 filled
@@ -30,7 +40,9 @@
                                 :options="provinceOptions"
                                 label="Seleccione"
                             />
-                            <div class="text-h6 q-mb-sm">Filtrar por distrito</div>
+                            <div class="text-h6 q-mb-sm">
+                                Filtrar por distrito
+                            </div>
                             <q-select
                                 class="q-mb-md"
                                 filled
@@ -51,12 +63,19 @@
                                 color="primary"
                             />
                         </div>
-                        <div class="col-lg-8 col-md-8 col-sm-7 col-xs-12 q-px-md">
+                        <div
+                            class="col-lg-8 col-md-8 col-sm-7 col-xs-12 q-px-md"
+                        >
                             <div class="text-h6 q-mb-sm">Resultados</div>
                             <PublicationsList
+                                v-if="publicationData.length > 0"
                                 :data="filteredPublicacionData"
                                 :servicesData="servicesData"
                             />
+                            <div class="text-body" v-else>
+                                Lo sentimos, no encontramos resultados para este
+                                servicio.
+                            </div>
                         </div>
                     </div>
                 </div>
