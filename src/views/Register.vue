@@ -153,9 +153,27 @@
                         ¡Te has registrado satisfactoriamente, ya puedes empezar
                         a publicar tus servicios!
                         <br />
-                        <br />
+                    </q-card-section>
+                    <q-separator />
+                    <q-card-section>
+                        <div class="text-h6">¡Obten beneficios!</div>
                     </q-card-section>
 
+                    <q-card-section class="q-pt-none">
+                        Comparte el siguiente enlace con 3 personas y escribenos
+                        a
+                        <a href="mailto:admin@tareax.com">admin@tareax.com</a>
+                        para reclamar beneficios dentro de la paltaforma.
+                        <br />
+                        <br />
+                        <div class="row full-width">
+                            <div class="col text-center">
+                                <span class="text-h5"
+                                    >👉👉👉http://bit.ly/customlink👈👈👈</span
+                                >
+                            </div>
+                        </div>
+                    </q-card-section>
                     <q-card-actions align="right">
                         <router-link to="/" style="text-decoration: none">
                             <q-btn
