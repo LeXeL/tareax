@@ -65,7 +65,7 @@
                                     filled
                                     label="Precio por hora"
                                     class="q-mb-md"
-                                    v-model="price"
+                                    v-model.number="price"
                                     type="number"
                                 />
                             </q-card-section>
@@ -393,7 +393,7 @@ export default {
                     category: selectedCategoryId,
                     subcategory: selectedSubCategoryId,
                     service: selectedServiceId,
-                    price: parseInt(this.price),
+                    price: parseFloat(this.price),
                     userId: this.uid,
                     by: {
                         name: this.user.name,
