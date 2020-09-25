@@ -142,11 +142,7 @@
             </div>
             <div class="col desktop-only"></div>
             <q-dialog v-model="confirmationDialog">
-                <q-card
-                    dark
-                    class="text-white"
-                    style="width: 700px; max-width: 80vw"
-                >
+                <q-card style="">
                     <q-card-section>
                         <div class="text-h6">
                             ¡Hemos recibido tu información!
@@ -161,7 +157,7 @@
                     </q-card-section>
 
                     <q-card-actions align="right">
-                        <router-link to="/">
+                        <router-link to="/" style="text-decoration: none">
                             <q-btn
                                 flat
                                 label="Aceptar"
