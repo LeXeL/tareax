@@ -35,6 +35,10 @@
                                     v-model="selectedSubcategory"
                                     label="Sub-categoria"
                                     class="q-mb-md"
+                                    option-label="desc"
+                                    option-disable="inactive"
+                                    emit-value
+                                    map-options
                                 />
                                 <q-select
                                     filled
@@ -42,6 +46,10 @@
                                     :options="serviceOptions"
                                     label="Servicio"
                                     class="q-mb-sm"
+                                    option-label="desc"
+                                    option-disable="inactive"
+                                    emit-value
+                                    map-options
                                 />
                                 <div class="text-body q-mb-md">
                                     ¿No encuentras el servicio que deseas
@@ -170,8 +178,18 @@ export default {
             subcategoriesData: [],
             servicesData: [],
             categoriesOptions: [],
-            subCategoriesOptions: [],
-            serviceOptions: [],
+            subCategoriesOptions: [
+                {
+                    desc: 'Elija una categoria',
+                    inactive: true,
+                },
+            ],
+            serviceOptions: [
+                {
+                    desc: 'Elija una subcategoria',
+                    inactive: true,
+                },
+            ],
             selectedCategory: '',
             selectedSubcategory: '',
             selectedService: '',
