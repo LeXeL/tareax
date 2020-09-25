@@ -20,19 +20,28 @@
             @mouseenter="autoplay = false"
             @mouseleave="autoplay = true"
         >
-            <q-carousel-slide name="first" :img-src="require('@/assets/hero-bg-1.jpg')">
+            <q-carousel-slide
+                name="first"
+                :img-src="require('@/assets/hero-bg-1.jpg')"
+            >
                 <div class="absolute-bottom custom-caption">
                     <div class="text-h2">First stop</div>
                     <div class="text-subtitle1">Mountains</div>
                 </div>
             </q-carousel-slide>
-            <q-carousel-slide name="second" :img-src="require('@/assets/hero-bg-2.jpg')">
+            <q-carousel-slide
+                name="second"
+                :img-src="require('@/assets/hero-bg-2.jpg')"
+            >
                 <div class="absolute-bottom custom-caption">
                     <div class="text-h2">Second stop</div>
                     <div class="text-subtitle1">Famous City</div>
                 </div>
             </q-carousel-slide>
-            <q-carousel-slide name="third" :img-src="require('@/assets/hero-bg-3.jpg')">
+            <q-carousel-slide
+                name="third"
+                :img-src="require('@/assets/hero-bg-3.jpg')"
+            >
                 <div class="absolute-bottom custom-caption">
                     <div class="text-h2">Third stop</div>
                     <div class="text-subtitle1">Famous Bridge</div>
@@ -68,6 +77,10 @@
                         v-model="selectedSubcategory"
                         :options="subCategoriesOptions"
                         label="Sub-Categoria"
+                        option-label="desc"
+                        option-disable="inactive"
+                        emit-value
+                        map-options
                     />
                 </div>
                 <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
@@ -77,6 +90,10 @@
                         v-model="selectedService"
                         :options="serviceOptions"
                         label="Servicio"
+                        option-label="desc"
+                        option-disable="inactive"
+                        emit-value
+                        map-options
                     />
                 </div>
                 <div class="col desktop-only"></div>
@@ -108,8 +125,12 @@
                             class="q-py-lg rounded-borders popular-services"
                             @click="$router.push(`/search/${cat.name}`)"
                         >
-                            <div class="text-subtitle2">{{returnServiceName(cat.name)}}</div>
-                            <div class="text-h6 text-primary">{{ cat.count }}</div>
+                            <div class="text-subtitle2">
+                                {{ returnServiceName(cat.name) }}
+                            </div>
+                            <div class="text-h6 text-primary">
+                                {{ cat.count }}
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -128,7 +149,9 @@
             <div class="col desktop-only"></div>
             <div class="col-lg-9 col-xs-12">
                 <div class="row q-mb-md">
-                    <div class="col-lg-4 col-md-5 col-sm-6 col-xs-12 q-px-md q-mb-lg">
+                    <div
+                        class="col-lg-4 col-md-5 col-sm-6 col-xs-12 q-px-md q-mb-lg"
+                    >
                         <div class="row q-mb-md">
                             <div class="text-h5">Destacados</div>
                         </div>
@@ -167,7 +190,9 @@
                             </q-carousel-slide>
                             <q-carousel-slide name="second">
                                 <div class="text-h5">
-                                    <strong>Revision de ortografia y estilo</strong>
+                                    <strong
+                                        >Revision de ortografia y estilo</strong
+                                    >
                                 </div>
                                 <div class="text-h6">Tesis</div>
                                 <div class="text-h6 q-mb-md">Academicos</div>
@@ -186,7 +211,9 @@
                             </q-carousel-slide>
                         </q-carousel>
                     </div>
-                    <div class="col-lg-8 col-md-7 col-sm-6 col-xs-12 q-px-md q-mb-md">
+                    <div
+                        class="col-lg-8 col-md-7 col-sm-6 col-xs-12 q-px-md q-mb-md"
+                    >
                         <div class="row q-mb-md">
                             <div class="text-h5">Publicaciones recientes</div>
                         </div>
@@ -227,8 +254,18 @@ export default {
             publicationsData: [],
             filteredPublicationData: [],
             categoriesOptions: [],
-            subCategoriesOptions: [],
-            serviceOptions: [],
+            subCategoriesOptions: [
+                {
+                    desc: 'Elija una categoria',
+                    inactive: true,
+                },
+            ],
+            serviceOptions: [
+                {
+                    desc: 'Elija una subcategoria',
+                    inactive: true,
+                },
+            ],
             selectedCategory: '',
             selectedSubcategory: '',
             selectedService: '',
