@@ -20,22 +20,38 @@
             @mouseenter="autoplay = false"
             @mouseleave="autoplay = true"
         >
-            <q-carousel-slide name="first" :img-src="require('@/assets/hero-bg-1.jpg')">
+            <q-carousel-slide
+                name="first"
+                :img-src="require('@/assets/hero-bg-1.jpg')"
+            >
                 <div class="absolute-bottom custom-caption">
-                    <div class="text-h2">First stop</div>
-                    <div class="text-subtitle1">Mountains</div>
+                    <div class="text-h4">Paga sólamente lo necesario.</div>
+                    <div class="text-subtitle1">
+                        Tareas específicas. Precios claros.
+                    </div>
                 </div>
             </q-carousel-slide>
-            <q-carousel-slide name="second" :img-src="require('@/assets/hero-bg-2.jpg')">
+            <q-carousel-slide
+                name="second"
+                :img-src="require('@/assets/hero-bg-2.jpg')"
+            >
                 <div class="absolute-bottom custom-caption">
-                    <div class="text-h2">Second stop</div>
-                    <div class="text-subtitle1">Famous City</div>
+                    <div class="text-h4">
+                        Encuentra la ayuda necesaria con rapidez.
+                    </div>
+                    <div class="text-subtitle1">
+                        Busca servicios especificos en las categorias que
+                        necesitas.
+                    </div>
                 </div>
             </q-carousel-slide>
-            <q-carousel-slide name="third" :img-src="require('@/assets/hero-bg-3.jpg')">
+            <q-carousel-slide
+                name="third"
+                :img-src="require('@/assets/hero-bg-3.jpg')"
+            >
                 <div class="absolute-bottom custom-caption">
-                    <div class="text-h2">Third stop</div>
-                    <div class="text-subtitle1">Famous Bridge</div>
+                    <div class="text-h2">Elige un anunciante.</div>
+                    <div class="text-subtitle1">Contáctalo directamente.</div>
                 </div>
             </q-carousel-slide>
         </q-carousel>
@@ -108,8 +124,12 @@
                             class="q-py-lg rounded-borders popular-services"
                             @click="$router.push(`/search/${cat.name}`)"
                         >
-                            <div class="text-subtitle2">{{returnServiceName(cat.name)}}</div>
-                            <div class="text-h6 text-primary">{{ cat.count }}</div>
+                            <div class="text-subtitle2">
+                                {{ returnServiceName(cat.name) }}
+                            </div>
+                            <div class="text-h6 text-primary">
+                                {{ cat.count }}
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -128,7 +148,9 @@
             <div class="col desktop-only"></div>
             <div class="col-lg-9 col-xs-12">
                 <div class="row q-mb-md">
-                    <div class="col-lg-4 col-md-5 col-sm-6 col-xs-12 q-px-md q-mb-lg">
+                    <div
+                        class="col-lg-4 col-md-5 col-sm-6 col-xs-12 q-px-md q-mb-lg"
+                    >
                         <div class="row q-mb-md">
                             <div class="text-h5">Destacados</div>
                         </div>
@@ -167,7 +189,9 @@
                             </q-carousel-slide>
                             <q-carousel-slide name="second">
                                 <div class="text-h5">
-                                    <strong>Revision de ortografia y estilo</strong>
+                                    <strong
+                                        >Revision de ortografia y estilo</strong
+                                    >
                                 </div>
                                 <div class="text-h6">Tesis</div>
                                 <div class="text-h6 q-mb-md">Academicos</div>
@@ -186,7 +210,9 @@
                             </q-carousel-slide>
                         </q-carousel>
                     </div>
-                    <div class="col-lg-8 col-md-7 col-sm-6 col-xs-12 q-px-md q-mb-md">
+                    <div
+                        class="col-lg-8 col-md-7 col-sm-6 col-xs-12 q-px-md q-mb-md"
+                    >
                         <div class="row q-mb-md">
                             <div class="text-h5">Publicaciones recientes</div>
                         </div>
