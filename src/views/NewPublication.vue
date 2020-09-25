@@ -190,6 +190,7 @@ export default {
                     inactive: true,
                 },
             ],
+            selectedObject: {},
             selectedCategory: '',
             selectedSubcategory: '',
             selectedService: '',
@@ -201,7 +202,7 @@ export default {
                 {
                     provinceName: 'Cocle',
                     districts: [
-                        'Aduadulce',
+                        'Aguadulce',
                         'Anton',
                         'La Pintada',
                         'Nata',
@@ -316,6 +317,7 @@ export default {
                 },
             ],
             selectedAreas: [],
+            selectedProvinces: [],
             allCountry: false,
         }
     },
@@ -328,13 +330,25 @@ export default {
         },
     },
     methods: {
+        buildObject() {
+            this.selectedAreas.forEach(selectedArea => {
+                this.areas.forEach(areas => {
+                    areas.districts.forEach(district => {
+                        if (selectedArea === district) {
+                            this.selectedProvinces.push(areas.provinceName)
+                        }
+                    })
+                })
+            })
+            this.selectedProvinces = [...new Set(this.selectedProvinces)]
+        },
         clear() {
             this.selectedCategory = ''
             this.selectedSubcategory = ''
             this.selectedService = ''
             this.price = ''
         },
-        createPublication() {
+        async createPublication() {
             this.displayLoading = true
             if (this.selectedCategory === '') {
                 this.displayLoading = false
@@ -356,7 +370,7 @@ export default {
             if (this.selectedService === '') {
                 this.displayLoading = false
                 this.alertTitle = 'Error'
-                this.alertMessage = 'Por favor tienes que escojer una servicio'
+                this.alertMessage = 'Por favor tienes que escojer un servicio'
                 this.alertType = 'error'
                 this.displayAlert = true
                 return
@@ -387,7 +401,7 @@ export default {
                     if (service.name === this.selectedService) return service
                 })
                 .map(c => c.id)[0]
-
+            await this.buildObject()
             api.CreatePublicationInDatabase({
                 publication: {
                     category: selectedCategoryId,
@@ -395,6 +409,9 @@ export default {
                     service: selectedServiceId,
                     price: parseFloat(this.price),
                     userId: this.uid,
+                    allCountry: this.allCountry,
+                    selectedAreas: this.selectedAreas,
+                    selectedProvinces: this.selectedProvinces,
                     by: {
                         name: this.user.name,
                         lastName: this.user.lastName,
@@ -440,6 +457,16 @@ export default {
             })
     },
     watch: {
+        allCountry(newValue, oldValue) {
+            if (newValue === true) {
+                this.selectedAreas = []
+            }
+        },
+        selectedAreas(newValue, oldValue) {
+            if (newValue.length > 0) {
+                this.allCountry = false
+            }
+        },
         categoriesData(newValue, oldValue) {
             this.categoriesOptions = newValue.map(category => {
                 return category.name

@@ -14,6 +14,9 @@ async function createPublicationInDatabase(publication) {
             price: publication.price,
             by: publication.by,
             userId: publication.userId,
+            allCountry: publication.allCountry,
+            selectedAreas: publication.selectedAreas,
+            selectedProvinces: publication.selectedProvinces,
         })
         .then(() => {
             return 'Succesfull'
