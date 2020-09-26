@@ -25,8 +25,10 @@
                 :img-src="require('@/assets/hero-bg-1.jpg')"
             >
                 <div class="absolute-bottom custom-caption">
-                    <div class="text-h2">First stop</div>
-                    <div class="text-subtitle1">Mountains</div>
+                    <div class="text-h4">Paga sólamente lo necesario.</div>
+                    <div class="text-subtitle1">
+                        Tareas específicas. Precios claros.
+                    </div>
                 </div>
             </q-carousel-slide>
             <q-carousel-slide
@@ -34,8 +36,13 @@
                 :img-src="require('@/assets/hero-bg-2.jpg')"
             >
                 <div class="absolute-bottom custom-caption">
-                    <div class="text-h2">Second stop</div>
-                    <div class="text-subtitle1">Famous City</div>
+                    <div class="text-h4">
+                        Encuentra la ayuda necesaria con rapidez.
+                    </div>
+                    <div class="text-subtitle1">
+                        Busca servicios especificos en las categorias que
+                        necesitas.
+                    </div>
                 </div>
             </q-carousel-slide>
             <q-carousel-slide
@@ -43,8 +50,8 @@
                 :img-src="require('@/assets/hero-bg-3.jpg')"
             >
                 <div class="absolute-bottom custom-caption">
-                    <div class="text-h2">Third stop</div>
-                    <div class="text-subtitle1">Famous Bridge</div>
+                    <div class="text-h2">Elige un anunciante.</div>
+                    <div class="text-subtitle1">Contáctalo directamente.</div>
                 </div>
             </q-carousel-slide>
         </q-carousel>
