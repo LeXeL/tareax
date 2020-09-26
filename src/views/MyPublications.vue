@@ -6,7 +6,7 @@
             :title="alertTitle"
             :message="alertMessage"
             :type="alertType"
-            @accept="displayAlert=false"
+            @accept="displayAlert = false"
         ></tareax-alert>
         <confirm-dialog
             :display="displayConfirm"
@@ -26,26 +26,26 @@
                                 v-for="col in props.cols"
                                 :key="col.name"
                                 :props="props"
-                            >{{ col.label }}</q-th>
+                                >{{ col.label }}</q-th
+                            >
                             <q-th>Eliminar</q-th>
                         </q-tr>
                     </template>
 
                     <template v-slot:body="props">
                         <q-tr :props="props">
-                            <q-td
-                                key="service"
-                                :props="props"
-                            >{{ returnServiceName(props.row.service) }}</q-td>
-                            <q-td
-                                key="subCategory"
-                                :props="props"
-                            >{{ returnSubCategoryName(props.row.subcategory) }}</q-td>
-                            <q-td
-                                key="category"
-                                :props="props"
-                            >{{ returnCategoryName(props.row.category) }}</q-td>
-                            <q-td key="price" :props="props">{{ props.row.price }}</q-td>
+                            <q-td key="service" :props="props">{{
+                                returnServiceName(props.row.service)
+                            }}</q-td>
+                            <q-td key="subCategory" :props="props">{{
+                                returnSubCategoryName(props.row.subcategory)
+                            }}</q-td>
+                            <q-td key="category" :props="props">{{
+                                returnCategoryName(props.row.category)
+                            }}</q-td>
+                            <q-td key="price" :props="props">{{
+                                props.row.price
+                            }}</q-td>
                             <q-td auto-width>
                                 <q-btn
                                     size="sm"
@@ -125,6 +125,27 @@ export default {
         },
     },
     methods: {
+        returnServiceName(id) {
+            let value = this.servicesData.filter(service => {
+                if (service.id === id) return service
+            })
+            if (value.length > 0) return value[0].name
+            return 'NaN'
+        },
+        returnCategoryName(id) {
+            let value = this.categoriesData.filter(category => {
+                if (category.id === id) return category
+            })
+            if (value.length > 0) return value[0].name
+            return 'NaN'
+        },
+        returnSubCategoryName(id) {
+            let value = this.subcategoriesData.filter(subcategory => {
+                if (subcategory.id === id) return subcategory
+            })
+            if (value.length > 0) return value[0].name
+            return 'NaN'
+        },
         askForDeleteService(id) {
             this.displayConfirm = true
             this.alertTitle = 'Esta seguro?'
@@ -155,6 +176,7 @@ export default {
         },
     },
     mounted() {
+        this.displayLoading = true
         api.ReturnAllPublicationsByUserId({id: this.uid}).then(response => {
             this.data = response.data.data
         })
