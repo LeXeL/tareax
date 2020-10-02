@@ -17,12 +17,11 @@
                 <q-btn
                     class="on-left"
                     flat
-                    round
                     dense
                     to="/new-publication"
                     v-if="user"
+                    label="Anuncia aqui"
                 >
-                    <i class="fas fa-newspaper"></i>
                 </q-btn>
                 <q-btn flat round dense v-if="user">
                     <i class="fas fa-user"></i>
