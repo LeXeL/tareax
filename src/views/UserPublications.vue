@@ -29,6 +29,9 @@
                             <div
                                 class="bg-primary text-white q-pa-lg rounded-borders"
                             >
+                                <div class="text-h5 q-mb-md">
+                                    ** insert title here **
+                                </div>
                                 <div class="text-h5">
                                     <strong>{{
                                         returnServiceName(
@@ -81,6 +84,9 @@
                                 {{ `${userData.name} ${userData.lastName}` }}
                             </div>
                             <q-separator class="q-my-xs" />
+                            <div class="text-h5 q-my-sm">
+                                ** insert title here **
+                            </div>
                             <div class="text-body2 q-mb-lg">
                                 Lorem ipsum dolor sit amet, consectetur
                                 adipiscing elit. Nulla urna magna, auctor vel

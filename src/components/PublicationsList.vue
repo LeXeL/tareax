@@ -11,16 +11,26 @@
             <q-item-section>
                 <q-item-label>
                     <div class="text-subtitle2 text-black">
-                        {{`${pub.by.name} ${pub.by.lastName}`}}
+                        {{ `${pub.by.name} ${pub.by.lastName}` }}
                         <i
                             class="fas fa-star text-primary"
-                            v-if="usersData.length > 0 && usersData.filter(user=>{if(user.name === pub.by.name)return pub})[0].isVerified"
+                            v-if="
+                                usersData.length > 0 &&
+                                    usersData.filter(user => {
+                                        if (user.name === pub.by.name)
+                                            return pub
+                                    })[0].isVerified
+                            "
                         ></i>
                     </div>
                 </q-item-label>
                 <q-item-label caption>
+                    <i class="fas fa-newspaper"></i>
+                    ** insert title here **
+                </q-item-label>
+                <q-item-label caption>
                     <i class="fas fa-briefcase"></i>
-                    {{returnServiceName(pub.service)}}
+                    {{ returnServiceName(pub.service) }}
                 </q-item-label>
                 <q-item-label caption>
                     <i class="fas fa-map-pin"></i>
@@ -31,7 +41,7 @@
                 <q-item-label caption>
                     <div class="text-subtitle2">
                         <i class="fas fa-dollar-sign"></i>
-                        {{pub.price.toFixed(2)}}
+                        {{ pub.price.toFixed(2) }}
                     </div>
                 </q-item-label>
             </q-item-section>
