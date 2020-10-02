@@ -28,6 +28,7 @@
                                 :props="props"
                                 >{{ col.label }}</q-th
                             >
+                            <q-th>Editar</q-th>
                             <q-th>Eliminar</q-th>
                         </q-tr>
                     </template>
@@ -49,8 +50,19 @@
                             <q-td auto-width>
                                 <q-btn
                                     size="sm"
+                                    color="primary"
+                                    round
+                                    dense
+                                    flat
+                                    icon="fas fa-pencil-alt"
+                                />
+                            </q-td>
+                            <q-td auto-width>
+                                <q-btn
+                                    size="sm"
                                     color="red-7"
                                     round
+                                    flat
                                     dense
                                     icon="fas fa-times"
                                     @click="askForDeleteService(props.row.id)"
