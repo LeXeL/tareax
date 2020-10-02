@@ -22,6 +22,12 @@
                             </q-card-section>
                             <q-separator />
                             <q-card-section>
+                                <q-input
+                                    type="text"
+                                    filled
+                                    class="q-mb-md"
+                                    label="Titulo"
+                                />
                                 <q-select
                                     filled
                                     :options="categoriesOptions"
@@ -61,6 +67,13 @@
                                         ><u>aqui</u></span
                                     >.
                                 </div>
+                                <q-input
+                                    type="textarea"
+                                    rows="5"
+                                    filled
+                                    class="q-mb-md"
+                                    label="Descripcion del servicio"
+                                />
                                 <q-input
                                     filled
                                     label="Precio por hora"
