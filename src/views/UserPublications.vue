@@ -11,8 +11,8 @@
         <div
             v-if="
                 Object.keys(servicesData).length !== 0 &&
-                    Object.keys(publicationsData).length !== 0 &&
-                    Object.keys(userData).length !== 0
+                Object.keys(publicationsData).length !== 0 &&
+                Object.keys(userData).length !== 0
             "
         >
             <TitleBanner
@@ -141,9 +141,7 @@
                         <div class="text-subtitle2">
                             <strong>Celular:</strong>
                             <a
-                                :href="
-                                    `https://wa.me/507${userData.contactPhone}`
-                                "
+                                :href="`https://wa.me/507${userData.contactPhone}`"
                                 >{{ `${userData.contactPhone}` }}</a
                             >
                         </div>
@@ -227,22 +225,22 @@ export default {
     mounted() {
         let id = this.$route.params.id
         this.displayLoading = true
-        api.getUserInformationById({uid: id})
+        api.ReturnAllPublicationsByUserId({id: id}).then(response => {
+            this.publicationsData = response.data.data
+            this.asignWorkingPublication()
+        })
+        api.getUserInformationById({uid: id}).then(response => {
+            this.userData = response.data.data
+        })
+        api.ReturnAllCategories().then(response => {
+            this.categoriesData = response.data.data
+        })
+        api.ReturnAllSubCategories().then(response => {
+            this.subcategoriesData = response.data.data
+        })
+        api.ReturnAllServices()
             .then(response => {
-                this.userData = response.data.data
-                api.ReturnAllPublicationsByUserId({id: id}).then(response => {
-                    this.publicationsData = response.data.data
-                    this.asignWorkingPublication()
-                })
-                api.ReturnAllCategories().then(response => {
-                    this.categoriesData = response.data.data
-                })
-                api.ReturnAllSubCategories().then(response => {
-                    this.subcategoriesData = response.data.data
-                })
-                api.ReturnAllServices().then(response => {
-                    this.servicesData = response.data.data
-                })
+                this.servicesData = response.data.data
             })
             .then(() => {
                 this.displayLoading = false
