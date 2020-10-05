@@ -16,10 +16,9 @@
                             class="fas fa-star text-primary"
                             v-if="
                                 usersData.length > 0 &&
-                                    usersData.filter(user => {
-                                        if (user.name === pub.by.name)
-                                            return pub
-                                    })[0].isVerified
+                                usersData.filter(user => {
+                                    if (user.id === pub.userId) return pub
+                                })[0].isVerified
                             "
                         ></i>
                     </div>

@@ -231,6 +231,7 @@ export default {
         })
         api.getUserInformationById({uid: id}).then(response => {
             this.userData = response.data.data
+            this.userData.id = id
         })
         api.ReturnAllCategories().then(response => {
             this.categoriesData = response.data.data
