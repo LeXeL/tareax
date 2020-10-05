@@ -95,6 +95,9 @@ export default {
         user() {
             return this.$store.getters.user
         },
+        isAuthenticated() {
+            return this.$store.getters.isAuthenticated
+        },
         uid() {
             return this.$store.getters.uid
         },
@@ -117,7 +120,10 @@ export default {
         },
     },
     mounted() {
-        if (this.$store.getters.uid !== '' && this.$store.getters.user === '') {
+        if (
+            this.$store.getters.uid !== '' &&
+            this.$store.getters.user === undefined
+        ) {
             api.getUserInformationById({uid: this.uid}).then(response => {
                 this.$store.commit('SET_USER', response.data.data)
             })
