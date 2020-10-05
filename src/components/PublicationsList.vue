@@ -11,7 +11,17 @@
             <q-item-section>
                 <q-item-label>
                     <div class="text-subtitle2 text-black">
-                        {{ `${pub.by.name} ${pub.by.lastName}` }}
+                        {{
+                            `${
+                                usersData.filter(user => {
+                                    if (user.id === pub.userId) return pub
+                                })[0].name
+                            } ${
+                                usersData.filter(user => {
+                                    if (user.id === pub.userId) return pub
+                                })[0].lastName
+                            }`
+                        }}
                         <i
                             class="fas fa-star text-primary"
                             v-if="
