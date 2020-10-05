@@ -1,5 +1,5 @@
 <template>
-    <q-list bordered separator>
+    <q-list bordered separator v-if="Object.keys(usersData).length !== 0">
         <q-item
             clickable
             v-ripple
@@ -43,7 +43,18 @@
                 </q-item-label>
                 <q-item-label caption>
                     <i class="fas fa-map-pin"></i>
-                    Ubicacion
+                    <span v-if="pub.allCountry"> En todo el país</span>
+                    <template v-if="pub.selectedProvinces.length > 0">
+                        <span
+                            v-for="(areas, i) in pub.selectedAreas"
+                            :key="areas"
+                        >
+                            {{ areas
+                            }}{{
+                                i !== pub.selectedProvinces.length ? ',' : ''
+                            }}</span
+                        >
+                    </template>
                 </q-item-label>
             </q-item-section>
             <q-item-section side center>
