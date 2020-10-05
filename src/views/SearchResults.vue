@@ -15,18 +15,14 @@
             "
         >
             <TitleBanner
-                :title="`Hemos encontrado ${
-                    servicesData.filter(service => {
-                        if (service.id === $route.params.id) return service
-                    }).length
-                } resultado`"
+                :title="`Hemos encontrado ${publicationData.length} resultado`"
                 :subtitle="
                     servicesData.filter(service => {
                         if (service.id === $route.params.id) return service
                     })[0].name
                 "
                 :ctaText="'¡Publica, es Gratis!'"
-                :path="'/'"
+                :path="isAuthenticated ? '/new-publication' : '/login'"
             />
             <div class="row q-py-xl">
                 <div class="col desktop-only"></div>
@@ -234,6 +230,11 @@ export default {
                 max: 60,
             },
         }
+    },
+    computed: {
+        isAuthenticated() {
+            return this.$store.getters.isAuthenticated
+        },
     },
     async mounted() {
         this.displayLoading = true
