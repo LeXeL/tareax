@@ -60,7 +60,31 @@
                                     }}
                                 </div>
                                 <div class="text-subtitle2">
-                                    <i class="fas fa-map-pin"></i> Ubicacion
+                                    <i class="fas fa-map-pin"></i>
+                                    <span v-if="workingPublication.allCountry">
+                                        En todo el país</span
+                                    >
+                                    <template
+                                        v-if="
+                                            workingPublication.selectedProvinces
+                                                .length > 0
+                                        "
+                                    >
+                                        <span
+                                            v-for="(areas,
+                                            i) in workingPublication.selectedAreas"
+                                            :key="areas"
+                                        >
+                                            {{ areas
+                                            }}{{
+                                                i + 1 !==
+                                                workingPublication.selectedAreas
+                                                    .length
+                                                    ? ','
+                                                    : ''
+                                            }}</span
+                                        >
+                                    </template>
                                 </div>
                                 <div class="text-subtitle2">
                                     <i class="fas fa-dollar-sign"></i>

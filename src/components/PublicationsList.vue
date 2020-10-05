@@ -51,7 +51,7 @@
                         >
                             {{ areas
                             }}{{
-                                i !== pub.selectedProvinces.length ? ',' : ''
+                                i + 1 !== pub.selectedAreas.length ? ',' : ''
                             }}</span
                         >
                     </template>
