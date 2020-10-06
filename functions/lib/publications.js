@@ -127,6 +127,36 @@ async function returnAllPublications() {
 
     return publications
 }
+async function returnPublicationById(id) {
+    return db
+        .collection('publications')
+        .doc(id)
+        .get()
+        .then(doc => {
+            if (doc.exists) {
+                return doc.data()
+            } else {
+                console.log('Document no existe')
+            }
+        })
+        .catch(error => {
+            return error
+        })
+}
+async function updatePublicationInfo(id, userObj) {
+    return db
+        .collection('publications')
+        .doc(id)
+        .update(userObj)
+        .then(() => {
+            console.log('Document successfully written!')
+            return 'Succesfull'
+        })
+        .catch(error => {
+            console.error('Error writing document: ', error)
+            return error
+        })
+}
 module.exports = {
     createPublicationInDatabase,
     deletePublicationInDatabase,
@@ -134,4 +164,6 @@ module.exports = {
     returnAllPublicationsByService,
     returnAllRecentPublications,
     returnAllPublications,
+    returnPublicationById,
+    updatePublicationInfo,
 }

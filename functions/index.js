@@ -390,3 +390,39 @@ exports.ReturnAllPublications = functions.https.onRequest(async (req, res) => {
         }
     })
 })
+exports.ReturnPublicationById = functions.https.onRequest(async (req, res) => {
+    cors(req, res, async () => {
+        try {
+            let response = await publications.returnPublicationById(req.body.id)
+            functions.logger.info('ReturnPublicationById', {
+                PublicationId: req.body.id,
+            })
+            res.status(200).send({data: response})
+        } catch (err) {
+            functions.logger.error('ReturnPublicationById', {
+                error: err,
+            })
+            res.status(400).send({err: err})
+        }
+    })
+})
+exports.UpdatePublicationInfo = functions.https.onRequest(async (req, res) => {
+    cors(req, res, async () => {
+        try {
+            let response = await publications.updatePublicationInfo(
+                req.body.id,
+                req.body.publication
+            )
+            functions.logger.info('UpdatePublicationInfo', {
+                PublicationId: req.body.id,
+                PublicationObj: req.body.publication,
+            })
+            res.status(200).send({data: response})
+        } catch (err) {
+            functions.logger.error('UpdatePublicationInfo', {
+                error: err,
+            })
+            res.status(400).send({err: err})
+        }
+    })
+})
