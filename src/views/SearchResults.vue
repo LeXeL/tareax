@@ -267,46 +267,71 @@ export default {
                         selectedProvince = area.districts
                 })
                 this.districtOptions = selectedProvince
-                this.filteredPublicacionData = this.publicationData.filter(
-                    publication => {
+                this.filteredPublicacionData = this.publicationData
+                    .filter(publication => {
                         if (
                             publication.selectedProvinces.includes(newValue) ||
                             publication.allCountry === true
                         ) {
                             return publication
                         }
-                    }
-                )
+                    })
+                    .sort((a, b) => {
+                        return a.userId.isVerified === b.userId.isVerified
+                            ? 0
+                            : a
+                            ? -1
+                            : 1
+                    })
             }
         },
         districtSelect(newValue, oldValue) {
             if (newValue != '') {
-                this.filteredPublicacionData = this.publicationData.filter(
-                    publication => {
+                this.filteredPublicacionData = this.publicationData
+                    .filter(publication => {
                         if (
                             publication.selectedAreas.includes(newValue) ||
                             publication.allCountry === true
                         ) {
                             return publication
                         }
-                    }
-                )
+                    })
+                    .sort((a, b) => {
+                        return a.userId.isVerified === b.userId.isVerified
+                            ? 0
+                            : a
+                            ? -1
+                            : 1
+                    })
             }
         },
         rangeSnap(newValue, oldValue) {
             if (newValue === '') {
                 this.filteredPublicacionData = this.publicationData
+                this.filteredPublicacionData.sort((a, b) => {
+                    return a.userId.isVerified === b.userId.isVerified
+                        ? 0
+                        : a
+                        ? -1
+                        : 1
+                })
             } else {
-                this.filteredPublicacionData = this.publicationData.filter(
-                    publication => {
+                this.filteredPublicacionData = this.publicationData
+                    .filter(publication => {
                         if (
                             publication.price >= newValue.min &&
                             publication.price < newValue.max
                         ) {
                             return publication
                         }
-                    }
-                )
+                    })
+                    .sort((a, b) => {
+                        return a.userId.isVerified === b.userId.isVerified
+                            ? 0
+                            : a
+                            ? -1
+                            : 1
+                    })
             }
         },
     },

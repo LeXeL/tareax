@@ -5,31 +5,16 @@
             v-ripple
             v-for="(pub, i) of data"
             :key="i"
-            :to="`/user-publications/${pub.userId}/${pub.id}`"
+            :to="`/user-publications/${pub.userId.id}/${pub.id}`"
             @click="handleClickEvent(pub)"
         >
             <q-item-section>
                 <q-item-label>
                     <div class="text-subtitle2 text-black">
-                        {{
-                            `${
-                                usersData.filter(user => {
-                                    if (user.id === pub.userId) return pub
-                                })[0].name
-                            } ${
-                                usersData.filter(user => {
-                                    if (user.id === pub.userId) return pub
-                                })[0].lastName
-                            }`
-                        }}
+                        {{ `${pub.userId.name} ${pub.userId.lastName}` }}
                         <i
                             class="fas fa-star text-primary"
-                            v-if="
-                                usersData.length > 0 &&
-                                usersData.filter(user => {
-                                    if (user.id === pub.userId) return pub
-                                })[0].isVerified
-                            "
+                            v-if="pub.userId.isVerified"
                         ></i>
                     </div>
                 </q-item-label>
@@ -91,6 +76,7 @@ export default {
             return this.$store.getters.uid
         },
     },
+
     methods: {
         handleClickEvent(event) {
             if (this.$route.fullPath.includes('/user-publications'))

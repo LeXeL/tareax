@@ -2,6 +2,8 @@ const admin = require('firebase-admin')
 const db = admin.firestore()
 const moment = require('moment')
 
+const user = require('./users')
+
 async function createPublicationInDatabase(publication) {
     return db
         .collection('publications')
@@ -41,6 +43,7 @@ async function deletePublicationInDatabase(id) {
         })
 }
 async function returnAllPublicationsByUserId(id) {
+    let currentUser = await user.returnUserById(id)
     let publications = []
     await db
         .collection('publications')
@@ -52,7 +55,9 @@ async function returnAllPublicationsByUserId(id) {
                 return
             }
             snapshot.forEach(doc => {
-                publications.push({...doc.data(), id: doc.id})
+                let obj = {...doc.data(), id: doc.id}
+                obj.userId = currentUser
+                publications.push(obj)
             })
         })
         .catch(function(error) {
@@ -61,6 +66,7 @@ async function returnAllPublicationsByUserId(id) {
     return publications
 }
 async function returnAllPublicationsByService(id) {
+    let users = await user.returnAllUsers()
     let publications = []
     await db
         .collection('publications')
@@ -72,7 +78,13 @@ async function returnAllPublicationsByService(id) {
                 return
             }
             snapshot.forEach(doc => {
-                publications.push({...doc.data(), id: doc.id})
+                let obj = {...doc.data(), id: doc.id}
+                obj.userId = users.filter(user => {
+                    if (user.id === obj.userId) {
+                        return user
+                    }
+                })[0]
+                publications.push(obj)
             })
         })
         .catch(function(error) {
@@ -97,6 +109,7 @@ async function returnAllRecentPublications() {
         .catch(function(error) {
             console.log('Error getting documents: ', error)
         })
+
     publications.sort((a, b) => {
         return moment(b.creationTime).diff(a.creationTime)
     })
@@ -108,6 +121,7 @@ async function returnAllRecentPublications() {
     return publications
 }
 async function returnAllPublications() {
+    let users = await user.returnAllUsers()
     let publications = []
     await db
         .collection('publications')
@@ -118,7 +132,13 @@ async function returnAllPublications() {
                 return
             }
             snapshot.forEach(doc => {
-                publications.push({...doc.data(), id: doc.id})
+                let obj = {...doc.data(), id: doc.id}
+                obj.userId = users.filter(user => {
+                    if (user.id === obj.userId) {
+                        return user
+                    }
+                })[0]
+                publications.push(obj)
             })
         })
         .catch(function(error) {

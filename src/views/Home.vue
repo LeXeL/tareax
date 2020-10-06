@@ -298,6 +298,13 @@ export default {
                         return pub
                     }
                 })
+            this.filteredPublicationData.sort((a, b) => {
+                return a.userId.isVerified === b.userId.isVerified
+                    ? 0
+                    : a
+                    ? -1
+                    : 1
+            })
         },
         returnCategoryName(id) {
             let value = this.categoriesData.filter(category => {
@@ -394,12 +401,12 @@ export default {
                 api.ReturnAllServices().then(response => {
                     this.servicesData = response.data.data
                 })
+                api.ReturnAllUsers().then(response => {
+                    this.usersData = response.data.data
+                })
                 api.ReturnAllPublications().then(response => {
                     this.publicationsData = response.data.data
                     this.createFilteredPublications()
-                })
-                api.ReturnAllUsers().then(response => {
-                    this.usersData = response.data.data
                 })
             })
             .then(() => {
