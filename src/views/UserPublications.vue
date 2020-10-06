@@ -30,7 +30,7 @@
                                 class="bg-primary text-white q-pa-lg rounded-borders"
                             >
                                 <div class="text-h5 q-mb-md">
-                                    ** insert title here **
+                                    {{ workingPublication.title }}
                                 </div>
                                 <div class="text-h5">
                                     <strong>{{
@@ -60,16 +60,16 @@
                                     }}
                                 </div>
                                 <div class="text-subtitle2">
-                                    <i class="fas fa-map-pin"></i>
                                     <span v-if="workingPublication.allCountry">
-                                        En todo el país</span
+                                        <i class="fas fa-map-pin"></i> En todo
+                                        el país</span
                                     >
                                     <template
                                         v-if="
                                             workingPublication.selectedProvinces
                                                 .length > 0
                                         "
-                                    >
+                                        ><i class="fas fa-map-pin"></i>
                                         <span
                                             v-for="(areas,
                                             i) in workingPublication.selectedAreas"
@@ -109,33 +109,10 @@
                             </div>
                             <q-separator class="q-my-xs" />
                             <div class="text-h5 q-my-sm">
-                                ** insert title here **
+                                {{ workingPublication.title }}
                             </div>
                             <div class="text-body2 q-mb-lg">
-                                Lorem ipsum dolor sit amet, consectetur
-                                adipiscing elit. Nulla urna magna, auctor vel
-                                blandit at, accumsan quis metus. Cras luctus
-                                metus tortor, ut vestibulum ligula lobortis
-                                eget. Cras tortor leo, vehicula molestie odio
-                                vel, commodo facilisis purus. Aenean ligula
-                                risus, auctor in lacus non, tempor consequat
-                                sapien. Maecenas a neque sit amet odio varius
-                                pharetra. Aliquam blandit lacus non leo aliquet,
-                                ut ultricies dolor maximus. Vestibulum faucibus
-                                accumsan bibendum. Ut ut maximus magna. Praesent
-                                pretium elementum dolor ut viverra. Curabitur
-                                semper sit amet ante non egestas. Integer rutrum
-                                diam elementum, vehicula dui ut, placerat leo.
-                                Etiam pretium metus et velit placerat porta vel
-                                a erat. Nullam nec ultrices eros, sit amet
-                                consequat ligula. Fusce id tellus a neque
-                                iaculis luctus eget vitae enim. Curabitur
-                                convallis velit eu sapien ultrices, et posuere
-                                odio maximus. Phasellus auctor rhoncus
-                                tristique. Morbi tincidunt imperdiet neque, at
-                                convallis urna sodales in. Donec ac ex sit amet
-                                libero scelerisque lobortis. Duis auctor urna
-                                vel finibus condimentum.
+                                {{ workingPublication.description }}
                             </div>
                             <div class="text-h6 q-mb-lg">Otros servicios</div>
                             <PublicationsList

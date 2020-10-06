@@ -27,6 +27,7 @@
                                     filled
                                     class="q-mb-md"
                                     label="Titulo"
+                                    v-model="title"
                                 />
                                 <q-select
                                     filled
@@ -73,6 +74,7 @@
                                     filled
                                     class="q-mb-md"
                                     label="Descripcion del servicio"
+                                    v-model="description"
                                 />
                                 <q-input
                                     filled
@@ -341,6 +343,8 @@ export default {
             selectedAreas: [],
             selectedProvinces: [],
             allCountry: false,
+            title: '',
+            description: '',
         }
     },
     computed: {
@@ -414,6 +418,24 @@ export default {
                 this.displayAlert = true
                 return
             }
+            if (this.title === '') {
+                this.displayLoading = false
+                this.alertTitle = 'Error'
+                this.alertMessage =
+                    'Por favor tienes que poner un titulo a tu publicacion'
+                this.alertType = 'error'
+                this.displayAlert = true
+                return
+            }
+            if (this.description === '') {
+                this.displayLoading = false
+                this.alertTitle = 'Error'
+                this.alertMessage =
+                    'Por favor tienes que poner una descripcion a tu publicacion'
+                this.alertType = 'error'
+                this.displayAlert = true
+                return
+            }
             if (this.selectedSubcategory === '') {
                 this.displayLoading = false
                 this.alertTitle = 'Error'
@@ -460,6 +482,8 @@ export default {
             await this.buildObject()
             api.CreatePublicationInDatabase({
                 publication: {
+                    title: this.title,
+                    description: this.description,
                     category: selectedCategoryId,
                     subcategory: selectedSubCategoryId,
                     service: selectedServiceId,
@@ -468,13 +492,6 @@ export default {
                     allCountry: this.allCountry,
                     selectedAreas: this.selectedAreas,
                     selectedProvinces: this.selectedProvinces,
-                    by: {
-                        name: this.user.name,
-                        lastName: this.user.lastName,
-                        email: this.user.email,
-                        contactPhone: this.user.contactPhone,
-                        isVerified: this.user.isVerified,
-                    },
                 },
             })
                 .then(() => {
