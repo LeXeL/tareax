@@ -529,27 +529,39 @@ export default {
             .then(() => {
                 api.ReturnPublicationById({id: id}).then(response => {
                     let data = response.data.data
-                    this.title = data.title
-                    this.description = data.description
-                    this.selectedCategory = this.categoriesData
-                        .filter(category => {
-                            if (category.id === data.category) return category
-                        })
-                        .map(c => c.name)[0]
-                    this.selectedSubcategory = this.subcategoriesData
-                        .filter(subcategory => {
-                            if (subcategory.id === data.subcategory)
-                                return subcategory
-                        })
-                        .map(c => c.name)[0]
-                    this.selectedService = this.servicesData
-                        .filter(service => {
-                            if (service.name === data.service) return service
-                        })
-                        .map(c => c.name)[0]
-                    this.price = data.price
-                    this.allCountry = data.allCountry
-                    this.selectedAreas = data.selectedAreas
+                    if (data.userId === this.uid) {
+                        this.title = data.title
+                        this.description = data.description
+                        this.selectedCategory = this.categoriesData
+                            .filter(category => {
+                                if (category.id === data.category)
+                                    return category
+                            })
+                            .map(c => c.name)[0]
+                        this.selectedSubcategory = this.subcategoriesData
+                            .filter(subcategory => {
+                                if (subcategory.id === data.subcategory)
+                                    return subcategory
+                            })
+                            .map(c => c.name)[0]
+                        this.selectedService = this.servicesData
+                            .filter(service => {
+                                if (service.name === data.service)
+                                    return service
+                            })
+                            .map(c => c.name)[0]
+                        this.price = data.price
+                        this.allCountry = data.allCountry
+                        this.selectedAreas = data.selectedAreas
+                    } else {
+                        this.displayLoading = false
+                        this.alertTitle = 'Error'
+                        this.alertMessage =
+                            'No se puede acceder a esta publicacion ya que no es del usuario logeado'
+                        this.alertType = 'error'
+                        this.displayAlert = true
+                        this.redirect = '/my-publications'
+                    }
                 })
             })
             .then(() => {
