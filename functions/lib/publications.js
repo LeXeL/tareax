@@ -43,6 +43,7 @@ async function deletePublicationInDatabase(id) {
         })
 }
 async function returnAllPublicationsByUserId(id) {
+    let currentUser = await user.returnUserById(id)
     let publications = []
     await db
         .collection('publications')
@@ -54,7 +55,9 @@ async function returnAllPublicationsByUserId(id) {
                 return
             }
             snapshot.forEach(doc => {
-                publications.push({...doc.data(), id: doc.id})
+                let obj = {...doc.data(), id: doc.id}
+                obj.userId = currentUser
+                publications.push(obj)
             })
         })
         .catch(function(error) {

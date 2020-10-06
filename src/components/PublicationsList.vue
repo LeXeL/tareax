@@ -5,7 +5,7 @@
             v-ripple
             v-for="(pub, i) of data"
             :key="i"
-            :to="`/user-publications/${pub.userId}/${pub.id}`"
+            :to="`/user-publications/${pub.userId.id}/${pub.id}`"
             @click="handleClickEvent(pub)"
         >
             <q-item-section>
