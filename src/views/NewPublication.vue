@@ -156,6 +156,7 @@
                             type="textarea"
                             placeholder="Cuentanos que servicios o categorias deberiamos agregar para que puedas publicar."
                             rows="4"
+                            v-model="message"
                         />
                     </q-card-section>
 
@@ -166,7 +167,12 @@
                             v-close-popup
                             color="red-7"
                         />
-                        <q-btn flat label="Enviar" v-close-popup />
+                        <q-btn
+                            flat
+                            label="Enviar"
+                            @click="sendServiceSuggestion()"
+                            v-close-popup
+                        />
                     </q-card-actions>
                 </q-card>
             </q-dialog>
@@ -178,6 +184,8 @@ import TitleBanner from '@/components/TitleBanner'
 
 import * as api from '@/api/api'
 
+import emailjs from 'emailjs-com'
+
 export default {
     data() {
         return {
@@ -187,6 +195,7 @@ export default {
             alertMessage: '',
             alertType: '',
             model: null,
+            message: '',
             categoriesData: [],
             subcategoriesData: [],
             servicesData: [],
@@ -343,6 +352,40 @@ export default {
         },
     },
     methods: {
+        sendServiceSuggestion() {
+            this.displayLoading = true
+            emailjs
+                .send(
+                    'gmail',
+                    'template_6yqtqie',
+                    {
+                        from_name: `${this.user.name} ${this.user.lastName}`,
+                        from_email: this.user.email,
+                        message: this.message,
+                        reply_to: this.user.email,
+                    },
+                    'user_rBmmJedXnbLb4nmSvbDHo'
+                )
+                .then(
+                    result => {
+                        this.displayLoading = false
+                        this.alertTitle = 'Exito!'
+                        this.alertMessage =
+                            'Tu sugerencia ha sido enviado con exito'
+                        this.alertType = 'success'
+                        this.displayAlert = true
+                        this.message = ''
+                    },
+                    error => {
+                        this.displayLoading = false
+                        this.alertTitle = 'Error'
+                        this.alertMessage =
+                            'Hubo un error por favor intentarlo nuevamente.'
+                        this.alertType = 'error'
+                        this.displayAlert = true
+                    }
+                )
+        },
         buildObject() {
             this.selectedAreas.forEach(selectedArea => {
                 this.areas.forEach(areas => {
