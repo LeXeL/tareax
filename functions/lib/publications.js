@@ -7,12 +7,15 @@ async function createPublicationInDatabase(publication) {
         .collection('publications')
         .doc()
         .set({
+            title:
+                publication.title.charAt(0).toUpperCase() +
+                publication.title.slice(1),
+            description: publication.description,
             category: publication.category,
             subcategory: publication.subcategory,
             service: publication.service,
             creationTime: Date.now(),
             price: publication.price,
-            by: publication.by,
             userId: publication.userId,
             allCountry: publication.allCountry,
             selectedAreas: publication.selectedAreas,
