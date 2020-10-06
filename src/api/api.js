@@ -99,3 +99,11 @@ export const ReturnAllPublications = data =>
     Request.post('/ReturnAllPublications', data, {
         'Content-Type': 'application/json',
     })
+export const ReturnPublicationById = data =>
+    Request.post('/ReturnPublicationById', data, {
+        'Content-Type': 'application/json',
+    })
+export const UpdatePublicationInfo = data =>
+    Request.post('/UpdatePublicationInfo', data, {
+        'Content-Type': 'application/json',
+    })

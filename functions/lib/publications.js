@@ -7,12 +7,15 @@ async function createPublicationInDatabase(publication) {
         .collection('publications')
         .doc()
         .set({
+            title:
+                publication.title.charAt(0).toUpperCase() +
+                publication.title.slice(1),
+            description: publication.description,
             category: publication.category,
             subcategory: publication.subcategory,
             service: publication.service,
             creationTime: Date.now(),
             price: publication.price,
-            by: publication.by,
             userId: publication.userId,
             allCountry: publication.allCountry,
             selectedAreas: publication.selectedAreas,
@@ -124,6 +127,36 @@ async function returnAllPublications() {
 
     return publications
 }
+async function returnPublicationById(id) {
+    return db
+        .collection('publications')
+        .doc(id)
+        .get()
+        .then(doc => {
+            if (doc.exists) {
+                return doc.data()
+            } else {
+                console.log('Document no existe')
+            }
+        })
+        .catch(error => {
+            return error
+        })
+}
+async function updatePublicationInfo(id, userObj) {
+    return db
+        .collection('publications')
+        .doc(id)
+        .update(userObj)
+        .then(() => {
+            console.log('Document successfully written!')
+            return 'Succesfull'
+        })
+        .catch(error => {
+            console.error('Error writing document: ', error)
+            return error
+        })
+}
 module.exports = {
     createPublicationInDatabase,
     deletePublicationInDatabase,
@@ -131,4 +164,6 @@ module.exports = {
     returnAllPublicationsByService,
     returnAllRecentPublications,
     returnAllPublications,
+    returnPublicationById,
+    updatePublicationInfo,
 }

@@ -10,7 +10,7 @@
             @accept="displayAlert = false"
         ></tareax-alert>
 
-        <TitleBanner :subtitle="'Crear publicacion'" />
+        <TitleBanner :subtitle="'Editar publicacion'" />
         <div class="row q-my-xl">
             <div class="col desktop-only"></div>
             <div class="col-lg-9">
@@ -35,6 +35,7 @@
                                     v-model="selectedCategory"
                                     label="Categoria"
                                     class="q-mb-md"
+                                    :disable="true"
                                 />
                                 <q-select
                                     filled
@@ -45,6 +46,7 @@
                                     option-label="desc"
                                     option-disable="inactive"
                                     emit-value
+                                    :disable="true"
                                     map-options
                                 />
                                 <q-select
@@ -56,6 +58,7 @@
                                     option-label="desc"
                                     option-disable="inactive"
                                     emit-value
+                                    :disable="true"
                                     map-options
                                 />
                                 <div class="text-body q-mb-md">
@@ -480,15 +483,12 @@ export default {
                 })
                 .map(c => c.id)[0]
             await this.buildObject()
-            api.CreatePublicationInDatabase({
+            api.UpdatePublicationInfo({
+                id: this.$route.params.id,
                 publication: {
                     title: this.title,
                     description: this.description,
-                    category: selectedCategoryId,
-                    subcategory: selectedSubCategoryId,
-                    service: selectedServiceId,
                     price: parseFloat(this.price),
-                    userId: this.uid,
                     allCountry: this.allCountry,
                     selectedAreas: this.selectedAreas,
                     selectedProvinces: this.selectedProvinces,
@@ -498,7 +498,7 @@ export default {
                     this.clear()
                     this.displayLoading = false
                     this.alertTitle = 'Exito!'
-                    this.alertMessage = 'Se ha creado la Publicacion con exito'
+                    this.alertMessage = 'Se ha editado la Publicacion con exito'
                     this.alertType = 'success'
                     this.displayAlert = true
                     this.redirect = '/my-publications'
@@ -515,6 +515,7 @@ export default {
     },
     async mounted() {
         this.displayLoading = true
+        let id = this.$route.params.id
         api.ReturnAllCategories()
             .then(response => {
                 this.categoriesData = response.data.data
@@ -523,6 +524,44 @@ export default {
                 })
                 api.ReturnAllServices().then(response => {
                     this.servicesData = response.data.data
+                })
+            })
+            .then(() => {
+                api.ReturnPublicationById({id: id}).then(response => {
+                    let data = response.data.data
+                    if (data.userId === this.uid) {
+                        this.title = data.title
+                        this.description = data.description
+                        this.selectedCategory = this.categoriesData
+                            .filter(category => {
+                                if (category.id === data.category)
+                                    return category
+                            })
+                            .map(c => c.name)[0]
+                        this.selectedSubcategory = this.subcategoriesData
+                            .filter(subcategory => {
+                                if (subcategory.id === data.subcategory)
+                                    return subcategory
+                            })
+                            .map(c => c.name)[0]
+                        this.selectedService = this.servicesData
+                            .filter(service => {
+                                if (service.name === data.service)
+                                    return service
+                            })
+                            .map(c => c.name)[0]
+                        this.price = data.price
+                        this.allCountry = data.allCountry
+                        this.selectedAreas = data.selectedAreas
+                    } else {
+                        this.displayLoading = false
+                        this.alertTitle = 'Error'
+                        this.alertMessage =
+                            'No se puede acceder a esta publicacion ya que no es del usuario logeado'
+                        this.alertType = 'error'
+                        this.displayAlert = true
+                        this.redirect = '/my-publications'
+                    }
                 })
             })
             .then(() => {
@@ -538,50 +577,6 @@ export default {
         selectedAreas(newValue, oldValue) {
             if (newValue.length > 0) {
                 this.allCountry = false
-            }
-        },
-        categoriesData(newValue, oldValue) {
-            this.categoriesOptions = newValue.map(category => {
-                return category.name
-            })
-        },
-        selectedCategory(newValue, oldValue) {
-            if (newValue != '') {
-                this.subCategoriesOptions = []
-                this.selectedSubcategory = ''
-                let selectedCategory
-                this.categoriesData.filter(category => {
-                    if (category.name === newValue) selectedCategory = category
-                })
-                this.subCategoriesOptions = this.subcategoriesData
-                    .filter(subcategory => {
-                        if (subcategory.category === selectedCategory.id) {
-                            return subcategory
-                        }
-                    })
-                    .map(subcategory => {
-                        return subcategory.name
-                    })
-            }
-        },
-        selectedSubcategory(newValue, oldValue) {
-            if (newValue != '') {
-                this.serviceOptions = []
-                this.selectedService = ''
-                let selectedSubCategory
-                this.subcategoriesData.filter(subcategory => {
-                    if (subcategory.name === newValue)
-                        selectedSubCategory = subcategory
-                })
-                this.serviceOptions = this.servicesData
-                    .filter(service => {
-                        if (service.subcategory === selectedSubCategory.id) {
-                            return service
-                        }
-                    })
-                    .map(service => {
-                        return service.name
-                    })
             }
         },
     },

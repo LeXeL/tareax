@@ -8,6 +8,7 @@ import Home from '../views/Home.vue'
 import SearchResults from '@/views/SearchResults'
 import UserPublications from '@/views/UserPublications'
 import NewPublication from '@/views/NewPublication'
+import EditPublication from '@/views/EditPublication'
 import Profile from '@/views/Profile'
 import MyPublications from '@/views/MyPublications'
 import ResetPassword from '@/views/ResetPassword'
@@ -58,6 +59,12 @@ const routes = [
         path: '/new-publication',
         name: 'NewPublication',
         component: NewPublication,
+        beforeEnter: ifAuthenticated,
+    },
+    {
+        path: '/edit-publication/:id',
+        name: 'EditPublication',
+        component: EditPublication,
         beforeEnter: ifAuthenticated,
     },
     {

@@ -35,16 +35,18 @@
                 </q-item-label>
                 <q-item-label caption>
                     <i class="fas fa-newspaper"></i>
-                    ** insert title here **
+                    {{ pub.title }}
                 </q-item-label>
                 <q-item-label caption>
                     <i class="fas fa-briefcase"></i>
                     {{ returnServiceName(pub.service) }}
                 </q-item-label>
                 <q-item-label caption>
-                    <i class="fas fa-map-pin"></i>
-                    <span v-if="pub.allCountry"> En todo el país</span>
+                    <span v-if="pub.allCountry"
+                        ><i class="fas fa-map-pin"></i> En todo el país</span
+                    >
                     <template v-if="pub.selectedProvinces.length > 0">
+                        <i class="fas fa-map-pin"></i>
                         <span
                             v-for="(areas, i) in pub.selectedAreas"
                             :key="areas"

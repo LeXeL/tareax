@@ -35,6 +35,9 @@
 
                     <template v-slot:body="props">
                         <q-tr :props="props">
+                            <q-td key="title" :props="props">{{
+                                props.row.title
+                            }}</q-td>
                             <q-td key="service" :props="props">{{
                                 returnServiceName(props.row.service)
                             }}</q-td>
@@ -55,6 +58,7 @@
                                     dense
                                     flat
                                     icon="fas fa-pencil-alt"
+                                    :to="`/edit-publication/${props.row.id}`"
                                 />
                             </q-td>
                             <q-td auto-width>
@@ -86,6 +90,13 @@ export default {
     data() {
         return {
             columns: [
+                {
+                    name: 'title',
+                    align: 'left',
+                    label: 'Titulo',
+                    field: 'title',
+                    sortable: true,
+                },
                 {
                     name: 'service',
                     align: 'left',
