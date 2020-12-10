@@ -563,6 +563,8 @@ export default {
                     allCountry: this.allCountry,
                     selectedAreas: this.selectedAreas,
                     selectedProvinces: this.selectedProvinces,
+                    selectedPaymentMethod: this.selectedPaymentMethod,
+                    selectedReservation: this.selectedReservation,
                 },
             })
                 .then(() => {
@@ -624,6 +626,8 @@ export default {
                         this.price = data.price
                         this.allCountry = data.allCountry
                         this.selectedAreas = data.selectedAreas
+                        this.selectedPaymentMethod = data.selectedPaymentMethod
+                        this.selectedReservation = data.selectedReservation
                     } else {
                         this.displayLoading = false
                         this.alertTitle = 'Error'
