@@ -191,6 +191,12 @@
                                 <div class="text-subtitle2">
                                     <i class="fas fa-dollar-sign"></i> 5.50
                                 </div>
+                                <div class="text-subtitle2">
+                                    <i class="fas fa-money-check-alt"></i> Efectivo
+                                </div>
+                                <div class="text-subtitle2">
+                                    <i class="fas fa-mobile-alt"></i> Camarounds
+                                </div>
                                 <q-btn color="white full-width q-mt-lg" push>
                                     <span class="text-primary">Contactar</span>
                                 </q-btn>
@@ -211,6 +217,12 @@
                                 </div>
                                 <div class="text-subtitle2">
                                     <i class="fas fa-dollar-sign"></i> 7.50
+                                </div>
+                                <div class="text-subtitle2">
+                                    <i class="fas fa-money-check-alt"></i> Yappy
+                                </div>
+                                <div class="text-subtitle2">
+                                    <i class="fas fa-mobile-alt"></i> Tenme
                                 </div>
                                 <q-btn color="white full-width q-mt-lg" push>
                                     <span class="text-primary">Contactar</span>
