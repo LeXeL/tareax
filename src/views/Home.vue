@@ -22,7 +22,7 @@
         >
             <q-carousel-slide
                 name="first"
-                :img-src="require('@/assets/hero-bg-1.jpg')"
+                :img-src="require('@/assets/hero-bg-1.webp')"
             >
                 <div class="absolute-bottom custom-caption">
                     <div class="text-h4">Paga sólamente lo necesario.</div>
@@ -33,7 +33,7 @@
             </q-carousel-slide>
             <q-carousel-slide
                 name="second"
-                :img-src="require('@/assets/hero-bg-2.jpg')"
+                :img-src="require('@/assets/hero-bg-2.webp')"
             >
                 <div class="absolute-bottom custom-caption">
                     <div class="text-h4">
@@ -47,12 +47,17 @@
             </q-carousel-slide>
             <q-carousel-slide
                 name="third"
-                :img-src="require('@/assets/hero-bg-3.jpg')"
+                :img-src="require('@/assets/hero-bg-3.webp')"
             >
                 <div class="absolute-bottom custom-caption">
                     <div class="text-h2">Elige un anunciante.</div>
                     <div class="text-subtitle1">Contáctalo directamente.</div>
                 </div>
+            </q-carousel-slide>
+            <q-carousel-slide
+                name="fourth"
+                :img-src="require('@/assets/hero-bg-4.webp')"
+            >
             </q-carousel-slide>
         </q-carousel>
         <!-- END CAROUSEL -->
