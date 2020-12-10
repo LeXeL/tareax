@@ -122,7 +122,9 @@
                                 </q-list>
                             </q-card-section>
                             <q-card-section>
-                                <div class="text-h6">Métodos de pago aceptados</div>
+                                <div class="text-h6">
+                                    Métodos de pago aceptados
+                                </div>
                             </q-card-section>
                             <q-card-section>
                                 <q-checkbox
@@ -152,7 +154,9 @@
                             </q-card-section>
                             <q-separator />
                             <q-card-section>
-                                <div class="text-h6">Reservas / Cobros por app</div>
+                                <div class="text-h6">
+                                    Reservas / Cobros por app
+                                </div>
                             </q-card-section>
                             <q-card-section>
                                 <q-checkbox
@@ -414,7 +418,6 @@ export default {
             selectedPaymentMethod: [],
 
             selectedReservation: [],
-
         }
     },
     computed: {
@@ -523,6 +526,15 @@ export default {
                 this.displayAlert = true
                 return
             }
+            if (this.selectedPaymentMethod.length === 0) {
+                this.displayLoading = false
+                this.alertTitle = 'Error'
+                this.alertMessage =
+                    'Por favor tienes que escojer almenos un metodo de pago'
+                this.alertType = 'error'
+                this.displayAlert = true
+                return
+            }
             if (this.price === '') {
                 this.displayLoading = false
                 this.alertTitle = 'Error'
@@ -562,6 +574,8 @@ export default {
                     allCountry: this.allCountry,
                     selectedAreas: this.selectedAreas,
                     selectedProvinces: this.selectedProvinces,
+                    selectedPaymentMethod: this.selectedPaymentMethod,
+                    selectedReservation: this.selectedReservation,
                 },
             })
                 .then(() => {

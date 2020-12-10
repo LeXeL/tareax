@@ -71,8 +71,9 @@
                                         "
                                         ><i class="fas fa-map-pin"></i>
                                         <span
-                                            v-for="(areas,
-                                            i) in workingPublication.selectedAreas"
+                                            v-for="(
+                                                areas, i
+                                            ) in workingPublication.selectedAreas"
                                             :key="areas"
                                         >
                                             {{ areas
@@ -93,10 +94,59 @@
                                     }}
                                 </div>
                                 <div class="text-subtitle2">
-                                    <i class="fas fa-money-bill-alt"></i> Efectivo, Nequi, Yappy
+                                    <i class="fas fa-money-bill-alt"></i>
+                                    <span
+                                        v-for="(
+                                            paymentMethod, index
+                                        ) in workingPublication.selectedPaymentMethod"
+                                        :key="index"
+                                    >
+                                        {{
+                                            `${
+                                                paymentMethod
+                                                    .charAt(0)
+                                                    .toUpperCase() +
+                                                paymentMethod.slice(1)
+                                            }${
+                                                index + 1 ===
+                                                workingPublication
+                                                    .selectedPaymentMethod
+                                                    .length
+                                                    ? ''
+                                                    : ','
+                                            }`
+                                        }}
+                                    </span>
                                 </div>
-                                <div class="text-subtitle2">
-                                    <i class="fas fa-mobile-alt"></i> Camarounds
+                                <div
+                                    class="text-subtitle2"
+                                    v-if="
+                                        workingPublication.selectedReservation
+                                            .length > 0
+                                    "
+                                >
+                                    <i class="fas fa-mobile-alt"></i>
+                                    <span
+                                        v-for="(
+                                            reservation, index
+                                        ) in workingPublication.selectedReservation"
+                                        :key="index"
+                                    >
+                                        {{
+                                            `${
+                                                reservation
+                                                    .charAt(0)
+                                                    .toUpperCase() +
+                                                reservation.slice(1)
+                                            }${
+                                                index + 1 ===
+                                                workingPublication
+                                                    .selectedReservation.length
+                                                    ? ''
+                                                    : ','
+                                            }`
+                                        }}
+                                    </span>
                                 </div>
                                 <q-btn
                                     color="white full-width q-mt-lg"

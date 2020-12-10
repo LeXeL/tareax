@@ -22,6 +22,8 @@ async function createPublicationInDatabase(publication) {
             allCountry: publication.allCountry,
             selectedAreas: publication.selectedAreas,
             selectedProvinces: publication.selectedProvinces,
+            selectedPaymentMethod: publication.selectedPaymentMethod,
+            selectedReservation: publication.selectedReservation,
         })
         .then(() => {
             return 'Succesfull'
