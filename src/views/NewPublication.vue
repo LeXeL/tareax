@@ -526,7 +526,7 @@ export default {
                 this.displayAlert = true
                 return
             }
-            if (this.selectedPaymentMethod === '') {
+            if (this.selectedPaymentMethod.length === 0) {
                 this.displayLoading = false
                 this.alertTitle = 'Error'
                 this.alertMessage =
