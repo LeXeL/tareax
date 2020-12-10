@@ -118,7 +118,13 @@
                                         }}
                                     </span>
                                 </div>
-                                <div class="text-subtitle2">
+                                <div
+                                    class="text-subtitle2"
+                                    v-if="
+                                        workingPublication.selectedReservation
+                                            .length > 0
+                                    "
+                                >
                                     <i class="fas fa-mobile-alt"></i>
                                     <span
                                         v-for="(
