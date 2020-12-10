@@ -62,11 +62,6 @@
                     <div class="text-subtitle1">Encuentra precios claros por tareas específicas</div>
                 </div>
             </q-carousel-slide>
-            <q-carousel-slide
-                name="fourth"
-                :img-src="require('@/assets/hero-bg-4.webp')"
-            >
-            </q-carousel-slide>
         </q-carousel>
         <!-- END CAROUSEL -->
 
