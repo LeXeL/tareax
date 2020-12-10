@@ -121,6 +121,71 @@
                                     </div>
                                 </q-list>
                             </q-card-section>
+                            <q-card-section>
+                                <div class="text-h6">Métodos de pago aceptados</div>
+                            </q-card-section>
+                            <q-card-section>
+                                <q-checkbox
+                                    v-model="selectedPaymentMethod"
+                                    val="cash"
+                                    color="primary"
+                                    label="Efectivo"
+                                />
+                                <q-checkbox
+                                    v-model="selectedPaymentMethod"
+                                    val="creditCard"
+                                    color="primary"
+                                    label="Tarjeta de crédito/débito"
+                                />
+                                <q-checkbox
+                                    v-model="selectedPaymentMethod"
+                                    val="yappy"
+                                    color="primary"
+                                    label="Yappy"
+                                />
+                                <q-checkbox
+                                    v-model="selectedPaymentMethod"
+                                    val="nequi"
+                                    color="primary"
+                                    label="Nequi"
+                                />
+                            </q-card-section>
+                            <q-separator />
+                            <q-card-section>
+                                <div class="text-h6">Reservas / Cobros por app</div>
+                            </q-card-section>
+                            <q-card-section>
+                                <q-checkbox
+                                    v-model="selectedReservation"
+                                    val="camarounds"
+                                    color="primary"
+                                    label="Camarounds"
+                                />
+                                <q-checkbox
+                                    v-model="selectedReservation"
+                                    val="myPay"
+                                    color="primary"
+                                    label="MyPay-Panama"
+                                />
+                                <q-checkbox
+                                    v-model="selectedReservation"
+                                    val="gooutil"
+                                    color="primary"
+                                    label="Gooutil"
+                                />
+                                <q-checkbox
+                                    v-model="selectedReservation"
+                                    val="tenme"
+                                    color="primary"
+                                    label="Tenme"
+                                />
+                                <q-checkbox
+                                    v-model="selectedReservation"
+                                    val="letsGoPanama"
+                                    color="primary"
+                                    label="LetGoPanama"
+                                />
+                            </q-card-section>
                             <q-separator />
                             <q-card-actions>
                                 <q-space />
@@ -345,6 +410,11 @@ export default {
             allCountry: false,
             title: '',
             description: '',
+
+            selectedPaymentMethod: [],
+
+            selectedReservation: [],
+
         }
     },
     computed: {
