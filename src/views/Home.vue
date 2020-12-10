@@ -192,7 +192,7 @@
                                     <i class="fas fa-dollar-sign"></i> 5.50
                                 </div>
                                 <div class="text-subtitle2">
-                                    <i class="fas fa-money-check-alt"></i> Efectivo
+                                    <i class="fas fa-money-bill-alt"></i> Efectivo, Nequi, Yappy
                                 </div>
                                 <div class="text-subtitle2">
                                     <i class="fas fa-mobile-alt"></i> Camarounds
@@ -219,7 +219,7 @@
                                     <i class="fas fa-dollar-sign"></i> 7.50
                                 </div>
                                 <div class="text-subtitle2">
-                                    <i class="fas fa-money-check-alt"></i> Yappy
+                                    <i class="fas fa-money-bill-alt"></i> Yappy, Tarjeta de credito/debito
                                 </div>
                                 <div class="text-subtitle2">
                                     <i class="fas fa-mobile-alt"></i> Tenme
