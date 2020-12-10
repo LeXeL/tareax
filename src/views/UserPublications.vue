@@ -92,6 +92,12 @@
                                         `${workingPublication.price.toFixed(2)}`
                                     }}
                                 </div>
+                                <div class="text-subtitle2">
+                                    <i class="fas fa-money-bill-alt"></i> Efectivo, Nequi, Yappy
+                                </div>
+                                <div class="text-subtitle2">
+                                    <i class="fas fa-mobile-alt"></i> Camarounds
+                                </div>
                                 <q-btn
                                     color="white full-width q-mt-lg"
                                     push
