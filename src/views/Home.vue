@@ -22,36 +22,48 @@
         >
             <q-carousel-slide
                 name="first"
-                :img-src="require('@/assets/hero-bg-1.jpg')"
+                :img-src="require('@/assets/hero-bg-1.webp')"
             >
                 <div class="absolute-bottom custom-caption">
-                    <div class="text-h4">Paga sólamente lo necesario.</div>
+                    <div class="text-h4">Sin Papeleo</div>
                     <div class="text-subtitle1">
-                        Tareas específicas. Precios claros.
+                        Encuentra lo que buscas fácilmente
                     </div>
                 </div>
             </q-carousel-slide>
             <q-carousel-slide
                 name="second"
-                :img-src="require('@/assets/hero-bg-2.jpg')"
+                :img-src="require('@/assets/hero-bg-2.webp')"
             >
                 <div class="absolute-bottom custom-caption">
                     <div class="text-h4">
-                        Encuentra la ayuda necesaria con rapidez.
+                        Rápido
                     </div>
-                    <div class="text-subtitle1">
-                        Busca servicios especificos en las categorias que
-                        necesitas.
+                    <div class="text-h6">
+                        Comunícate directamente con el anunciante
                     </div>
                 </div>
             </q-carousel-slide>
             <q-carousel-slide
                 name="third"
-                :img-src="require('@/assets/hero-bg-3.jpg')"
+                :img-src="require('@/assets/hero-bg-3.webp')"
             >
                 <div class="absolute-bottom custom-caption">
-                    <div class="text-h2">Elige un anunciante.</div>
-                    <div class="text-subtitle1">Contáctalo directamente.</div>
+                    <div class="text-h4">Sin comisión</div>
+                    <div class="text-h6">
+                        Para anunciantes ni para compradores
+                    </div>
+                </div>
+            </q-carousel-slide>
+            <q-carousel-slide
+                name="fourth"
+                :img-src="require('@/assets/hero-bg-4.webp')"
+            >
+                <div class="absolute-bottom custom-caption">
+                    <div class="text-h4">Fácil</div>
+                    <div class="text-h6">
+                        Encuentra precios claros por tareas específicas
+                    </div>
                 </div>
             </q-carousel-slide>
         </q-carousel>
@@ -177,22 +189,23 @@
                         >
                             <q-carousel-slide name="first">
                                 <div class="text-h5">
-                                    <strong>Tutorias de quimica</strong>
+                                    <strong>Tutorías de química</strong>
                                 </div>
                                 <div class="text-h6">Tareas escolares</div>
-                                <div class="text-h6 q-mb-md">Academicos</div>
+                                <div class="text-h6 q-mb-md">Académicos</div>
                                 <div class="text-subtitle2">
                                     <i class="fas fa-user"></i> Pedro
                                     Picapiedras
                                 </div>
                                 <div class="text-subtitle2">
-                                    <i class="fas fa-map-pin"></i> Ubicacion
+                                    <i class="fas fa-map-pin"></i> Ubicación
                                 </div>
                                 <div class="text-subtitle2">
                                     <i class="fas fa-dollar-sign"></i> 5.50
                                 </div>
                                 <div class="text-subtitle2">
-                                    <i class="fas fa-money-bill-alt"></i> Efectivo, Nequi, Yappy
+                                    <i class="fas fa-money-bill-alt"></i>
+                                    Efectivo, Nequi, Yappy
                                 </div>
                                 <div class="text-subtitle2">
                                     <i class="fas fa-mobile-alt"></i> Camarounds
@@ -204,22 +217,23 @@
                             <q-carousel-slide name="second">
                                 <div class="text-h5">
                                     <strong
-                                        >Revision de ortografia y estilo</strong
+                                        >Revisión de ortografía y estilo</strong
                                     >
                                 </div>
                                 <div class="text-h6">Tesis</div>
-                                <div class="text-h6 q-mb-md">Academicos</div>
+                                <div class="text-h6 q-mb-md">Académicos</div>
                                 <div class="text-subtitle2">
                                     <i class="fas fa-user"></i> Pablo Marmol
                                 </div>
                                 <div class="text-subtitle2">
-                                    <i class="fas fa-map-pin"></i> Ubicacion
+                                    <i class="fas fa-map-pin"></i> Ubicación
                                 </div>
                                 <div class="text-subtitle2">
                                     <i class="fas fa-dollar-sign"></i> 7.50
                                 </div>
                                 <div class="text-subtitle2">
-                                    <i class="fas fa-money-bill-alt"></i> Yappy, Tarjeta de credito/debito
+                                    <i class="fas fa-money-bill-alt"></i> Yappy,
+                                    Tarjeta de credito/debito
                                 </div>
                                 <div class="text-subtitle2">
                                     <i class="fas fa-mobile-alt"></i> Tenme
