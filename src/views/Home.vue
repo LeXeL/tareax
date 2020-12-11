@@ -39,7 +39,7 @@
                     <div class="text-h4">
                         Rápido
                     </div>
-                    <div class="text-subtitle1">
+                    <div class="text-h6">
                         Comunícate directamente con el anunciante
                     </div>
                 </div>
@@ -49,8 +49,10 @@
                 :img-src="require('@/assets/hero-bg-3.webp')"
             >
                 <div class="absolute-bottom custom-caption">
-                    <div class="text-h2">Sin comisión</div>
-                    <div class="text-subtitle1">Para anunciantes ni para compradores</div>
+                    <div class="text-h4">Sin comisión</div>
+                    <div class="text-h6">
+                        Para anunciantes ni para compradores
+                    </div>
                 </div>
             </q-carousel-slide>
             <q-carousel-slide
@@ -58,8 +60,10 @@
                 :img-src="require('@/assets/hero-bg-4.webp')"
             >
                 <div class="absolute-bottom custom-caption">
-                    <div class="text-h2">Fácil</div>
-                    <div class="text-subtitle1">Encuentra precios claros por tareas específicas</div>
+                    <div class="text-h4">Fácil</div>
+                    <div class="text-h6">
+                        Encuentra precios claros por tareas específicas
+                    </div>
                 </div>
             </q-carousel-slide>
         </q-carousel>
@@ -200,7 +204,8 @@
                                     <i class="fas fa-dollar-sign"></i> 5.50
                                 </div>
                                 <div class="text-subtitle2">
-                                    <i class="fas fa-money-bill-alt"></i> Efectivo, Nequi, Yappy
+                                    <i class="fas fa-money-bill-alt"></i>
+                                    Efectivo, Nequi, Yappy
                                 </div>
                                 <div class="text-subtitle2">
                                     <i class="fas fa-mobile-alt"></i> Camarounds
@@ -227,7 +232,8 @@
                                     <i class="fas fa-dollar-sign"></i> 7.50
                                 </div>
                                 <div class="text-subtitle2">
-                                    <i class="fas fa-money-bill-alt"></i> Yappy, Tarjeta de credito/debito
+                                    <i class="fas fa-money-bill-alt"></i> Yappy,
+                                    Tarjeta de credito/debito
                                 </div>
                                 <div class="text-subtitle2">
                                     <i class="fas fa-mobile-alt"></i> Tenme
