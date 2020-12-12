@@ -70,12 +70,28 @@
         <!-- END CAROUSEL -->
 
         <!-- START 4 STEPS -->
-        <div class="q-mb">
+        <div class="q-mb text-center">
             <div class="row">
-                <div class="steps-section col-lg-3 col-md-3 col-sm-6 col-xs-12">.col</div>
-                <div class="steps-section col-lg-3 col-md-3 col-sm-6 col-xs-12">.col</div>
-                <div class="steps-section col-lg-3 col-md-3 col-sm-6 col-xs-12">.col</div>
-                <div class="steps-section col-lg-3 col-md-3 col-sm-6 col-xs-12">.col</div>
+                <div class="steps-section col-sm-3 col-xs-6 q-pa-md">
+                    <q-avatar color="orange" text-color="white">1</q-avatar>
+                    <div class="text-h5">Registrarse</div>
+                    <div class="text-h6">Es GRATIS</div>
+                </div>
+                <div class="steps-section col-sm-3 col-xs-6 q-pa-md">
+                    <q-avatar color="orange" text-color="white">2</q-avatar>
+                    <div class="text-h5">Prepárate</div>
+                    <div class="text-h6">Atento a reservas</div>
+                </div>
+                <div class="steps-section col-sm-3 col-xs-6 q-pa-md">
+                    <q-avatar color="orange" text-color="white">3</q-avatar>
+                    <div class="text-h5">Trabaja</div>
+                    <div class="text-h6">Sin intermediarios</div>
+                </div>
+                <div class="steps-section col-sm-3 col-xs-6 q-pa-md">
+                    <q-avatar color="orange" text-color="white">4</q-avatar>
+                    <div class="text-h5">Cobra y entrega</div>
+                    <div class="text-h6">Recibo / Factura</div>
+                </div>
             </div>
         </div>
         <!-- END 4 STEPS -->
@@ -527,6 +543,7 @@ export default {
 
 .steps-section{
     background-color: lightseagreen;
-    border: 1px solid black;
+    border: 1px solid rgb(97, 93, 93);
+    color: white;
 }
 </style>
