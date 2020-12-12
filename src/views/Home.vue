@@ -69,6 +69,17 @@
         </q-carousel>
         <!-- END CAROUSEL -->
 
+        <!-- START 4 STEPS -->
+        <div class="q-mb">
+            <div class="row">
+                <div class="steps-section col-lg-3 col-md-3 col-sm-6 col-xs-12">.col</div>
+                <div class="steps-section col-lg-3 col-md-3 col-sm-6 col-xs-12">.col</div>
+                <div class="steps-section col-lg-3 col-md-3 col-sm-6 col-xs-12">.col</div>
+                <div class="steps-section col-lg-3 col-md-3 col-sm-6 col-xs-12">.col</div>
+            </div>
+        </div>
+        <!-- END 4 STEPS -->
+
         <!-- START SEARCH -->
         <div class="bg-grey-2 q-py-xl">
             <div class="row q-mb-md">
@@ -512,5 +523,10 @@ export default {
 
 .popular-services:hover .text-h6 {
     color: white !important;
+}
+
+.steps-section{
+    background-color: lightseagreen;
+    border: 1px solid black;
 }
 </style>
