@@ -70,29 +70,69 @@
         <!-- END CAROUSEL -->
 
         <!-- START 4 STEPS -->
-        <div class="q-mb text-center">
-            <div class="row">
-                <div class="steps-section col-sm-3 col-xs-6 q-pa-md">
-                    <q-avatar color="orange" text-color="white">1</q-avatar>
-                    <div class="text-h5">Registrarse</div>
-                    <div class="text-h6">Es GRATIS</div>
-                </div>
-                <div class="steps-section col-sm-3 col-xs-6 q-pa-md">
-                    <q-avatar color="orange" text-color="white">2</q-avatar>
-                    <div class="text-h5">Prepárate</div>
-                    <div class="text-h6">Atento a reservas</div>
-                </div>
-                <div class="steps-section col-sm-3 col-xs-6 q-pa-md">
-                    <q-avatar color="orange" text-color="white">3</q-avatar>
-                    <div class="text-h5">Trabaja</div>
-                    <div class="text-h6">Sin intermediarios</div>
-                </div>
-                <div class="steps-section col-sm-3 col-xs-6 q-pa-md">
-                    <q-avatar color="orange" text-color="white">4</q-avatar>
-                    <div class="text-h5">Cobra y entrega</div>
-                    <div class="text-h6">Recibo / Factura</div>
+        <div class="row">
+            <div class="col desktop-only"></div>
+            <div class="col-lg-9 col-xs-12 text-center">
+                <div class="row">
+                    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6 q-pa-md">
+                        <q-card class="bg-primary text-white">
+                            <q-card-section>
+                                <q-avatar
+                                    class="step-number q-mb-sm text-bold"
+                                    text-color="white"
+                                    >1</q-avatar
+                                >
+                                <div class="text-subtitle text-bold">
+                                    Registrate<br />Es GRATIS
+                                </div>
+                            </q-card-section>
+                        </q-card>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-3  col-xs-6 q-pa-md">
+                        <q-card class="bg-primary text-white">
+                            <q-card-section>
+                                <q-avatar
+                                    class="step-number q-mb-sm text-bold"
+                                    text-color="white"
+                                    >2</q-avatar
+                                >
+                                <div class="text-subtitle text-bold">
+                                    Preparate<br />Atento a reservas
+                                </div>
+                            </q-card-section>
+                        </q-card>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-3  col-xs-6 q-pa-md">
+                        <q-card class="bg-primary text-white">
+                            <q-card-section>
+                                <q-avatar
+                                    class="step-number q-mb-sm text-bold"
+                                    text-color="white"
+                                    >3</q-avatar
+                                >
+                                <div class="text-subtitle text-bold">
+                                    Trabaja<br />Sin intermediarios
+                                </div>
+                            </q-card-section>
+                        </q-card>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-3  col-xs-6 q-pa-md">
+                        <q-card class="bg-primary text-white">
+                            <q-card-section>
+                                <q-avatar
+                                    class="step-number q-mb-sm text-bold"
+                                    text-color="white"
+                                    >3</q-avatar
+                                >
+                                <div class="text-subtitle text-bold">
+                                    Cobra y entrega<br />Recibo / factura
+                                </div>
+                            </q-card-section>
+                        </q-card>
+                    </div>
                 </div>
             </div>
+            <div class="col desktop-only"></div>
         </div>
         <!-- END 4 STEPS -->
 
@@ -541,9 +581,7 @@ export default {
     color: white !important;
 }
 
-.steps-section{
-    background-color: lightseagreen;
-    border: 1px solid rgb(97, 93, 93);
-    color: white;
+.step-number {
+    background-color: #ed7a3a;
 }
 </style>
