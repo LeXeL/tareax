@@ -69,6 +69,73 @@
         </q-carousel>
         <!-- END CAROUSEL -->
 
+        <!-- START 4 STEPS -->
+        <div class="row">
+            <div class="col desktop-only"></div>
+            <div class="col-lg-9 col-xs-12 text-center">
+                <div class="row">
+                    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6 q-pa-md">
+                        <q-card class="bg-primary text-white">
+                            <q-card-section>
+                                <q-avatar
+                                    class="step-number q-mb-sm text-bold"
+                                    text-color="white"
+                                    >1</q-avatar
+                                >
+                                <div class="text-subtitle text-bold">
+                                    Registrate<br />Es GRATIS
+                                </div>
+                            </q-card-section>
+                        </q-card>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-3  col-xs-6 q-pa-md">
+                        <q-card class="bg-primary text-white">
+                            <q-card-section>
+                                <q-avatar
+                                    class="step-number q-mb-sm text-bold"
+                                    text-color="white"
+                                    >2</q-avatar
+                                >
+                                <div class="text-subtitle text-bold">
+                                    Preparate<br />Atento a reservas
+                                </div>
+                            </q-card-section>
+                        </q-card>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-3  col-xs-6 q-pa-md">
+                        <q-card class="bg-primary text-white">
+                            <q-card-section>
+                                <q-avatar
+                                    class="step-number q-mb-sm text-bold"
+                                    text-color="white"
+                                    >3</q-avatar
+                                >
+                                <div class="text-subtitle text-bold">
+                                    Trabaja<br />Sin intermediarios
+                                </div>
+                            </q-card-section>
+                        </q-card>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-3  col-xs-6 q-pa-md">
+                        <q-card class="bg-primary text-white">
+                            <q-card-section>
+                                <q-avatar
+                                    class="step-number q-mb-sm text-bold"
+                                    text-color="white"
+                                    >3</q-avatar
+                                >
+                                <div class="text-subtitle text-bold">
+                                    Cobra y entrega<br />Recibo / factura
+                                </div>
+                            </q-card-section>
+                        </q-card>
+                    </div>
+                </div>
+            </div>
+            <div class="col desktop-only"></div>
+        </div>
+        <!-- END 4 STEPS -->
+
         <!-- START SEARCH -->
         <div class="bg-grey-2 q-py-xl">
             <div class="row q-mb-md">
@@ -512,5 +579,9 @@ export default {
 
 .popular-services:hover .text-h6 {
     color: white !important;
+}
+
+.step-number {
+    background-color: #ed7a3a;
 }
 </style>
