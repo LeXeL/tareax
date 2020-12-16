@@ -122,7 +122,7 @@
                                 <q-avatar
                                     class="step-number q-mb-sm text-bold"
                                     text-color="white"
-                                    >3</q-avatar
+                                    >4</q-avatar
                                 >
                                 <div class="text-subtitle text-bold">
                                     Cobra y entrega<br />Recibo / factura
