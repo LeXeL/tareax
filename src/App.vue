@@ -1,6 +1,31 @@
 <template>
     <q-layout view="lHh Lpr lFf">
         <q-header elevated>
+            <div class="q-pa-sm text-right" style="background-color: #ED7A3A">
+                <span class="on-left">
+                    <i class="far fa-envelope"></i>&nbsp;
+                    <a href="mailto:admin@tareax.com" style="color: #fff"
+                        >admin@tareax.com</a
+                    >
+                </span>
+                <span class="on-left">
+                    <i class="fab fa-instagram"></i>&nbsp;
+                    <a
+                        href="https://www.instagram.com/wwwtareaxcom/"
+                        style="color: #fff"
+                        target="_blank"
+                        >wwwtareaxcom</a
+                    >
+                </span>
+
+                <i class="fab fa-facebook"></i>&nbsp;
+                <a
+                    href="https://www.facebook.com/tareax.panama"
+                    style="color: #fff"
+                    target="_blank"
+                    >Tareax Panama</a
+                >
+            </div>
             <q-toolbar>
                 <!-- <q-toolbar-title @click="$router.push('/')">Tareax</q-toolbar-title> -->
                 <q-toolbar-title>

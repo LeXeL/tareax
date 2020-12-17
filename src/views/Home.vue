@@ -1,6 +1,5 @@
 <template>
     <q-page>
-        <!-- START CAROUSEL -->
         <loading-alert :display="displayLoading"></loading-alert>
         <tareax-alert
             :display="displayAlert"
@@ -9,6 +8,7 @@
             :type="alertType"
             @accept="displayAlert = false"
         ></tareax-alert>
+        <!-- START CAROUSEL -->
         <q-carousel
             arrows
             animated
@@ -248,65 +248,74 @@
                             infinite
                             control-color="white"
                             navigation
-                            height="350px"
+                            height="410px"
                             class="bg-primary text-white shadow-1 rounded-borders"
                             :autoplay="autoplay"
                             @mouseenter="autoplay = false"
                             @mouseleave="autoplay = true"
                         >
-                            <q-carousel-slide name="first">
+                            <q-carousel-slide
+                                :name="pub.slide"
+                                v-for="pub in featuredPublications"
+                                :key="pub.slide"
+                            >
+                                <div class="text-h5 q-mb-md">
+                                    {{ pub.title }}
+                                </div>
                                 <div class="text-h5">
-                                    <strong>Tutorías de química</strong>
+                                    <strong>{{ pub.category }}</strong>
                                 </div>
-                                <div class="text-h6">Tareas escolares</div>
-                                <div class="text-h6 q-mb-md">Académicos</div>
-                                <div class="text-subtitle2">
-                                    <i class="fas fa-user"></i> Pedro
-                                    Picapiedras
+                                <div class="text-h6">{{ pub.subCategory }}</div>
+                                <div class="text-h6 q-mb-md">
+                                    {{ pub.service }}
                                 </div>
                                 <div class="text-subtitle2">
-                                    <i class="fas fa-map-pin"></i> Ubicación
+                                    <i class="fas fa-user"></i> {{ pub.owner }}
                                 </div>
                                 <div class="text-subtitle2">
-                                    <i class="fas fa-dollar-sign"></i> 5.50
+                                    <i
+                                        class="fas fa-map-pin"
+                                        style="margin-right: 5px;"
+                                    ></i>
+                                    <span
+                                        v-for="(loc, i) in pub.locations"
+                                        :key="i"
+                                        >{{ loc }},
+                                    </span>
                                 </div>
                                 <div class="text-subtitle2">
-                                    <i class="fas fa-money-bill-alt"></i>
-                                    Efectivo, Nequi, Yappy
+                                    <i class="fas fa-dollar-sign"></i>
+                                    {{ pub.rate.toFixed(2) }}
                                 </div>
                                 <div class="text-subtitle2">
-                                    <i class="fas fa-mobile-alt"></i> Camarounds
-                                </div>
-                                <q-btn color="white full-width q-mt-lg" push>
-                                    <span class="text-primary">Contactar</span>
-                                </q-btn>
-                            </q-carousel-slide>
-                            <q-carousel-slide name="second">
-                                <div class="text-h5">
-                                    <strong
-                                        >Revisión de ortografía y estilo</strong
+                                    <i
+                                        class="fas fa-money-bill-alt"
+                                        style="margin-right: 5px;"
+                                    ></i>
+                                    <span
+                                        v-for="(payment,
+                                        i) in pub.paymentMethods"
+                                        :key="i"
+                                        >{{ payment }}, &nbsp;</span
                                     >
                                 </div>
-                                <div class="text-h6">Tesis</div>
-                                <div class="text-h6 q-mb-md">Académicos</div>
-                                <div class="text-subtitle2">
-                                    <i class="fas fa-user"></i> Pablo Marmol
+                                <div
+                                    class="text-subtitle2"
+                                    v-if="pub.apps.length > 0"
+                                >
+                                    <i class="fas fa-mobile-alt"></i>
+                                    {{ pub.apps }}
                                 </div>
-                                <div class="text-subtitle2">
-                                    <i class="fas fa-map-pin"></i> Ubicación
-                                </div>
-                                <div class="text-subtitle2">
-                                    <i class="fas fa-dollar-sign"></i> 7.50
-                                </div>
-                                <div class="text-subtitle2">
-                                    <i class="fas fa-money-bill-alt"></i> Yappy,
-                                    Tarjeta de credito/debito
-                                </div>
-                                <div class="text-subtitle2">
-                                    <i class="fas fa-mobile-alt"></i> Tenme
-                                </div>
-                                <q-btn color="white full-width q-mt-lg" push>
-                                    <span class="text-primary">Contactar</span>
+                                <q-btn
+                                    color="white full-width q-mt-lg"
+                                    @click="
+                                        $router.push(
+                                            `/user-publications/${pub.link}`
+                                        )
+                                    "
+                                    push
+                                >
+                                    <span class="text-primary">VER MAS</span>
                                 </q-btn>
                             </q-carousel-slide>
                         </q-carousel>
@@ -369,7 +378,58 @@ export default {
             selectedCategory: '',
             selectedSubcategory: '',
             selectedService: '',
-            featuredCarousel: 'first',
+            featuredCarousel: '1',
+            featuredPublications: [
+                {
+                    slide: '1',
+                    title: 'Fabricación y Reparación de Grúas de Plataforma',
+                    category: 'Soldadura',
+                    subCategory: 'Construccion liviana',
+                    service: 'Tecnicos',
+                    owner: 'Gustavo Serrano',
+                    locations: [
+                        'Balboa',
+                        'Chepo',
+                        'Chiman',
+                        'Panama',
+                        'San Miguelito',
+                    ],
+                    rate: 0,
+                    paymentMethods: ['Efectivo'],
+                    apps: [],
+                    link: 'lOG0gmx4WLYEa3tb7yPIme5vVU53/W5lKkmebIwai4BLtDBTp',
+                },
+                {
+                    slide: '2',
+                    title: 'Diseño y Construcción',
+                    category: 'Arquitecto independiente',
+                    subCategory: 'Construccion liviana',
+                    service: 'Tecnicos',
+                    owner: 'Fredy Cely',
+                    locations: ['En todo el país'],
+                    rate: 50,
+                    paymentMethods: [
+                        'Tarjeta de credito / debito',
+                        'Yappy',
+                        'Efectivo',
+                    ],
+                    apps: [],
+                    link: 'dI61bLWrF6TVG8PGrXgJHPRdYqA3/NSei9RcTdPPXSt4hhY3m',
+                },
+                {
+                    slide: '3',
+                    title: 'Abogado con amplia experiencia',
+                    category: 'Abogados',
+                    subCategory: 'Legales',
+                    service: 'Profesionales',
+                    owner: 'Humberto Aparicio',
+                    locations: ['En todo el país'],
+                    rate: 50,
+                    paymentMethods: ['Yappy', 'Cash'],
+                    apps: [],
+                    link: '0AAuECFZriUmRqcqfTiaxotcF6t2/cjqMr1XEXxMaqYLz4B58',
+                },
+            ],
         }
     },
     computed: {
