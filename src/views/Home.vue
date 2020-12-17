@@ -72,7 +72,7 @@
         <!-- START 4 STEPS -->
         <div class="row">
             <div class="col desktop-only"></div>
-            <div class="col-lg-9 col-xs-12 text-center">
+            <div class="col-lg-8 col-xs-12 text-center">
                 <div class="row">
                     <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6 q-pa-md">
                         <q-card class="bg-primary text-white">
@@ -140,53 +140,58 @@
         <div class="bg-grey-2 q-py-xl">
             <div class="row q-mb-md">
                 <div class="col desktop-only"></div>
-                <div class="col-lg-9 col-xs-12">
+                <div class="col-lg-8 col-xs-12">
                     <div class="text-h5 q-px-md">Busque un servicio:</div>
                 </div>
                 <div class="col desktop-only"></div>
             </div>
             <div class="row">
                 <div class="col desktop-only"></div>
-                <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
-                    <q-select
-                        class="q-px-md q-mb-md"
-                        filled
-                        v-model="selectedCategory"
-                        :options="categoriesOptions"
-                        label="Categoria"
-                    />
+                <div class="col-lg-8 col-xs-12">
+                    <div class="row">
+                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                            <q-select
+                                class="q-px-md q-mb-md"
+                                filled
+                                v-model="selectedCategory"
+                                :options="categoriesOptions"
+                                label="Categoria"
+                            />
+                        </div>
+                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                            <q-select
+                                class="q-px-md q-mb-md"
+                                filled
+                                v-model="selectedSubcategory"
+                                :options="subCategoriesOptions"
+                                label="Sub-Categoria"
+                                option-label="desc"
+                                option-disable="inactive"
+                                emit-value
+                                map-options
+                            />
+                        </div>
+                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                            <q-select
+                                class="q-px-md q-mb-md"
+                                filled
+                                v-model="selectedService"
+                                :options="serviceOptions"
+                                label="Servicio"
+                                option-label="desc"
+                                option-disable="inactive"
+                                emit-value
+                                map-options
+                            />
+                        </div>
+                    </div>
                 </div>
-                <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
-                    <q-select
-                        class="q-px-md q-mb-md"
-                        filled
-                        v-model="selectedSubcategory"
-                        :options="subCategoriesOptions"
-                        label="Sub-Categoria"
-                        option-label="desc"
-                        option-disable="inactive"
-                        emit-value
-                        map-options
-                    />
-                </div>
-                <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
-                    <q-select
-                        class="q-px-md q-mb-md"
-                        filled
-                        v-model="selectedService"
-                        :options="serviceOptions"
-                        label="Servicio"
-                        option-label="desc"
-                        option-disable="inactive"
-                        emit-value
-                        map-options
-                    />
-                </div>
+
                 <div class="col desktop-only"></div>
             </div>
             <div class="row">
                 <div class="col desktop-only"></div>
-                <div class="col-lg-9 q-px-md">
+                <div class="col-lg-8 q-px-md">
                     <q-btn color="primary" label="Buscar" @click="search()" />
                 </div>
                 <div class="col desktop-only"></div>
@@ -197,7 +202,7 @@
         <!-- START POPULAR SERVICES -->
         <div class="row q-py-xl">
             <div class="col desktop-only"></div>
-            <div class="col-lg-9 col-xs-12">
+            <div class="col-lg-8 col-xs-12">
                 <div class="row q-px-md q-mb-md">
                     <div class="text-h5">Servicios populares</div>
                 </div>
@@ -233,7 +238,7 @@
         <!-- RECENT PUBLICATIONS -->
         <div class="row q-py-xl">
             <div class="col desktop-only"></div>
-            <div class="col-lg-9 col-xs-12">
+            <div class="col-lg-8 col-xs-12">
                 <div class="row q-mb-md">
                     <div
                         class="col-lg-4 col-md-5 col-sm-6 col-xs-12 q-px-md q-mb-lg"
