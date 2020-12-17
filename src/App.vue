@@ -1,7 +1,7 @@
 <template>
     <q-layout view="lHh Lpr lFf">
         <q-header elevated>
-            <div class="q-pa-sm text-right" style="background-color: #ED7A3A">
+            <!-- <div class="q-pa-sm text-right" style="background-color: #ED7A3A">
                 <span class="on-left">
                     <i class="far fa-envelope"></i>&nbsp;
                     <a href="mailto:admin@tareax.com" style="color: #fff"
@@ -25,7 +25,7 @@
                     target="_blank"
                     >Tareax Panama</a
                 >
-            </div>
+            </div> -->
             <q-toolbar>
                 <!-- <q-toolbar-title @click="$router.push('/')">Tareax</q-toolbar-title> -->
                 <q-toolbar-title>
@@ -36,16 +36,45 @@
                         @click="$router.push('/')"
                     />
                 </q-toolbar-title>
-                <q-btn color="white" outline :to="'/login'" v-if="!user"
+                <a
+                    href="https://www.instagram.com/wwwtareaxcom/"
+                    target="_blank"
+                    style="color: #fff; text-decoration: none;"
+                >
+                    <q-btn stretch flat icon="fab fa-instagram" />
+                </a>
+                <a
+                    href="https://www.facebook.com/tareax.panama"
+                    target="_blank"
+                    style="color: #fff; text-decoration: none;"
+                >
+                    <q-btn stretch flat icon="fab fa-facebook" />
+                </a>
+                <a
+                    href="mailto:admin@tareax.com"
+                    style="color: #fff; text-decoration: none;"
+                >
+                    <q-btn stretch flat icon="far fa-envelope">
+                        <span class="desktop-only q-pl-sm"
+                            >admin@tareax.com</span
+                        >
+                    </q-btn>
+                </a>
+                <q-btn
+                    color="orange-9"
+                    class="on-right on-left text-bold"
+                    push
+                    :to="'/login'"
+                    v-if="!user"
                     >Ofrece tus servicios</q-btn
                 >
                 <q-btn
-                    class="on-left"
-                    flat
-                    dense
+                    class="on-left on-right text-bold"
+                    push
                     to="/new-publication"
                     v-if="user"
                     label="Anuncia aqui"
+                    color="orange-9"
                 >
                 </q-btn>
                 <q-btn flat round dense v-if="user">
