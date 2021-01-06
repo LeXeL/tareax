@@ -10,6 +10,7 @@ import TareaxAlert from '@/components/general/Alert'
 import Confirm from '@/components/general/Confirm'
 
 import firebase from 'firebase/app'
+import 'firebase/analytics'
 
 Vue.component('tareax-alert', TareaxAlert)
 Vue.component('loading-alert', LoadingAlert)
@@ -29,6 +30,8 @@ const configOptions = {
 }
 
 firebase.initializeApp(configOptions)
+firebase.analytics()
+Vue.prototype.$analytics = firebase.analytics()
 
 firebase.auth().onAuthStateChanged(user => {
     // store.dispatch('fetchUser', user)
