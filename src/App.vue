@@ -1,5 +1,5 @@
 <template>
-    <q-layout view="lHh Lpr lFf">
+    <q-layout view="lHh Lpr lFf" id="app">
         <q-header elevated>
             <q-toolbar>
                 <!-- <q-toolbar-title @click="$router.push('/')">Tareax</q-toolbar-title> -->
@@ -16,17 +16,17 @@
                     target="_blank"
                     style="color: #fff; text-decoration: none"
                 >
-                    <q-btn stretch flat icon="fab fa-instagram" />
+                    <q-btn flat icon="fab fa-instagram" round />
                 </a>
                 <a
                     href="https://www.facebook.com/tareax.panama"
                     target="_blank"
                     style="color: #fff; text-decoration: none"
                 >
-                    <q-btn stretch flat icon="fab fa-facebook" />
+                    <q-btn round flat icon="fab fa-facebook" />
                 </a>
                 <a href="mailto:admin@tareax.com" style="color: #fff; text-decoration: none">
-                    <q-btn stretch flat icon="far fa-envelope">
+                    <q-btn rounded flat icon="far fa-envelope">
                         <span class="desktop-only q-pl-sm">admin@tareax.com</span>
                     </q-btn>
                 </a>
@@ -34,6 +34,7 @@
                     color="orange-9"
                     class="on-right on-left text-bold"
                     push
+                    rounded
                     :to="'/login'"
                     v-if="!user"
                     >Ofrece tus servicios</q-btn
@@ -83,7 +84,7 @@
             </q-toolbar>
         </q-header>
 
-        <q-page-container>
+        <q-page-container style="padding-top: 29px">
             <router-view />
         </q-page-container>
     </q-layout>
@@ -134,6 +135,12 @@ export default {
 </script>
 
 <style>
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap');
+
+#app {
+    font-family: 'Open Sans', sans-serif;
+}
+
 @media only screen and (max-width: 480px) {
     .tareax-logo {
         width: 40%;
