@@ -14,25 +14,20 @@
                 <a
                     href="https://www.instagram.com/wwwtareaxcom/"
                     target="_blank"
-                    style="color: #fff; text-decoration: none;"
+                    style="color: #fff; text-decoration: none"
                 >
                     <q-btn stretch flat icon="fab fa-instagram" />
                 </a>
                 <a
                     href="https://www.facebook.com/tareax.panama"
                     target="_blank"
-                    style="color: #fff; text-decoration: none;"
+                    style="color: #fff; text-decoration: none"
                 >
                     <q-btn stretch flat icon="fab fa-facebook" />
                 </a>
-                <a
-                    href="mailto:admin@tareax.com"
-                    style="color: #fff; text-decoration: none;"
-                >
+                <a href="mailto:admin@tareax.com" style="color: #fff; text-decoration: none">
                     <q-btn stretch flat icon="far fa-envelope">
-                        <span class="desktop-only q-pl-sm"
-                            >admin@tareax.com</span
-                        >
+                        <span class="desktop-only q-pl-sm">admin@tareax.com</span>
                     </q-btn>
                 </a>
                 <q-btn
@@ -57,48 +52,28 @@
                     <q-menu>
                         <q-list style="width: 200px">
                             <q-item clickable v-close-popup>
-                                <q-item-section
-                                    @click="$router.push('/profile')"
-                                >
-                                    <span>
-                                        <i class="fas fa-user on-left"></i
-                                        >Perfil
-                                    </span>
+                                <q-item-section @click="$router.push('/profile')">
+                                    <span> <i class="fas fa-user on-left"></i>Perfil </span>
                                 </q-item-section>
                             </q-item>
 
                             <q-item clickable v-close-popup>
-                                <q-item-section
-                                    @click="$router.push('/my-publications')"
-                                >
+                                <q-item-section @click="$router.push('/my-publications')">
                                     <span>
-                                        <i class="fas fa-list on-left"></i>Mis
-                                        publicaciones
+                                        <i class="fas fa-list on-left"></i>Mis publicaciones
                                     </span>
                                 </q-item-section>
                             </q-item>
-                            <q-item
-                                clickable
-                                v-close-popup
-                                v-if="role === 'admin'"
-                            >
+                            <q-item clickable v-close-popup v-if="role === 'admin'">
                                 <q-item-section @click="$router.push('/admin')">
-                                    <span>
-                                        <i
-                                            class="fas fa-user-shield on-left"
-                                        ></i
-                                        >Admin
-                                    </span>
+                                    <span> <i class="fas fa-user-shield on-left"></i>Admin </span>
                                 </q-item-section>
                             </q-item>
                             <q-separator />
                             <q-item clickable v-close-popup>
                                 <q-item-section @click="logout()">
                                     <span>
-                                        <i
-                                            class="fas fa-sign-out-alt on-left"
-                                        ></i
-                                        >Cerrar sesion
+                                        <i class="fas fa-sign-out-alt on-left"></i>Cerrar sesion
                                     </span>
                                 </q-item-section>
                             </q-item>
@@ -149,10 +124,7 @@ export default {
         },
     },
     mounted() {
-        if (
-            this.$store.getters.uid !== '' &&
-            this.$store.getters.user === undefined
-        ) {
+        if (this.$store.getters.uid !== '' && this.$store.getters.user === undefined) {
             api.getUserInformationById({uid: this.uid}).then(response => {
                 this.$store.commit('SET_USER', response.data.data)
             })
