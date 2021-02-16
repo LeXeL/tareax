@@ -20,50 +20,28 @@
             @mouseenter="autoplay = false"
             @mouseleave="autoplay = true"
         >
-            <q-carousel-slide
-                name="first"
-                :img-src="require('@/assets/hero-bg-1.webp')"
-            >
+            <q-carousel-slide name="first" :img-src="require('@/assets/hero-bg-1.webp')">
                 <div class="absolute-bottom custom-caption">
                     <div class="text-h4">Sin Papeleo</div>
-                    <div class="text-subtitle1">
-                        Encuentra lo que buscas fácilmente
-                    </div>
+                    <div class="text-subtitle1">Encuentra lo que buscas fácilmente</div>
                 </div>
             </q-carousel-slide>
-            <q-carousel-slide
-                name="second"
-                :img-src="require('@/assets/hero-bg-2.webp')"
-            >
+            <q-carousel-slide name="second" :img-src="require('@/assets/hero-bg-2.webp')">
                 <div class="absolute-bottom custom-caption">
-                    <div class="text-h4">
-                        Rápido
-                    </div>
-                    <div class="text-h6">
-                        Comunícate directamente con el anunciante
-                    </div>
+                    <div class="text-h4">Rápido</div>
+                    <div class="text-h6">Comunícate directamente con el anunciante</div>
                 </div>
             </q-carousel-slide>
-            <q-carousel-slide
-                name="third"
-                :img-src="require('@/assets/hero-bg-3.webp')"
-            >
+            <q-carousel-slide name="third" :img-src="require('@/assets/hero-bg-3.webp')">
                 <div class="absolute-bottom custom-caption">
                     <div class="text-h4">Sin comisión</div>
-                    <div class="text-h6">
-                        Para anunciantes ni para compradores
-                    </div>
+                    <div class="text-h6">Para anunciantes ni para compradores</div>
                 </div>
             </q-carousel-slide>
-            <q-carousel-slide
-                name="fourth"
-                :img-src="require('@/assets/hero-bg-4.webp')"
-            >
+            <q-carousel-slide name="fourth" :img-src="require('@/assets/hero-bg-4.webp')">
                 <div class="absolute-bottom custom-caption">
                     <div class="text-h4">Fácil</div>
-                    <div class="text-h6">
-                        Encuentra precios claros por tareas específicas
-                    </div>
+                    <div class="text-h6">Encuentra precios claros por tareas específicas</div>
                 </div>
             </q-carousel-slide>
         </q-carousel>
@@ -77,23 +55,17 @@
                     <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6 q-pa-md">
                         <q-card class="bg-primary text-white">
                             <q-card-section>
-                                <q-avatar
-                                    class="step-number q-mb-sm text-bold"
-                                    text-color="white"
+                                <q-avatar class="step-number q-mb-sm text-bold" text-color="white"
                                     >1</q-avatar
                                 >
-                                <div class="text-subtitle text-bold">
-                                    Registrate<br />Es GRATIS
-                                </div>
+                                <div class="text-subtitle text-bold">Registrate<br />Es GRATIS</div>
                             </q-card-section>
                         </q-card>
                     </div>
-                    <div class="col-lg-3 col-md-3 col-sm-3  col-xs-6 q-pa-md">
+                    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6 q-pa-md">
                         <q-card class="bg-primary text-white">
                             <q-card-section>
-                                <q-avatar
-                                    class="step-number q-mb-sm text-bold"
-                                    text-color="white"
+                                <q-avatar class="step-number q-mb-sm text-bold" text-color="white"
                                     >2</q-avatar
                                 >
                                 <div class="text-subtitle text-bold">
@@ -102,12 +74,10 @@
                             </q-card-section>
                         </q-card>
                     </div>
-                    <div class="col-lg-3 col-md-3 col-sm-3  col-xs-6 q-pa-md">
+                    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6 q-pa-md">
                         <q-card class="bg-primary text-white">
                             <q-card-section>
-                                <q-avatar
-                                    class="step-number q-mb-sm text-bold"
-                                    text-color="white"
+                                <q-avatar class="step-number q-mb-sm text-bold" text-color="white"
                                     >3</q-avatar
                                 >
                                 <div class="text-subtitle text-bold">
@@ -116,12 +86,10 @@
                             </q-card-section>
                         </q-card>
                     </div>
-                    <div class="col-lg-3 col-md-3 col-sm-3  col-xs-6 q-pa-md">
+                    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6 q-pa-md">
                         <q-card class="bg-primary text-white">
                             <q-card-section>
-                                <q-avatar
-                                    class="step-number q-mb-sm text-bold"
-                                    text-color="white"
+                                <q-avatar class="step-number q-mb-sm text-bold" text-color="white"
                                     >4</q-avatar
                                 >
                                 <div class="text-subtitle text-bold">
@@ -240,9 +208,7 @@
             <div class="col desktop-only"></div>
             <div class="col-lg-8 col-xs-12">
                 <div class="row q-mb-md">
-                    <div
-                        class="col-lg-4 col-md-5 col-sm-6 col-xs-12 q-px-md q-mb-lg"
-                    >
+                    <div class="col-lg-4 col-md-5 col-sm-6 col-xs-12 q-px-md q-mb-lg">
                         <div class="row q-mb-md">
                             <div class="text-h5">Destacados</div>
                         </div>
@@ -278,13 +244,8 @@
                                     <i class="fas fa-user"></i> {{ pub.owner }}
                                 </div>
                                 <div class="text-subtitle2">
-                                    <i
-                                        class="fas fa-map-pin"
-                                        style="margin-right: 5px;"
-                                    ></i>
-                                    <span
-                                        v-for="(loc, i) in pub.locations"
-                                        :key="i"
+                                    <i class="fas fa-map-pin" style="margin-right: 5px"></i>
+                                    <span v-for="(loc, i) in pub.locations" :key="i"
                                         >{{ loc }},
                                     </span>
                                 </div>
@@ -293,31 +254,18 @@
                                     {{ pub.rate.toFixed(2) }}
                                 </div>
                                 <div class="text-subtitle2">
-                                    <i
-                                        class="fas fa-money-bill-alt"
-                                        style="margin-right: 5px;"
-                                    ></i>
-                                    <span
-                                        v-for="(payment,
-                                        i) in pub.paymentMethods"
-                                        :key="i"
+                                    <i class="fas fa-money-bill-alt" style="margin-right: 5px"></i>
+                                    <span v-for="(payment, i) in pub.paymentMethods" :key="i"
                                         >{{ payment }}, &nbsp;</span
                                     >
                                 </div>
-                                <div
-                                    class="text-subtitle2"
-                                    v-if="pub.apps.length > 0"
-                                >
+                                <div class="text-subtitle2" v-if="pub.apps.length > 0">
                                     <i class="fas fa-mobile-alt"></i>
                                     {{ pub.apps }}
                                 </div>
                                 <q-btn
                                     color="white full-width q-mt-lg"
-                                    @click="
-                                        $router.push(
-                                            `/user-publications/${pub.link}`
-                                        )
-                                    "
+                                    @click="$router.push(`/user-publications/${pub.link}`)"
                                     push
                                 >
                                     <span class="text-primary">VER MAS</span>
@@ -325,9 +273,7 @@
                             </q-carousel-slide>
                         </q-carousel>
                     </div>
-                    <div
-                        class="col-lg-8 col-md-7 col-sm-6 col-xs-12 q-px-md q-mb-md"
-                    >
+                    <div class="col-lg-8 col-md-7 col-sm-6 col-xs-12 q-px-md q-mb-md">
                         <div class="row q-mb-md">
                             <div class="text-h5">Publicaciones recientes</div>
                         </div>
@@ -392,13 +338,7 @@ export default {
                     subCategory: 'Construccion liviana',
                     service: 'Tecnicos',
                     owner: 'Gustavo Serrano',
-                    locations: [
-                        'Balboa',
-                        'Chepo',
-                        'Chiman',
-                        'Panama',
-                        'San Miguelito',
-                    ],
+                    locations: ['Balboa', 'Chepo', 'Chiman', 'Panama', 'San Miguelito'],
                     rate: 0,
                     paymentMethods: ['Efectivo'],
                     apps: [],
@@ -413,11 +353,7 @@ export default {
                     owner: 'Fredy Cely',
                     locations: ['En todo el país'],
                     rate: 50,
-                    paymentMethods: [
-                        'Tarjeta de credito / debito',
-                        'Yappy',
-                        'Efectivo',
-                    ],
+                    paymentMethods: ['Tarjeta de credito / debito', 'Yappy', 'Efectivo'],
                     apps: [],
                     link: 'dI61bLWrF6TVG8PGrXgJHPRdYqA3/NSei9RcTdPPXSt4hhY3m',
                 },
@@ -452,16 +388,12 @@ export default {
                     return moment(b.creationTime).diff(a.creationTime)
                 })
                 .filter((pub, i) => {
-                    if (i < 10) {
+                    if (i < 5) {
                         return pub
                     }
                 })
             this.filteredPublicationData.sort((a, b) => {
-                return a.userId.isVerified === b.userId.isVerified
-                    ? 0
-                    : a
-                    ? -1
-                    : 1
+                return a.userId.isVerified === b.userId.isVerified ? 0 : a ? -1 : 1
             })
         },
         returnCategoryName(id) {
@@ -525,8 +457,7 @@ export default {
             if (this.selectedSubcategory === '') {
                 this.displayLoading = false
                 this.alertTitle = 'Error'
-                this.alertMessage =
-                    'Por favor tienes que escojer una sub categoria'
+                this.alertMessage = 'Por favor tienes que escojer una sub categoria'
                 this.alertType = 'error'
                 this.displayAlert = true
                 return
@@ -602,8 +533,7 @@ export default {
                 this.selectedService = ''
                 let selectedSubCategory
                 this.subcategoriesData.filter(subcategory => {
-                    if (subcategory.name === newValue)
-                        selectedSubCategory = subcategory
+                    if (subcategory.name === newValue) selectedSubCategory = subcategory
                 })
                 this.serviceOptions = this.servicesData
                     .filter(service => {

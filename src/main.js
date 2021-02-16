@@ -30,6 +30,13 @@ const configOptions = {
 }
 
 firebase.initializeApp(configOptions)
+if (
+    process.env.NODE_ENV === 'development' ||
+    process.env.NODE_ENV === 'testing'
+) {
+    firebase.auth().useEmulator('http://localhost:9099/')
+    firebase.firestore().useEmulator('localhost', 8081)
+}
 firebase.analytics()
 Vue.prototype.$analytics = firebase.analytics()
 
