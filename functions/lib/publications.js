@@ -9,9 +9,7 @@ async function createPublicationInDatabase(publication) {
         .collection('publications')
         .doc()
         .set({
-            title:
-                publication.title.charAt(0).toUpperCase() +
-                publication.title.slice(1),
+            title: publication.title.charAt(0).toUpperCase() + publication.title.slice(1),
             description: publication.description,
             category: publication.category,
             subcategory: publication.subcategory,
@@ -116,7 +114,7 @@ async function returnAllRecentPublications() {
         return moment(b.creationTime).diff(a.creationTime)
     })
     publications = publications.filter((pub, i) => {
-        if (i < 10) {
+        if (i < 5) {
             return pub
         }
     })
