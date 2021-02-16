@@ -193,11 +193,17 @@
                         </div>
                     </div>
                 </div>
-                <!-- <div class="row text-center">
+                <div class="row text-center">
                     <div class="col q-px-md">
-                        <q-btn color="primary" label="Ver todas" />
+                        <q-btn
+                            color="orange-9"
+                            label="Todos los servicios"
+                            push
+                            class="text-bold"
+                            to="/all-services"
+                        />
                     </div>
-                </div>-->
+                </div>
             </div>
             <div class="col desktop-only"></div>
         </div>
