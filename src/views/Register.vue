@@ -16,9 +16,7 @@
                     <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12 q-px-md">
                         <q-card class="full-width">
                             <q-card-section>
-                                <div class="text-h5">
-                                    Formulario de registro
-                                </div>
+                                <div class="text-h5">Formulario de registro</div>
                             </q-card-section>
                             <q-separator />
                             <q-card-section>
@@ -27,22 +25,14 @@
                                     label="Nombre"
                                     class="q-mb-md"
                                     v-model="form.name"
-                                    :rules="[
-                                        val =>
-                                            val.length > 0 ||
-                                            'El campo es obligatorio',
-                                    ]"
+                                    :rules="[val => val.length > 0 || 'El campo es obligatorio']"
                                 />
                                 <q-input
                                     filled
                                     label="Apellido"
                                     class="q-mb-md"
                                     v-model="form.lastName"
-                                    :rules="[
-                                        val =>
-                                            val.length > 0 ||
-                                            'El campo es obligatorio',
-                                    ]"
+                                    :rules="[val => val.length > 0 || 'El campo es obligatorio']"
                                 />
                                 <q-input
                                     filled
@@ -50,12 +40,9 @@
                                     class="q-mb-md"
                                     v-model="form.email"
                                     :rules="[
+                                        val => val.length > 0 || 'El campo es obligatorio',
                                         val =>
-                                            val.length > 0 ||
-                                            'El campo es obligatorio',
-                                        val =>
-                                            validEmail.test(val) ||
-                                            'Formato de correo incorrecto',
+                                            validEmail.test(val) || 'Formato de correo incorrecto',
                                     ]"
                                 />
                                 <q-input
@@ -63,11 +50,7 @@
                                     label="Telefono de contacto"
                                     class="q-mb-md"
                                     v-model="form.contactPhone"
-                                    :rules="[
-                                        val =>
-                                            val.length > 0 ||
-                                            'El campo es obligatorio',
-                                    ]"
+                                    :rules="[val => val.length > 0 || 'El campo es obligatorio']"
                                 />
                                 <q-input
                                     filled
@@ -76,9 +59,7 @@
                                     type="password"
                                     v-model="form.password"
                                     :rules="[
-                                        val =>
-                                            val.length > 0 ||
-                                            'El campo es obligatorio',
+                                        val => val.length > 0 || 'El campo es obligatorio',
                                         val =>
                                             strongPass.test(val) ||
                                             'Debe tener 8 caracteres e incluir mayuscula, miniscula, numero, y caracter especial.',
@@ -91,32 +72,22 @@
                                     type="password"
                                     v-model="form.repassword"
                                     :rules="[
+                                        val => val.length > 0 || 'El campo es obligatorio',
                                         val =>
-                                            val.length > 0 ||
-                                            'El campo es obligatorio',
-                                        val =>
-                                            val == form.password ||
-                                            'Las contraseñas no coinciden',
+                                            val == form.password || 'Las contraseñas no coinciden',
                                     ]"
                                 />
                                 <q-checkbox v-model="terms">
                                     Acepto los terminos y condiciones.
                                 </q-checkbox>
-                                <a
-                                    class="on-right"
-                                    href="/terms-and-conditions"
-                                    target="_blank"
+                                <a class="on-right" href="/terms-and-conditions" target="_blank"
                                     >Leer aqui.</a
                                 >
                             </q-card-section>
                             <q-separator />
                             <q-card-actions>
                                 <q-space />
-                                <q-btn
-                                    color="primary"
-                                    label="Registrar"
-                                    @click="createuser"
-                                />
+                                <q-btn color="primary" label="Registrar" @click="createuser" />
                             </q-card-actions>
                         </q-card>
                     </div>
@@ -144,14 +115,12 @@
             <q-dialog v-model="confirmationDialog">
                 <q-card style="">
                     <q-card-section>
-                        <div class="text-h6">
-                            ¡Hemos recibido tu información!
-                        </div>
+                        <div class="text-h6">¡Hemos recibido tu información!</div>
                     </q-card-section>
 
                     <q-card-section class="q-pt-none">
-                        ¡Te has registrado satisfactoriamente, ya puedes empezar
-                        a publicar tus servicios!
+                        ¡Te has registrado satisfactoriamente, ya puedes empezar a publicar tus
+                        servicios!
                         <br />
                     </q-card-section>
                     <q-separator />
@@ -160,28 +129,20 @@
                     </q-card-section>
 
                     <q-card-section class="q-pt-none">
-                        Comparte el siguiente enlace con 3 personas y escribenos
-                        a
+                        Comparte el siguiente enlace con 3 personas y escribenos a
                         <a href="mailto:admin@tareax.com">admin@tareax.com</a>
                         para reclamar beneficios dentro de la paltaforma.
                         <br />
                         <br />
                         <div class="row full-width">
                             <div class="col text-center">
-                                <span class="text-h5"
-                                    >👉👉👉http://bit.ly/customlink👈👈👈</span
-                                >
+                                <span class="text-h5">👉👉👉 http://bit.ly/2ZpT4S2 👈👈👈</span>
                             </div>
                         </div>
                     </q-card-section>
                     <q-card-actions align="right">
                         <router-link to="/" style="text-decoration: none">
-                            <q-btn
-                                flat
-                                label="Aceptar"
-                                color="primary"
-                                v-close-popup
-                            />
+                            <q-btn flat label="Aceptar" color="primary" v-close-popup />
                         </router-link>
                     </q-card-actions>
                 </q-card>
@@ -243,10 +204,7 @@ export default {
             if (this.form.password === this.form.repassword) {
                 firebase
                     .auth()
-                    .createUserWithEmailAndPassword(
-                        this.form.email,
-                        this.form.password
-                    )
+                    .createUserWithEmailAndPassword(this.form.email, this.form.password)
                     .then(async user => {
                         await this.$store.dispatch('setCurrentUser', user.user)
                         await api
@@ -267,10 +225,7 @@ export default {
                                         uid: user.user.uid,
                                     })
                                     .then(response => {
-                                        this.$store.commit(
-                                            'SET_USER',
-                                            response.data.data
-                                        )
+                                        this.$store.commit('SET_USER', response.data.data)
                                     })
                             })
                     })
@@ -280,8 +235,7 @@ export default {
                         this.dismissCountDown = this.dismissSecs
                         this.errorCode = error.code
                         if (error.code === 'auth/email-already-in-use') {
-                            this.errorMessage =
-                                'Este correo ya esta en uso registrado'
+                            this.errorMessage = 'Este correo ya esta en uso registrado'
                             return
                         }
                         this.errorMessage = error.message
