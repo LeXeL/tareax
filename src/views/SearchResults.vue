@@ -10,8 +10,7 @@
         ></tareax-alert>
         <div
             v-if="
-                Object.keys(servicesData).length !== 0 &&
-                Object.keys(publicationData).length !== 0
+                Object.keys(servicesData).length !== 0 && Object.keys(publicationData).length !== 0
             "
         >
             <TitleBanner
@@ -28,9 +27,7 @@
                 <div class="col desktop-only"></div>
                 <div class="col-lg-9 col-md-12 col-sm-12 col-xs-12">
                     <div class="row">
-                        <div
-                            class="col-lg-4 col-md-4 col-sm-5 col-xs-12 q-px-md q-mb-md"
-                        >
+                        <div class="col-lg-4 col-md-4 col-sm-5 col-xs-12 q-px-md q-mb-md">
                             <div class="text-h6 q-mb-sm">
                                 Filtrar por provincia
                             </div>
@@ -64,9 +61,7 @@
                                 color="primary"
                             />
                         </div>
-                        <div
-                            class="col-lg-8 col-md-8 col-sm-7 col-xs-12 q-px-md"
-                        >
+                        <div class="col-lg-8 col-md-8 col-sm-7 col-xs-12 q-px-md">
                             <div class="text-h6 q-mb-sm">Resultados</div>
                             <PublicationsList
                                 :data="filteredPublicacionData"
@@ -77,6 +72,15 @@
                     </div>
                 </div>
                 <div class="col desktop-only"></div>
+            </div>
+        </div>
+        <div v-else>
+            <TitleBanner
+                :subtitle="'Lo sentimos. No hemos encontrado resultados para tu busqueda.'"
+            />
+            <div class="absolute-center text-grey-4 text-center">
+                <i class="far fa-frown fa-10x q-mb-lg"></i>
+                <div class="text-h5">0 Resultados encontrados.</div>
             </div>
         </div>
     </q-page>
@@ -100,14 +104,7 @@ export default {
             areas: [
                 {
                     provinceName: 'Cocle',
-                    districts: [
-                        'Aguadulce',
-                        'Anton',
-                        'La Pintada',
-                        'Nata',
-                        'Ola',
-                        'Penonome',
-                    ],
+                    districts: ['Aguadulce', 'Anton', 'La Pintada', 'Nata', 'Ola', 'Penonome'],
                 },
                 {
                     provinceName: 'Darien',
@@ -127,33 +124,15 @@ export default {
                 },
                 {
                     provinceName: 'Panama',
-                    districts: [
-                        'Balboa',
-                        'Chepo',
-                        'Chiman',
-                        'Panama',
-                        'San Miguelito',
-                        'Taboga',
-                    ],
+                    districts: ['Balboa', 'Chepo', 'Chiman', 'Panama', 'San Miguelito', 'Taboga'],
                 },
                 {
                     provinceName: 'Panama Oeste',
-                    districts: [
-                        'Arraijan',
-                        'Capira',
-                        'Chame',
-                        'La Chorrera',
-                        'San Carlos',
-                    ],
+                    districts: ['Arraijan', 'Capira', 'Chame', 'La Chorrera', 'San Carlos'],
                 },
                 {
                     provinceName: 'Bocas del Toro',
-                    districts: [
-                        'Almirante',
-                        'Bocas del Toro',
-                        'Changuinola',
-                        'Chiriqui Grande',
-                    ],
+                    districts: ['Almirante', 'Bocas del Toro', 'Changuinola', 'Chiriqui Grande'],
                 },
                 {
                     provinceName: 'Chiriqui',
@@ -263,8 +242,7 @@ export default {
                 this.districtSelect = ''
                 let selectedProvince
                 this.areas.filter(area => {
-                    if (area.provinceName === newValue)
-                        selectedProvince = area.districts
+                    if (area.provinceName === newValue) selectedProvince = area.districts
                 })
                 this.districtOptions = selectedProvince
                 this.filteredPublicacionData = this.publicationData
@@ -277,11 +255,7 @@ export default {
                         }
                     })
                     .sort((a, b) => {
-                        return a.userId.isVerified === b.userId.isVerified
-                            ? 0
-                            : a
-                            ? -1
-                            : 1
+                        return a.userId.isVerified === b.userId.isVerified ? 0 : a ? -1 : 1
                     })
             }
         },
@@ -297,11 +271,7 @@ export default {
                         }
                     })
                     .sort((a, b) => {
-                        return a.userId.isVerified === b.userId.isVerified
-                            ? 0
-                            : a
-                            ? -1
-                            : 1
+                        return a.userId.isVerified === b.userId.isVerified ? 0 : a ? -1 : 1
                     })
             }
         },
@@ -309,28 +279,17 @@ export default {
             if (newValue === '') {
                 this.filteredPublicacionData = this.publicationData
                 this.filteredPublicacionData.sort((a, b) => {
-                    return a.userId.isVerified === b.userId.isVerified
-                        ? 0
-                        : a
-                        ? -1
-                        : 1
+                    return a.userId.isVerified === b.userId.isVerified ? 0 : a ? -1 : 1
                 })
             } else {
                 this.filteredPublicacionData = this.publicationData
                     .filter(publication => {
-                        if (
-                            publication.price >= newValue.min &&
-                            publication.price < newValue.max
-                        ) {
+                        if (publication.price >= newValue.min && publication.price < newValue.max) {
                             return publication
                         }
                     })
                     .sort((a, b) => {
-                        return a.userId.isVerified === b.userId.isVerified
-                            ? 0
-                            : a
-                            ? -1
-                            : 1
+                        return a.userId.isVerified === b.userId.isVerified ? 0 : a ? -1 : 1
                     })
             }
         },
