@@ -5,6 +5,7 @@ import store from '@/store/store'
 import Login from '@/views/Login'
 import Register from '@/views/Register'
 import Home from '../views/Home.vue'
+import AllServices from '@/views/AllServices'
 import SearchResults from '@/views/SearchResults'
 import UserPublications from '@/views/UserPublications'
 import NewPublication from '@/views/NewPublication'
@@ -34,6 +35,11 @@ const routes = [
         path: '/',
         name: 'Home',
         component: Home,
+    },
+    {
+        path: '/all-services',
+        name: 'AllServices',
+        component: AllServices,
     },
     {
         path: '/search/:id',
