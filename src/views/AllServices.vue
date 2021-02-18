@@ -4,43 +4,34 @@
         <div class="row">
             <q-space />
             <div class="col-lg-7">
-                <div class="row" v-for="(category, i) in 5" :key="i">
+                <div class="row" v-for="(category, i) in categoriesData" :key="i">
                     <div class="col-lg-4 q-pa-md flex flex-center">
-                        <div class="text-h5 text-primary text-bold">
-                            Tecnicos
-                        </div>
+                        <div class="text-h5 text-primary text-bold">{{ category.name }}</div>
                     </div>
                     <div class="col-lg-8 q-pa-md">
-                        <div class="row">
-                            <div
-                                class="text-h6 q-py-md text-orange-9 text-bold"
-                            >
-                                Limpieza
+                        <div
+                            class="row"
+                            v-for="(subcategory, i) in returnAllSubCatgoriesOfThatCategory(
+                                category.id
+                            )"
+                            :key="i"
+                        >
+                            <div class="text-h6 q-py-md text-orange-9 text-bold">
+                                {{ subcategory.name }}
                             </div>
-                        </div>
-                        <div class="row">
-                            <div
-                                class="col-lg-4"
-                                v-for="(service, i) in 7"
-                                :key="i"
-                            >
-                                <div class="text-subtitle1">Servicio</div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div
-                                class="text-h6 q-py-md text-orange-9 text-bold"
-                            >
-                                Seguridad privada
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div
-                                class="col-lg-4"
-                                v-for="(service, i) in 15"
-                                :key="i"
-                            >
-                                <div class="text-subtitle1">Servicio</div>
+                            <div class="row">
+                                <div
+                                    class="col-lg-4"
+                                    v-for="(
+                                        service, i
+                                    ) in returnAllServiceOfThatCategoryandSubCategory(
+                                        category.id,
+                                        subcategory.id
+                                    )"
+                                    :key="i"
+                                >
+                                    <div class="text-subtitle1">{{ service.name }}</div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -54,10 +45,39 @@
 
 <script>
 import TitleBanner from '@/components/TitleBanner'
+import * as api from '@/api/api'
 
 export default {
     components: {
         TitleBanner,
+    },
+    data() {
+        return {
+            categoriesData: [],
+            subcategoriesData: [],
+            servicesData: [],
+        }
+    },
+    methods: {
+        returnAllSubCatgoriesOfThatCategory(category) {
+            return this.subcategoriesData.filter(sub => sub.category === category)
+        },
+        returnAllServiceOfThatCategoryandSubCategory(category, subcategory) {
+            return this.servicesData.filter(
+                serv => serv.category === category && serv.subcategory === subcategory
+            )
+        },
+    },
+    mounted() {
+        api.ReturnAllCategories().then(response => {
+            this.categoriesData = response.data.data
+            api.ReturnAllSubCategories().then(response => {
+                this.subcategoriesData = response.data.data
+            })
+            api.ReturnAllServices().then(response => {
+                this.servicesData = response.data.data
+            })
+        })
     },
 }
 </script>
