@@ -3,13 +3,48 @@
         <TitleBanner :subtitle="'Todos los servicios'" />
         <div class="row">
             <q-space />
-            <div class="col-lg-7">
-                <div class="row" v-for="(category, i) in categoriesData" :key="i">
-                    <div class="col-lg-4 q-pa-md flex flex-center">
+            <div class="col-lg-7 col-md-9">
+                <div
+                    :class="`row ${i % 2 == 0 ? 'white' : 'bg-grey-1'}`"
+                    v-for="(category, i) in categoriesData"
+                    :key="i"
+                >
+                    <div class="col-lg-4 col-xs-12 q-pa-md flex flex-center">
                         <div class="text-h5 text-primary text-bold">{{ category.name }}</div>
                     </div>
                     <div class="col-lg-8 q-pa-md">
                         <div
+                            class="row"
+                            v-for="(subcategory, i) in returnAllSubCatgoriesOfThatCategory(
+                                category.id
+                            )"
+                            :key="i"
+                        >
+                            <div class="col-lg-12 col-xs-12">
+                                <div class="text-h6 q-pt-md text-orange-9 text-bold">
+                                    {{ subcategory.name }}
+                                </div>
+                                <q-separator class="q-mb-md" />
+                            </div>
+                            <div
+                                class="col-lg-4 col-xs-12 col-sm-6 col-md-4"
+                                v-for="(service, i) in returnAllServiceOfThatCategoryandSubCategory(
+                                    category.id,
+                                    subcategory.id
+                                )"
+                                :key="i"
+                            >
+                                <div class="text-subtitle1">
+                                    <router-link
+                                        :to="`/search/${service.id}`"
+                                        style="color: black"
+                                        >{{ service.name }}</router-link
+                                    >
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- <div
                             class="row"
                             v-for="(subcategory, i) in returnAllSubCatgoriesOfThatCategory(
                                 category.id
@@ -33,7 +68,7 @@
                                     <div class="text-subtitle1">{{ service.name }}</div>
                                 </div>
                             </div>
-                        </div>
+                        </div> -->
                     </div>
                     <q-separator />
                 </div>
