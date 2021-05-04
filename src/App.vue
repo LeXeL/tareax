@@ -95,12 +95,12 @@
                         <img src="@/assets/TareaxFin2.png" style="width: 35%" class="q-mb-md" />
                         <div class="text-body2 text-white q-mb-md">
                             Busca los servicios que necesites y contacta directamente con el
-                            proveedor o registrate y ofrece tus servicios, sin comiciones y sin
+                            proveedor o regístrate y ofrece tus servicios, sin comisiones y sin
                             intermediarios.
                         </div>
                     </div>
                     <div class="col-lg-4 col-md-4 col-sm-3 q-pa-lg">
-                        <div class="text-h6 text-white text-bold">Busqueda</div>
+                        <div class="text-h6 text-white text-bold">Búsqueda</div>
                         <div class="text-subtitle2 text-white">
                             <router-link to="/" style="text-decoration: none; color: white">
                                 Por especialidad
@@ -111,7 +111,7 @@
                                 to="/all-services"
                                 style="text-decoration: none; color: white"
                             >
-                                Por categorias
+                                Por categorías
                             </router-link>
                         </div>
                         <div class="text-subtitle2 text-white">
@@ -119,7 +119,7 @@
                                 to="/new-publication"
                                 style="text-decoration: none; color: white"
                             >
-                                Anunciate
+                                Anúnciate
                             </router-link>
                         </div>
                         <div class="text-h6 text-white text-bold q-mt-md">Legal</div>
@@ -128,12 +128,12 @@
                                 to="/terms-and-conditions"
                                 style="text-decoration: none; color: white"
                             >
-                                Terminos y Condiciones
+                                Términos y Condiciones
                             </router-link>
                         </div>
                     </div>
                     <div class="col-lg-4 col-md-4 col-sm-3 q-pa-lg">
-                        <div class="text-h6 text-white text-bold">Encuentranos</div>
+                        <div class="text-h6 text-white text-bold">Encuéntranos</div>
                         <div class="text-subtitle2 text-white">
                             <a
                                 href="https://www.instagram.com/wwwtareaxcom/"
