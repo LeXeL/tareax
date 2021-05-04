@@ -87,6 +87,87 @@
         <q-page-container style="padding-top: 29px">
             <router-view />
         </q-page-container>
+        <div class="row bg-primary">
+            <q-space />
+            <div class="col-lg-9">
+                <div class="row q-pt-md">
+                    <div class="col-lg-4 col-md-4 col-sm-6 q-pa-lg">
+                        <img src="@/assets/TareaxFin2.png" style="width: 35%" class="q-mb-md" />
+                        <div class="text-body2 text-white q-mb-md">
+                            Busca los servicios que necesites y contacta directamente con el
+                            proveedor o registrate y ofrece tus servicios, sin comiciones y sin
+                            intermediarios.
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-4 col-sm-3 q-pa-lg">
+                        <div class="text-h6 text-white text-bold">Busqueda</div>
+                        <div class="text-subtitle2 text-white">
+                            <router-link to="/" style="text-decoration: none; color: white">
+                                Por especialidad
+                            </router-link>
+                        </div>
+                        <div class="text-subtitle2 text-white">
+                            <router-link
+                                to="/all-services"
+                                style="text-decoration: none; color: white"
+                            >
+                                Por categorias
+                            </router-link>
+                        </div>
+                        <div class="text-subtitle2 text-white">
+                            <router-link
+                                to="/new-publication"
+                                style="text-decoration: none; color: white"
+                            >
+                                Anunciate
+                            </router-link>
+                        </div>
+                        <div class="text-h6 text-white text-bold q-mt-md">Legal</div>
+                        <div class="text-subtitle2 text-white">
+                            <router-link
+                                to="/terms-and-conditions"
+                                style="text-decoration: none; color: white"
+                            >
+                                Terminos y Condiciones
+                            </router-link>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-4 col-sm-3 q-pa-lg">
+                        <div class="text-h6 text-white text-bold">Encuentranos</div>
+                        <div class="text-subtitle2 text-white">
+                            <a
+                                href="https://www.instagram.com/wwwtareaxcom/"
+                                target="_blank"
+                                style="text-decoration: none; color: white"
+                            >
+                                <q-icon name="fab fa-instagram" class="on-left" />@wwwtareaxcom
+                            </a>
+                        </div>
+                        <div class="text-subtitle2 text-white">
+                            <a
+                                href="https://www.facebook.com/tareax.panama"
+                                target="_blank"
+                                style="text-decoration: none; color: white"
+                            >
+                                <q-icon name="fab fa-facebook" class="on-left" />/tareax.panama
+                            </a>
+                        </div>
+                        <div class="text-subtitle2 text-white">
+                            <a
+                                href="mailto:admin@tareax.com"
+                                style="text-decoration: none; color: white"
+                            >
+                                <q-icon name="fas fa-envelope" class="on-left" />admin@tareax.com
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="text-subtitle2 text-bold text-center text-white q-py-md">
+                    2021 TAREAX.COM PANAMA, REPUBLICA DE PANAMA
+                </div>
+            </div>
+            <q-space />
+        </div>
     </q-layout>
 </template>
 
